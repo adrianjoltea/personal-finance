@@ -1,0 +1,23 @@
+.page-not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  &-container {
+    padding: $padding-hg;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    background-color: $slate-100;
+    min-height: 10rem;
+    font-size: 4rem;
+
+    button {
+      background-color: rgba($color-primary, 0.2);
+      border: none;
+      color: $color-primary;
+      border-radius: 2rem;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+@import "../base/colors";
+
+.sidebar {
+  grid-row: 1/-1;
+  grid-column: 1/3;
+  padding: $padding-lg;
+  background-color: var(--color-grey-100);
+  position: relative;
+  transition: all 0.3s ease;
+  border-right: 1px solid var(--color-grey-300);
+  h1 {
+    font-size: $h3-size;
+  }
+  nav {
+    margin-top: 5rem;
+    ul {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      gap: $gap-lg;
+    }
+  }
+  &__link:link,
+  &__link:visited {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    color: var(--color-indigo-700);
+    font-weight: 700;
+    transition: all 0.3s;
+    display: block;
+    padding: $padding-sm;
+    display: flex;
+    gap: $gap-md;
+    align-items: center;
+  }
+  &__link:active,
+  &__link:hover {
+    transform: translateY(-3px);
+    background-color: rgba(var(--color-grey-100), 0.5);
+    color: var(--color-blue-700);
+    border-radius: 1rem;
+  }
+  &-collapse {
+    position: absolute;
+    top: 50%;
+    right: -3rem;
+    border-radius: 50%;
+    padding: $padding-sm;
+    border: 2px solid var(--color-indigo-700);
+    font-size: 1.5rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.7s ease-in-out;
+
+    &-btn {
+      cursor: pointer;
+      color: $color-primary;
+    }
+  }
+  &:hover .sidebar-collapse {
+    opacity: 1;
+    visibility: visible;
+    right: -5rem;
+  }
+}

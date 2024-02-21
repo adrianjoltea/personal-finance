@@ -1,0 +1,24 @@
+.btn {
+  width: 100%;
+  padding: 2rem;
+  border-radius: 5rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+  &-login {
+    background-color: var(--color-indigo-100);
+    color: var(--color-grey-50);
+  }
+
+  &-logout {
+    background-color: transparent;
+    border: none;
+    color: var(--color-indigo-700);
+    cursor: pointer;
+    font-size: 2rem;
+  }
+}
+.active {
+  color: var(--color-grey-600);
+}

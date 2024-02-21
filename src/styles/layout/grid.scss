@@ -1,0 +1,20 @@
+@import "./header.scss";
+@import "./sidebar.scss";
+
+.app-layout {
+  display: grid;
+  grid-template-rows: 10dvh 90dvh;
+  grid-auto-columns: min-content;
+  grid-template-columns: 15rem 15rem repeat(8, 1fr);
+  transition: all 0.2s;
+  &.collapsed {
+    grid-template-columns: 5rem 5rem repeat(8, 1fr);
+  }
+}
+.main-page {
+  grid-column: 3/-1;
+  padding: $padding-hg;
+  width: 100%;
+  background-color: var(--color-grey-100);
+  transition: all 0.3s ease;
+}

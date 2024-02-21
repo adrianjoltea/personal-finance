@@ -1,0 +1,26 @@
+import { useSelector } from "react-redux";
+
+import CardDetails from "../Card/CardDetails";
+import { getMainCard } from "../../context/userCardsSlice";
+
+interface MainCardProps {
+  id?: string;
+  name: string;
+  balance: number;
+  currency: string;
+}
+export default function Card() {
+  const mainCard: MainCardProps = useSelector(getMainCard);
+  console.log(mainCard);
+
+  return (
+    <div>
+      <CardDetails
+        name={mainCard?.name}
+        balance={mainCard?.balance}
+        currency={mainCard?.currency}
+        id={mainCard?.id}
+      />
+    </div>
+  );
+}
