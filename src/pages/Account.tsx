@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDark } from "../context/darkModeSlice";
 import AccountDetails from "../components/Account/AccountDetails";

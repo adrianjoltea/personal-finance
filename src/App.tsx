@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./pages/AppLayout";
 import Overview from "./pages/Overview";
@@ -13,6 +13,7 @@ import { Toaster } from "react-hot-toast";
 
 export default function App() {
   const dark = useSelector(getDark);
+
   useEffect(
     function () {
       if (dark) {

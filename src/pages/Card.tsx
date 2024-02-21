@@ -1,4 +1,3 @@
-import React from "react";
 import Modal from "../components/Card/Modal";
 import { toggleModal } from "../context/modalSlice";
 import { useDispatch, useSelector } from "react-redux";

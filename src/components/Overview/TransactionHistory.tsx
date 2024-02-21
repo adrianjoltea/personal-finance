@@ -1,4 +1,3 @@
-import React from "react";
 import { fakeData } from "../../common/variables";
 
 interface Transaction {
