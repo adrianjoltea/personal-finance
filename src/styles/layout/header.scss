@@ -1,5 +1,6 @@
 @import "../base/colors";
 @import "../components/header/dark-mode.scss";
+@import "../components/header/mobile-view.scss";
 .header-app {
   grid-row: 1/2;
   grid-column: 3/-1;
@@ -10,4 +11,7 @@
   justify-content: flex-end;
   background-color: var(--color-grey-100);
   transition: all 0.3s ease;
+  @include respond(tab-port) {
+    height: 10dvh;
+  }
 }

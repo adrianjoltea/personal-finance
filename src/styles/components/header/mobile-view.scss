@@ -1,0 +1,11 @@
+.toggle-mobile {
+  font-size: 2rem;
+  padding: $padding-md;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--color-indigo-700);
+  position: relative;
+  z-index: 10;
+}

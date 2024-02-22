@@ -1,4 +1,5 @@
 import Darkmode from "../header/Darkmode";
+import MobileView from "../header/MobileView";
 import SignOut from "../Login/SignOut";
 
 export default function Header() {
@@ -6,6 +7,7 @@ export default function Header() {
     <header className="header-app">
       <Darkmode />
       <SignOut />
+      <MobileView />
     </header>
   );
 }

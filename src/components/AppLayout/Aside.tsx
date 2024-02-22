@@ -4,6 +4,8 @@ import { FaIdCard } from "react-icons/fa6";
 import { IoMdPerson } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { getNav, toggleNav } from "../../context/darkModeSlice";
 
 interface AsideProps {
   navOpen: boolean;
@@ -11,14 +13,20 @@ interface AsideProps {
 }
 
 export default function Aside({ navOpen, setNavOpen }: AsideProps) {
+  const navigationMobile = useSelector(getNav);
+  const dispatch = useDispatch();
   function handleClick() {
     setNavOpen(nav => !nav);
   }
 
   return (
-    <aside className={`sidebar ${navOpen ? "" : "collapsed"}`}>
+    <aside
+      className={`sidebar ${navOpen ? "" : "collapsed"}${
+        navigationMobile ? "active__nav" : ""
+      }`}
+    >
       <nav>
-        <ul>
+        <ul onClick={() => dispatch(toggleNav())}>
           <li>
             <NavLink to="/" className="sidebar__link">
               <FaCompass /> {navOpen && <span>Overview</span>}
