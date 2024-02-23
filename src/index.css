@@ -243,7 +243,7 @@ body {
   padding: 2rem;
   background-color: var(--color-grey-100);
   position: relative;
-  transition: all 1s ease;
+  transition: all 0.3s ease;
   border-right: 1px solid var(--color-grey-300); }
   @media only screen and (max-width: 56.25em) {
     .sidebar {
@@ -283,6 +283,8 @@ body {
     display: flex;
     gap: 1.75rem;
     align-items: center; }
+    .sidebar__link:link.active, .sidebar__link:visited.active {
+      color: var(--color-yellow-700); }
     @media only screen and (max-width: 75em) {
       .sidebar__link:link, .sidebar__link:visited {
         font-size: 1.3rem; } }
@@ -292,7 +294,7 @@ body {
   .sidebar__link:active, .sidebar__link:hover {
     transform: translateY(-3px);
     background-color: rgba(var(--color-grey-100), 0.5);
-    color: var(--color-blue-700);
+    color: var(--color-yellow-700);
     border-radius: 1rem; }
   .sidebar-collapse {
     position: absolute;
@@ -776,3 +778,21 @@ body {
     transform: rotate(0deg); }
   100% {
     transform: rotate(-360deg); } }
+
+.offline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh; }
+  .offline-container {
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    font-size: 2rem;
+    width: 40rem; }
+    .offline-container-bolt {
+      font-size: 4rem; }

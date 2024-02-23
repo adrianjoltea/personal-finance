@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./pages/AppLayout";
 import Overview from "./pages/Overview";
@@ -11,9 +11,24 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import Settings from "./pages/Settings";
+import AppOffline from "./AppOffline";
 
 export default function App() {
   const dark = useSelector(getDark);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  useEffect(() => {
+    const updateOnlineStatus = () => {
+      setIsOnline(navigator.onLine);
+    };
+
+    window.addEventListener("online", updateOnlineStatus);
+    window.addEventListener("offline", updateOnlineStatus);
+
+    return () => {
+      window.removeEventListener("online", updateOnlineStatus);
+      window.removeEventListener("offline", updateOnlineStatus);
+    };
+  }, []);
 
   useEffect(
     function () {
@@ -29,25 +44,31 @@ export default function App() {
   );
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            element={
-              <ProtectedRoute>
-                <AppLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="/" element={<Overview />} />
-            <Route path="card" element={<Card />} />
-            <Route path="account" element={<Account />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
-          <Route path="*" element={<PageNotFound />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-      <Toaster position="top-center" />
+      {isOnline ? (
+        <>
+          <BrowserRouter>
+            <Routes>
+              <Route
+                element={
+                  <ProtectedRoute>
+                    <AppLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route path="/" element={<Overview />} />
+                <Route path="card" element={<Card />} />
+                <Route path="account" element={<Account />} />
+                <Route path="settings" element={<Settings />} />
+              </Route>
+              <Route path="*" element={<PageNotFound />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </BrowserRouter>
+          <Toaster position="top-center" />
+        </>
+      ) : (
+        <AppOffline />
+      )}
     </>
   );
 }
