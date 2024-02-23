@@ -10,6 +10,7 @@ import { getDark } from "./context/darkModeSlice";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import Settings from "./pages/Settings";
 
 export default function App() {
   const dark = useSelector(getDark);
@@ -40,6 +41,7 @@ export default function App() {
             <Route path="/" element={<Overview />} />
             <Route path="card" element={<Card />} />
             <Route path="account" element={<Account />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
           <Route path="/login" element={<Login />} />

@@ -10,7 +10,7 @@
     font-family: inherit;
     padding: $padding-sm;
     border-radius: 0.5rem;
-    background-color: var(--color-grey-100);
+    background-color: var(--color-grey-200);
     border: none;
     border-bottom: 3px solid transparent;
     width: 100%;
@@ -18,6 +18,13 @@
     transition: all 0.3s;
     padding: 1rem;
     position: relative;
+    &[type="file"] {
+      cursor: pointer;
+
+      &::file-selector-button {
+        display: none;
+      }
+    }
     &:focus {
       outline: none;
       box-shadow: 0 1rem 2rem rgba($color-gray-950, 0.1);

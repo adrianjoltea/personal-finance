@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { FaCompass } from "react-icons/fa";
-import { FaIdCard } from "react-icons/fa6";
+import { FaGear, FaIdCard } from "react-icons/fa6";
 import { IoMdPerson } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
@@ -26,7 +26,7 @@ export default function Aside({ navOpen, setNavOpen }: AsideProps) {
       }`}
     >
       <nav>
-        <ul onClick={() => dispatch(toggleNav())}>
+        <ul onClick={() => dispatch(toggleNav(false))}>
           <li>
             <NavLink to="/" className="sidebar__link">
               <FaCompass /> {navOpen && <span>Overview</span>}
@@ -45,6 +45,11 @@ export default function Aside({ navOpen, setNavOpen }: AsideProps) {
           <li>
             <NavLink to="/login" className="sidebar__link">
               <IoMdPerson /> {navOpen && <span>login</span>}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/settings" className="sidebar__link">
+              <FaGear /> {navOpen && <span>settings</span>}
             </NavLink>
           </li>
         </ul>

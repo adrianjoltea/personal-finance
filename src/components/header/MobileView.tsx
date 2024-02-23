@@ -8,7 +8,10 @@ export default function MobileView() {
 
   return (
     <div>
-      <button className="toggle-mobile" onClick={() => dispatch(toggleNav())}>
+      <button
+        className="toggle-mobile"
+        onClick={() => dispatch(toggleNav(!navigation))}
+      >
         {navigation ? <GiCrossedBones /> : <GiHamburgerMenu />}
       </button>
     </div>

@@ -7,7 +7,7 @@ interface InputProps {
   id: string;
   placeholder: string;
   content: string;
-  value: string | number;
+  value: string | number | Blob | null;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   autoComplete?: string;
   forPassword?: boolean;
@@ -30,16 +30,28 @@ export default function Input({
 }: InputProps) {
   return (
     <div className="form-group">
-      <input
-        className="form-input"
-        type={type}
-        name={name}
-        id={id}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        autoComplete={autoComplete}
-      />
+      {type !== "file" ? (
+        <input
+          className="form-input"
+          type={type}
+          name={name}
+          id={id}
+          placeholder={placeholder}
+          value={value as string}
+          onChange={onChange}
+          autoComplete={autoComplete}
+        />
+      ) : (
+        <input
+          className="form-input"
+          type={type}
+          name={name}
+          id={id}
+          placeholder={placeholder}
+          onChange={onChange}
+          autoComplete={autoComplete}
+        />
+      )}
       <label className="form-label" htmlFor={name}>
         {content}
       </label>

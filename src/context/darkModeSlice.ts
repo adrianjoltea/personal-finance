@@ -18,8 +18,8 @@ const generalSlice = createSlice({
       state.dark = !state.dark;
       localStorage.setItem("darkMode", state.dark.toString());
     },
-    toggleNav(state) {
-      state.navOpen = !state.navOpen;
+    toggleNav(state, action) {
+      state.navOpen = action.payload;
     },
   },
 });
