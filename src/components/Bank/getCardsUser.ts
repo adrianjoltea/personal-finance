@@ -7,11 +7,9 @@ interface CardResults {
   currency: string;
 }
 
-export default async function getCardsUser(
-  userId: string
-): Promise<CardResults[]> {
+export default async function getCardsUser(): Promise<CardResults[]> {
   try {
-    const { data } = await fetchCardsUser(userId);
+    const { data } = await fetchCardsUser();
     console.log(data);
     return data;
   } catch (err) {

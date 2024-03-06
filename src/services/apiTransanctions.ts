@@ -1,8 +1,9 @@
-import { apiUrl } from "../common/variables";
+import { apiUrl, apiUrl2 } from "../common/variables";
 
 interface transactions {
   amount: number;
   description: string;
+  createdAt: Date;
 }
 
 interface TransactionsRespose {
@@ -17,7 +18,7 @@ interface transactionProps {
 
 export async function fetchTransactions(): Promise<TransactionsRespose> {
   try {
-    const res = await fetch(`${apiUrl}/transactions`, {
+    const res = await fetch(`${apiUrl2}/transactions/get`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -62,11 +63,11 @@ export async function withdraw(
   }
 }
 
-export async function deposit(
+export async function addTransaction(
   dataApi: transactionProps
 ): Promise<TransactionsRespose> {
   try {
-    const res = await fetch(`${apiUrl}/transactions/deposit`, {
+    const res = await fetch(`${apiUrl2}/transactions/transaction`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -78,6 +79,16 @@ export async function deposit(
     if (!res.ok) throw new Error("Could not add an transaction");
 
     const data = await res.json();
+
+    const currentMainCard = JSON.parse(
+      localStorage.getItem("mainCard") || "{}"
+    );
+    const currentBalance = currentMainCard.balance;
+    const updatedMainCard = {
+      ...currentMainCard,
+      balance: currentBalance + data.amount,
+    };
+    localStorage.setItem("mainCard", JSON.stringify(updatedMainCard));
 
     console.log(data);
     return { data };

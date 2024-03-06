@@ -1,7 +1,7 @@
 import { login as loginApi } from "../../services/apiAuth";
 
 interface submitDataProps {
-  email: string;
+  username: string;
   password: string;
 }
 
@@ -16,9 +16,9 @@ export default async function Login(
   try {
     const { isAuthenticated, loading } = await loginApi(submitData);
 
-    if (!isAuthenticated) {
-      console.log("Login unsuccessful");
-    }
+    // if (!isAuthenticated) {
+    //   console.log("Login unsuccessful");
+    // }
 
     return { isAuthenticated, loading };
   } catch (error) {

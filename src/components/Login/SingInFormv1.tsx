@@ -2,16 +2,22 @@ import React, { useState } from "react";
 import Input from "../ui/Input";
 
 import Register from "./useRegister";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 export default function SignInForm() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const navigate = useNavigate();
 
   const submitData = {
-    username,
+    email,
     password,
+    firstName,
+    lastName,
   };
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -20,7 +26,7 @@ export default function SignInForm() {
       const isAuthenticated = await Register(submitData);
 
       if (isAuthenticated) {
-        toast.success("Please move to the login page");
+        navigate("/");
       } else {
         // Handle authentication failure
         toast.error("Authentication failed. Please check your credentials.", {
@@ -39,15 +45,33 @@ export default function SignInForm() {
     <>
       <form className="login-form" onSubmit={e => handleSubmit(e)}>
         <Input
-          type="text"
-          id="username"
+          type="email"
+          id="email"
+          autoComplete="email"
           // className="login-form-container-input"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          content="Username"
-          placeholder="Enter your username"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          content="Email address"
+          placeholder="Enter your email address"
         />
-
+        <Input
+          type="text"
+          id="firstName"
+          placeholder="Enter your first name"
+          // className="login-form-container-input"
+          value={firstName}
+          onChange={e => setFirstName(e.target.value)}
+          content="First name"
+        />
+        <Input
+          type="text"
+          id="lastName"
+          placeholder="Enter your last name"
+          // className="login-form-container-input"
+          value={lastName}
+          onChange={e => setLastName(e.target.value)}
+          content="Last name"
+        />
         <Input
           type="password"
           id="password"

@@ -6,14 +6,14 @@ import toast from "react-hot-toast";
 import Login from "./useLogin";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const submitData = {
-    email,
+    username,
     password,
   };
 
@@ -24,7 +24,7 @@ export default function LoginForm() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!email || !password) {
+    if (!username || !password) {
       toast.error("Please complete all the form elements", {
         className: "toast",
       });
@@ -39,15 +39,15 @@ export default function LoginForm() {
     <>
       <form className="login-form" onSubmit={handleSubmit}>
         <Input
-          type="email"
-          id="email"
-          name="email"
+          type="text"
+          id="username"
+          name="username"
           autoComplete="email"
           placeholder="Enter your email"
           // className="login-form-container-input"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          content="Email address"
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+          content="Username"
         />
 
         <Input
@@ -64,7 +64,9 @@ export default function LoginForm() {
           showPassword={showPassword}
         />
         <div className="login-form-container">
-          <button className={`btn btn-login ${email && password && "active"}`}>
+          <button
+            className={`btn btn-login ${username && password && "active"}`}
+          >
             Log in
           </button>
         </div>

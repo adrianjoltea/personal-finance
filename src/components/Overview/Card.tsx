@@ -4,7 +4,7 @@ import CardDetails from "../Card/CardDetails";
 import { getMainCard } from "../../context/userCardsSlice";
 
 interface MainCardProps {
-  id?: string;
+  _id?: string;
   name: string;
   balance: number;
   currency: string;
@@ -19,7 +19,7 @@ export default function Card() {
         name={mainCard?.name}
         balance={mainCard?.balance}
         currency={mainCard?.currency}
-        id={mainCard?.id}
+        _id={mainCard?._id}
       />
     </div>
   );

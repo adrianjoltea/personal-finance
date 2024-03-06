@@ -1,4 +1,4 @@
-import { deposit } from "../../services/apiTransanctions";
+import { addTransaction } from "../../services/apiTransanctions";
 
 interface withdrawProps {
   amount: number;
@@ -6,9 +6,15 @@ interface withdrawProps {
   bankAccountId: string;
 }
 
-export default async function addDeposit(dataApi: withdrawProps) {
+export default async function transaction(dataApi: withdrawProps) {
   try {
-    const { data } = await deposit(dataApi);
+    const { data } = await addTransaction(dataApi);
+
+    // const updateData = {
+    //   balance: data.amount,
+    //   userId: data.id,
+    // };
+    // console.log(updateData);
 
     console.log(data);
     return data;

@@ -1,7 +1,7 @@
-import { apiUrl } from "../common/variables";
+import { apiUrl2 } from "../common/variables";
 
 interface LoginData {
-  email: string;
+  username: string;
   password: string;
 }
 interface LoginResponse {
@@ -15,10 +15,8 @@ interface AuthResponse {
 }
 
 interface RegisterProps {
-  email: string;
+  username: string;
   password: string;
-  firstName: string;
-  lastName: string;
 }
 
 interface FetchRegisterProps {
@@ -37,7 +35,7 @@ export const login = async (dataApi: LoginData): Promise<AuthResponse> => {
       loading: true,
     };
 
-    const response = await fetch(`${apiUrl}/auth/login`, {
+    const response = await fetch(`${apiUrl2}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +50,6 @@ export const login = async (dataApi: LoginData): Promise<AuthResponse> => {
     authResponse.loading = false;
 
     const data: LoginResponse = await response.json();
-
     if (data.accessToken) {
       localStorage.setItem("accessToken", data.accessToken);
     }
@@ -61,6 +58,7 @@ export const login = async (dataApi: LoginData): Promise<AuthResponse> => {
     return { ...authResponse, data, isAuthenticated: response.ok };
   } catch (error) {
     // Handle errors
+
     console.error("Fetch error:", error);
 
     return {
@@ -81,7 +79,7 @@ export async function register(
       loading: true,
     };
 
-    const res = await fetch(`${apiUrl}/auth/register`, {
+    const res = await fetch(`${apiUrl2}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -7,7 +7,7 @@ import { getCard, setMainCard } from "../../context/userCardsSlice";
 import { debounce } from "lodash";
 
 interface CardInput {
-  id?: string;
+  _id?: string;
   name: string;
   balance: number;
   currency: string;
@@ -39,7 +39,7 @@ export default function CardDetailsContainer() {
     <ScrollContainer>
       {cardsDB.map((card: CardInput, index: number) => (
         <CardDetails
-          id={card.id}
+          _id={card._id}
           key={index}
           name={card.name}
           balance={card.balance}

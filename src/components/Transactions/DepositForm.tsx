@@ -12,8 +12,9 @@ export default function DepositForm() {
   const submitData = {
     amount: parseFloat(amount),
     description,
-    bankAccountId: mainCard.id,
+    bankAccountId: mainCard._id,
   };
+  console.log(mainCard._id);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

@@ -15,7 +15,7 @@ export default function Account() {
         <DepositForm />
       </Modal>
       <button className="btn" onClick={() => dispatch(toggleModal(true))}>
-        Deposit
+        Add Transaction
       </button>
     </div>
   );

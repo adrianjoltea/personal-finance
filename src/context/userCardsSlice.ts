@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface Card {
-  id: string;
+  _id: string;
   name: string;
   balance: number;
   currency: string;

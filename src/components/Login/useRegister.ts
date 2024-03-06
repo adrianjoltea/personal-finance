@@ -1,10 +1,8 @@
 import { register } from "../../services/apiAuth";
 
 interface submitDataProps {
-  email: string;
+  username: string;
   password: string;
-  firstName: string;
-  lastName: string;
 }
 
 interface RegisterResult {

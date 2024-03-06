@@ -1,7 +1,8 @@
 import { apiUrl } from "../common/variables";
+import { apiUrl2 } from "../common/variables";
 
 interface UserProps {
-  id: string;
+  _id: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -15,7 +16,7 @@ interface User {
   firstName: string;
   lastName: string;
   email: string;
-  id: string;
+  _id: string;
 }
 
 interface FetchUserResponse {
@@ -48,7 +49,7 @@ export async function fetchUser(): Promise<FetchUserProps> {
 export async function fetchCurrentUser(): Promise<FetchUserResponse> {
   try {
     let loading = true;
-    const res = await fetch(`${apiUrl}/auth/me`, {
+    const res = await fetch(`${apiUrl2}/auth/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -60,10 +61,10 @@ export async function fetchCurrentUser(): Promise<FetchUserResponse> {
 
     const data: User = await res.json();
 
-    console.log(data, !!data.id);
+    console.log(data, !!data._id);
     loading = false;
 
-    return { data, isAuthenticated: !!data?.id, loading };
+    return { data, isAuthenticated: !!data?._id, loading };
   } catch (err) {
     console.log(err);
     throw err;
