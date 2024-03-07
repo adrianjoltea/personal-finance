@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "../ui/Input";
 import { useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
-import addWithdraw from "./addWithdraw";
+import transaction from "./addDeposit";
 
 export default function WithdrawForm() {
   const [amount, setAmount] = useState("");
@@ -11,15 +11,17 @@ export default function WithdrawForm() {
   const mainCard = useSelector(getMainCard);
 
   const submitData = {
-    amount: parseFloat(amount),
+    amount: -parseFloat(amount),
     description,
-    bankAccountId: mainCard.id,
+    bankAccountId: mainCard._id,
   };
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(submitData);
-    addWithdraw(submitData);
+    if (parseFloat(amount) > 0) {
+      transaction(submitData);
+    }
   }
 
   return (

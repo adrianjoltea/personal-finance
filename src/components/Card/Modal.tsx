@@ -4,10 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 interface ModalProps {
   children: ReactNode;
+  modalId: string;
 }
 
-export default function Modal({ children }: ModalProps) {
-  const open = useSelector(getModal);
+interface RootState {
+  modal: {
+    modals: Record<string, { open: boolean }>;
+  };
+}
+
+export default function Modal({ children, modalId }: ModalProps) {
+  const open = useSelector((state: RootState) => getModal(state, modalId));
   const dispatch = useDispatch();
 
   return open ? (
@@ -15,7 +22,7 @@ export default function Modal({ children }: ModalProps) {
       <div className="modal">
         <button
           className="modal-button"
-          onClick={() => dispatch(toggleModal(false))}
+          onClick={() => dispatch(toggleModal({ modalId, open: false }))}
         >
           X
         </button>

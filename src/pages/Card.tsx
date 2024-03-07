@@ -1,14 +1,10 @@
-import Modal from "../components/Card/Modal";
-import { toggleModal } from "../context/modalSlice";
-import { useDispatch, useSelector } from "react-redux";
-import ModalForm from "../components/Card/ModalForm";
+import { useSelector } from "react-redux";
 import CardDetailsContainer from "../components/Card/CardDetailsContainer";
-
 import { getUser } from "../context/userSlice";
 import TransactionHistory from "../components/Overview/TransactionHistory";
+import CardOperations from "../components/Card/CardOperations";
 
 export default function Card() {
-  const dispatch = useDispatch();
   const user = useSelector(getUser);
 
   const userID = user.id;
@@ -16,11 +12,7 @@ export default function Card() {
   return (
     <div className="main-page">
       <CardDetailsContainer />
-      <Modal>
-        {" "}
-        <ModalForm />
-      </Modal>
-      <button onClick={() => dispatch(toggleModal(true))}>ciava</button>
+      <CardOperations />
       <TransactionHistory />
     </div>
   );

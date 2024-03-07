@@ -4,8 +4,6 @@ interface BankAccounts {
   name: string;
   balance: number;
   currency: string;
-  bankId: string;
-  userId: string;
 }
 
 export default async function CreateBankAccount(dataCard: BankAccounts) {

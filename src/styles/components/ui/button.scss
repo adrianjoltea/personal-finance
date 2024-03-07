@@ -5,6 +5,16 @@
   border: none;
   cursor: pointer;
   transition: all 0.5s;
+
+  &-operations {
+    height: 75%;
+    width: 50%;
+    font-size: $h3-size;
+    background-color: var(--color-brand-600);
+    color: var(--color-grey-800);
+    box-shadow: var(--shadow-lg);
+  }
+
   &-transactions {
     height: 4rem;
     width: 30%;

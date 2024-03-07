@@ -49,3 +49,9 @@
   grid-column: 1/-1;
   grid-row: 5/-1;
 }
+.transaction-btns {
+  grid-row: 4/5;
+  grid-column: 7/-1;
+  display: flex;
+  justify-content: space-between;
+}

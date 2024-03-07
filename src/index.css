@@ -188,7 +188,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background-color: var(--color-grey-100);
+  background-color: var(--color-grey-0);
   transition: all 0.3s ease; }
   @media only screen and (max-width: 56.25em) {
     .header-app {
@@ -277,7 +277,7 @@ body {
   grid-row: 1/-1;
   grid-column: 1/3;
   padding: 2rem;
-  background-color: var(--color-grey-100);
+  background-color: var(--color-grey-0);
   position: relative;
   transition: all 0.3s ease;
   border-right: 1px solid var(--color-grey-300); }
@@ -392,6 +392,14 @@ body {
     .main-page {
       width: 100%;
       height: 90dvh; } }
+
+.indiana-scroll-container {
+  display: flex;
+  overflow: auto;
+  cursor: grab;
+  gap: 5rem;
+  grid-row: 1/4;
+  grid-column: 1/-1; }
 
 :root, :root.light-mode {
   --color-brand-50: #eef2ff;
@@ -640,9 +648,10 @@ body {
   padding: 2rem;
   justify-content: space-between;
   border-radius: 2rem;
+  height: 15rem;
   flex-shrink: 0;
   font-size: 1.6rem;
-  width: 100%;
+  width: 30rem;
   box-shadow: var(--shadow-lg);
   color: #ffffff; }
   .card-container {
@@ -660,12 +669,6 @@ body {
     align-items: end; }
   .card-placeholder {
     font-size: 2.4rem; }
-
-.indiana-scroll-container {
-  display: flex;
-  overflow: auto;
-  cursor: grab;
-  gap: 5rem; }
 
 .indiana-scroll-container--hide-scrollbars {
   overflow: -moz-scrollbars-none;
@@ -686,6 +689,19 @@ body {
   border: 1px solid var(--color-grey-300);
   border-radius: 2rem;
   display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.card-operations-container {
+  grid-row: 5/-1;
+  grid-column: 5/-1;
+  display: flex;
+  flex-direction: column; }
+
+.card-operations-item {
+  display: flex;
+  width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center; }
 
@@ -768,6 +784,12 @@ body {
 .transaction-chart {
   grid-column: 1/-1;
   grid-row: 5/-1; }
+
+.transaction-btns {
+  grid-row: 4/5;
+  grid-column: 7/-1;
+  display: flex;
+  justify-content: space-between; }
 
 .page-not-found {
   display: flex;
@@ -852,6 +874,13 @@ body {
   border: none;
   cursor: pointer;
   transition: all 0.5s; }
+  .btn-operations {
+    height: 75%;
+    width: 50%;
+    font-size: 2.4rem;
+    background-color: var(--color-brand-600);
+    color: var(--color-grey-800);
+    box-shadow: var(--shadow-lg); }
   .btn-transactions {
     height: 4rem;
     width: 30%;
@@ -943,9 +972,3 @@ body {
     width: 40rem; }
     .offline-container-bolt {
       font-size: 4rem; }
-
-.transaction-btns {
-  grid-row: 4/5;
-  grid-column: 7/-1;
-  display: flex;
-  justify-content: space-between; }

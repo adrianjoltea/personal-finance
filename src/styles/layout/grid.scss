@@ -33,3 +33,11 @@
     height: 90dvh;
   }
 }
+.indiana-scroll-container {
+  display: flex;
+  overflow: auto;
+  cursor: grab;
+  gap: 5rem;
+  grid-row: 1/4;
+  grid-column: 1/-1;
+}

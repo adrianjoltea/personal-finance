@@ -6,10 +6,10 @@
   padding: $padding-lg;
   justify-content: space-between;
   border-radius: 2rem;
-  // height: 100%;
+  height: 15rem;
   flex-shrink: 0;
   font-size: $p-size;
-  width: 100%;
+  width: 30rem;
   box-shadow: var(--shadow-lg);
   color: $color-white;
   &-container {
@@ -33,12 +33,13 @@
     font-size: $h3-size;
   }
 }
-.indiana-scroll-container {
-  display: flex;
-  overflow: auto;
-  cursor: grab;
-  gap: 5rem;
-}
+// .indiana-scroll-container {
+//   display: flex;
+//   overflow: auto;
+//   cursor: grab;
+//   gap: 5rem;
+//   grid-row: 1/3;
+// }
 
 .indiana-scroll-container--hide-scrollbars {
   overflow: -moz-scrollbars-none;

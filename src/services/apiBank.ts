@@ -23,8 +23,6 @@ interface BankAccounts {
   name: string;
   balance: number;
   currency: string;
-  bankId: string;
-  userId: string;
 }
 
 interface UpdateBankAccountData {
@@ -81,7 +79,7 @@ export async function createBankAccounts(
   dataUser: BankAccounts
 ): Promise<FetchBankAccounts> {
   try {
-    const res = await fetch(`${apiUrl}/bank-accounts`, {
+    const res = await fetch(`${apiUrl2}/bankaccounts/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -18,8 +18,11 @@ export default function DepositForm() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     console.log(submitData);
-    addDeposit(submitData);
+    if (parseFloat(amount) > 0) {
+      addDeposit(submitData);
+    }
   }
 
   return (
