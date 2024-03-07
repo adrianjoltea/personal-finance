@@ -5,6 +5,7 @@ import ModalForm from "../components/Card/ModalForm";
 import CardDetailsContainer from "../components/Card/CardDetailsContainer";
 
 import { getUser } from "../context/userSlice";
+import TransactionHistory from "../components/Overview/TransactionHistory";
 
 export default function Card() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ export default function Card() {
         <ModalForm />
       </Modal>
       <button onClick={() => dispatch(toggleModal(true))}>ciava</button>
+      <TransactionHistory />
     </div>
   );
 }

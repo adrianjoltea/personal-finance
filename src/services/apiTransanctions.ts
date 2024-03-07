@@ -16,6 +16,16 @@ interface transactionProps {
   bankAccountId: string;
 }
 
+interface PastTransactions {
+  day: Date;
+  expense: number;
+  income: number;
+}
+
+interface PastTransactionsResponse {
+  data: PastTransactions[];
+}
+
 export async function fetchTransactions(): Promise<TransactionsRespose> {
   try {
     const res = await fetch(`${apiUrl2}/transactions/get`, {
@@ -30,7 +40,32 @@ export async function fetchTransactions(): Promise<TransactionsRespose> {
 
     const data: transactions[] = await res.json();
 
-    console.log(data);
+    return { data };
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+}
+
+export async function fetchPastTransactions(
+  day: number
+): Promise<PastTransactionsResponse> {
+  try {
+    const res = await fetch(
+      `${apiUrl2}/transactions/past-transactions/${day}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    );
+
+    if (!res.ok) throw new Error("Could not get the transactions");
+
+    const data = await res.json();
+
     return { data };
   } catch (err) {
     console.log(err);

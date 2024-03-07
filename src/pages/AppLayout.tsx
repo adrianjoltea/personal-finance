@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { setCurrentCards } from "../context/userCardsSlice";
 import getCardsUser from "../components/Bank/getCardsUser";
 import getCurrentUser from "../components/User/getCurrentUser";
-import getTransactions from "../components/Transactions/getTransactions";
 
 export default function AppLayout() {
   const [navOpen, setNavOpen] = useState(true);
@@ -19,8 +18,7 @@ export default function AppLayout() {
       try {
         const { data, isAuthenticated } = await getCurrentUser();
         const dataCards = await getCardsUser();
-        const dataTransactions = await getTransactions();
-        console.log(dataTransactions);
+
         // Ensure the user is authenticated before dispatching the update
         if (isAuthenticated) {
           dispatch(updateUser(data));

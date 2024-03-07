@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import getTransactions from "../Transactions/getTransactions";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { formatDate } from "../../hooks/useFormatDate";
 interface Transaction {
   amount: number;
   description: string;
@@ -28,8 +29,6 @@ export default function TransactionHistory() {
 
   if (transactions === undefined) return <>loading</>;
 
-  console.log(transactions);
-
   const sortedData = [...transactions].sort(
     (a: Transaction, b: Transaction) => {
       if (sortOrder === "asc") {
@@ -39,16 +38,6 @@ export default function TransactionHistory() {
       }
     }
   );
-  const formatDate = (date: Date) => {
-    const options: Intl.DateTimeFormatOptions = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "2-digit",
-    };
-    const formatedDate = new Date(date);
-
-    return formatedDate.toLocaleDateString(undefined, options);
-  };
 
   function toggleSortOrder() {
     setSortOrder(prev => (prev === "asc" ? "desc" : "asc"));
@@ -70,7 +59,13 @@ export default function TransactionHistory() {
       {sortedData.map((data: Transaction, i) => (
         <div className="transaction-table-row" key={i}>
           {/* {Temporary currency} */}
-          <p className="transaction-table-row-item">{data.amount} $</p>
+          <p
+            className={`transaction-table-row-item ${
+              data.amount >= 0 ? "text-green" : "text-red"
+            }`}
+          >
+            {data.amount} $
+          </p>
           <p className="transaction-table-row-item">
             {formatDate(data.createdAt)}
           </p>

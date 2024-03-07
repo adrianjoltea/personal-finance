@@ -78,6 +78,14 @@ body {
   font-family: "Rubik", sans-serif; }
 
 :root, :root.light-mode {
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
   --color-grey-0: #fff;
   --color-grey-50: #f9fafb;
   --color-grey-100: #f3f4f6;
@@ -93,6 +101,7 @@ body {
   --color-blue-700: #0369a1;
   --color-green-100: #dcfce7;
   --color-green-700: #15803d;
+  --color-green-500: #4ade80;
   --color-yellow-100: #fef9c3;
   --color-yellow-700: #a16207;
   --color-silver-100: #e5e7eb;
@@ -108,6 +117,14 @@ body {
   --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12); }
 
 :root.dark-mode {
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-500: #686aff;
+  --color-brand-600: #544bf4;
+  --color-brand-700: #4b3edd;
+  --color-brand-800: #4138b8;
+  --color-brand-900: #3c389e;
   --color-grey-0: #18212f;
   --color-grey-50: #111827;
   --color-grey-100: #1f2937;
@@ -122,6 +139,7 @@ body {
   --color-blue-100: #075985;
   --color-blue-700: #e0f2fe;
   --color-green-100: #166534;
+  --color-green-500: #16a34a;
   --color-green-700: #dcfce7;
   --color-yellow-100: #854d0e;
   --color-yellow-700: #fef9c3;
@@ -177,6 +195,14 @@ body {
       height: 10dvh; } }
 
 :root, :root.light-mode {
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
   --color-grey-0: #fff;
   --color-grey-50: #f9fafb;
   --color-grey-100: #f3f4f6;
@@ -192,6 +218,7 @@ body {
   --color-blue-700: #0369a1;
   --color-green-100: #dcfce7;
   --color-green-700: #15803d;
+  --color-green-500: #4ade80;
   --color-yellow-100: #fef9c3;
   --color-yellow-700: #a16207;
   --color-silver-100: #e5e7eb;
@@ -207,6 +234,14 @@ body {
   --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12); }
 
 :root.dark-mode {
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-500: #686aff;
+  --color-brand-600: #544bf4;
+  --color-brand-700: #4b3edd;
+  --color-brand-800: #4138b8;
+  --color-brand-900: #3c389e;
   --color-grey-0: #18212f;
   --color-grey-50: #111827;
   --color-grey-100: #1f2937;
@@ -221,6 +256,7 @@ body {
   --color-blue-100: #075985;
   --color-blue-700: #e0f2fe;
   --color-green-100: #166534;
+  --color-green-500: #16a34a;
   --color-green-700: #dcfce7;
   --color-yellow-100: #854d0e;
   --color-yellow-700: #fef9c3;
@@ -275,7 +311,7 @@ body {
     text-decoration: none;
     text-transform: uppercase;
     font-size: 1.7rem;
-    color: var(--color-indigo-700);
+    color: var(--color-brand-500);
     font-weight: 700;
     transition: all 0.3s;
     display: block;
@@ -284,7 +320,7 @@ body {
     gap: 1.75rem;
     align-items: center; }
     .sidebar__link:link.active, .sidebar__link:visited.active {
-      color: var(--color-yellow-700); }
+      color: var(--color-brand-800); }
     @media only screen and (max-width: 75em) {
       .sidebar__link:link, .sidebar__link:visited {
         font-size: 1.3rem; } }
@@ -294,7 +330,7 @@ body {
   .sidebar__link:active, .sidebar__link:hover {
     transform: translateY(-3px);
     background-color: rgba(var(--color-grey-100), 0.5);
-    color: var(--color-yellow-700);
+    color: var(--color-brand-700);
     border-radius: 1rem; }
   .sidebar-collapse {
     position: absolute;
@@ -358,6 +394,14 @@ body {
       height: 90dvh; } }
 
 :root, :root.light-mode {
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
   --color-grey-0: #fff;
   --color-grey-50: #f9fafb;
   --color-grey-100: #f3f4f6;
@@ -373,6 +417,7 @@ body {
   --color-blue-700: #0369a1;
   --color-green-100: #dcfce7;
   --color-green-700: #15803d;
+  --color-green-500: #4ade80;
   --color-yellow-100: #fef9c3;
   --color-yellow-700: #a16207;
   --color-silver-100: #e5e7eb;
@@ -388,6 +433,14 @@ body {
   --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12); }
 
 :root.dark-mode {
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-500: #686aff;
+  --color-brand-600: #544bf4;
+  --color-brand-700: #4b3edd;
+  --color-brand-800: #4138b8;
+  --color-brand-900: #3c389e;
   --color-grey-0: #18212f;
   --color-grey-50: #111827;
   --color-grey-100: #1f2937;
@@ -402,6 +455,7 @@ body {
   --color-blue-100: #075985;
   --color-blue-700: #e0f2fe;
   --color-green-100: #166534;
+  --color-green-500: #16a34a;
   --color-green-700: #dcfce7;
   --color-yellow-100: #854d0e;
   --color-yellow-700: #fef9c3;
@@ -425,6 +479,14 @@ body {
   font-size: 1.5rem; }
 
 :root, :root.light-mode {
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
   --color-grey-0: #fff;
   --color-grey-50: #f9fafb;
   --color-grey-100: #f3f4f6;
@@ -440,6 +502,7 @@ body {
   --color-blue-700: #0369a1;
   --color-green-100: #dcfce7;
   --color-green-700: #15803d;
+  --color-green-500: #4ade80;
   --color-yellow-100: #fef9c3;
   --color-yellow-700: #a16207;
   --color-silver-100: #e5e7eb;
@@ -455,6 +518,14 @@ body {
   --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12); }
 
 :root.dark-mode {
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-500: #686aff;
+  --color-brand-600: #544bf4;
+  --color-brand-700: #4b3edd;
+  --color-brand-800: #4138b8;
+  --color-brand-900: #3c389e;
   --color-grey-0: #18212f;
   --color-grey-50: #111827;
   --color-grey-100: #1f2937;
@@ -469,6 +540,7 @@ body {
   --color-blue-100: #075985;
   --color-blue-700: #e0f2fe;
   --color-green-100: #166534;
+  --color-green-500: #16a34a;
   --color-green-700: #dcfce7;
   --color-yellow-100: #854d0e;
   --color-yellow-700: #fef9c3;
@@ -563,17 +635,31 @@ body {
 
 .card {
   display: flex;
-  background-color: var(--color-green-100);
+  background-color: var(--color-brand-600);
   flex-direction: column;
-  padding: 1.5rem;
-  height: 15rem;
-  flex-shrink: 0; }
+  padding: 2rem;
+  justify-content: space-between;
+  border-radius: 2rem;
+  flex-shrink: 0;
+  font-size: 1.6rem;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  color: #ffffff; }
   .card-container {
     display: flex;
     gap: 10rem;
     overflow-x: scroll;
     overflow-y: hidden;
     width: 100%; }
+  .card-balance, .card-name {
+    display: flex;
+    flex-direction: column; }
+  .card-name-placeholder {
+    display: flex;
+    justify-content: space-between;
+    align-items: end; }
+  .card-placeholder {
+    font-size: 2.4rem; }
 
 .indiana-scroll-container {
   display: flex;
@@ -592,6 +678,16 @@ body {
   width: 0 !important;
   background: transparent !important;
   -webkit-appearance: none !important; }
+
+.main-card-container {
+  grid-row: 1/3;
+  grid-column: 7/-1;
+  padding: 2rem;
+  border: 1px solid var(--color-grey-300);
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .login-container {
   min-height: 100vh;
@@ -633,7 +729,7 @@ body {
 .transaction-table {
   border-radius: 2rem;
   border: 1px solid var(--color-grey-400);
-  grid-row: 4/-1;
+  grid-row: 5/-1;
   grid-column: 1/5;
   padding: 0;
   overflow: scroll;
@@ -662,6 +758,16 @@ body {
     gap: 1rem;
     align-items: center;
     cursor: pointer; }
+
+.text-green {
+  color: var(--color-green-500); }
+
+.text-red {
+  color: var(--color-red-700); }
+
+.transaction-chart {
+  grid-column: 1/-1;
+  grid-row: 5/-1; }
 
 .page-not-found {
   display: flex;
@@ -740,13 +846,19 @@ body {
   color: var(--color-grey-800); }
 
 .btn {
-  width: 100%;
-  padding: 2rem;
-  border-radius: 5rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
   outline: none;
   border: none;
   cursor: pointer;
-  font-size: 2rem; }
+  transition: all 0.5s; }
+  .btn-transactions {
+    height: 4rem;
+    width: 30%;
+    background-color: var(--color-grey-200);
+    color: var(--color-grey-800); }
+    .btn-transactions:active, .btn-transactions:focus {
+      background-color: var(--color-brand-600); }
   .btn-login {
     background-color: var(--color-indigo-100);
     color: var(--color-grey-800); }
@@ -831,3 +943,9 @@ body {
     width: 40rem; }
     .offline-container-bolt {
       font-size: 4rem; }
+
+.transaction-btns {
+  grid-row: 4/5;
+  grid-column: 7/-1;
+  display: flex;
+  justify-content: space-between; }

@@ -12,3 +12,10 @@
 @import "./components/ui/button.scss";
 @import "./components/ui/spinner.scss";
 @import "./components/offline/offline.scss";
+
+.transaction-btns {
+  grid-row: 4/5;
+  grid-column: 7/-1;
+  display: flex;
+  justify-content: space-between;
+}

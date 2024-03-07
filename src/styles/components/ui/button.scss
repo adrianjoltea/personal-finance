@@ -1,11 +1,21 @@
 .btn {
-  width: 100%;
-  padding: 2rem;
-  border-radius: 5rem;
+  padding: $padding-sm;
+  border-radius: 1rem;
   outline: none;
   border: none;
   cursor: pointer;
-  font-size: 2rem;
+  transition: all 0.5s;
+  &-transactions {
+    height: 4rem;
+    width: 30%;
+    background-color: var(--color-grey-200);
+    color: var(--color-grey-800);
+
+    &:active,
+    &:focus {
+      background-color: var(--color-brand-600);
+    }
+  }
   &-login {
     background-color: var(--color-indigo-100);
     color: var(--color-grey-800);

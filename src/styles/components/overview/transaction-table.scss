@@ -1,7 +1,7 @@
 .transaction-table {
   border-radius: 2rem;
   border: 1px solid var(--color-grey-400);
-  grid-row: 4/-1;
+  grid-row: 5/-1;
   grid-column: 1/5;
   padding: 0;
   overflow: scroll;
@@ -37,4 +37,15 @@
     align-items: center;
     cursor: pointer;
   }
+}
+.text-green {
+  color: var(--color-green-500);
+}
+.text-red {
+  color: var(--color-red-700);
+}
+
+.transaction-chart {
+  grid-column: 1/-1;
+  grid-row: 5/-1;
 }

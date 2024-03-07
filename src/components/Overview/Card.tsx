@@ -14,7 +14,7 @@ export default function Card() {
   console.log(mainCard);
 
   return (
-    <div>
+    <div className="main-card-container">
       <CardDetails
         name={mainCard?.name}
         balance={mainCard?.balance}

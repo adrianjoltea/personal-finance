@@ -1,5 +1,5 @@
 import { formatCurrency } from "../../hooks/useFormatCurrency";
-
+import { FaCcMastercard } from "react-icons/fa";
 interface ClickedCard {
   name: string;
   currency: string;
@@ -28,9 +28,18 @@ export default function CardDetails({
       onClick={() => handleClick?.({ name, currency, balance, _id })}
     >
       <div className="card-number"></div>
-      <div className="card-balance">{formatCurrency(balance)}</div>
+      <div className="card-balance">
+        <span>Balance</span> {formatCurrency(balance)}
+      </div>
       <div>{currency}</div>
-      <div className="card-name">{name}</div>
+      <div className="card-name-placeholder">
+        <div className="card-name">
+          <span>Username</span> {name}
+        </div>
+        <div>
+          <FaCcMastercard className="card-placeholder" />
+        </div>
+      </div>
     </div>
   );
 }
