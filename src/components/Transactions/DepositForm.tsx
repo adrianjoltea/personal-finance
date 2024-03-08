@@ -3,6 +3,8 @@ import Input from "../ui/Input";
 import { useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
 import addDeposit from "./addDeposit";
+import Card from "../Overview/Card";
+import toast from "react-hot-toast";
 
 export default function DepositForm() {
   const [amount, setAmount] = useState("");
@@ -18,16 +20,21 @@ export default function DepositForm() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     console.log(submitData);
+
+    if (!amount || !description) toast.error("Please fill out the fields");
+
     if (parseFloat(amount) > 0) {
       addDeposit(submitData);
     }
   }
 
   return (
-    <>
-      <form onSubmit={e => handleSubmit(e)}>
+    <div>
+      <div className="card-transactions-container">
+        <Card />
+      </div>
+      <form className="form-transactions" onSubmit={e => handleSubmit(e)}>
         <Input
           type="number"
           id="amount"
@@ -46,10 +53,10 @@ export default function DepositForm() {
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
-        <div>
-          <button className="btn">Deposit</button>
+        <div className="form-btn">
+          <button className="btn btn-form">Deposit</button>
         </div>
       </form>
-    </>
+    </div>
   );
 }

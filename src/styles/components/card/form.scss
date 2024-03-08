@@ -9,17 +9,6 @@
     margin-top: 3rem;
   }
 
-  &-btn {
-    border: none;
-    background-color: transparent;
-    font-size: 2rem;
-    padding: 1rem 1.5rem;
-    border-radius: 2rem;
-    cursor: pointer;
-    &:hover {
-      background-color: $slate-200;
-    }
-  }
   &-big-row {
     display: flex;
     justify-content: space-between;
@@ -49,4 +38,12 @@
   color: var(--color-red-700);
   font-size: 2rem;
   font-weight: 600;
+}
+
+.card-transactions-container {
+  margin-bottom: $gap-hg;
+}
+.form-btn {
+  display: flex;
+  justify-content: center;
 }

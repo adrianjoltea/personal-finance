@@ -3,6 +3,7 @@ import Input from "../ui/Input";
 import { useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
 import transaction from "./addDeposit";
+import Card from "../Overview/Card";
 
 export default function WithdrawForm() {
   const [amount, setAmount] = useState("");
@@ -26,6 +27,9 @@ export default function WithdrawForm() {
 
   return (
     <>
+      <div className="card-transactions-container">
+        <Card />
+      </div>
       <form onSubmit={e => handleSubmit(e)}>
         <Input
           type="number"
@@ -45,8 +49,8 @@ export default function WithdrawForm() {
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
-        <div>
-          <button className="btn">Withdraw</button>
+        <div className="form-btn">
+          <button className="btn btn-form">Withdraw</button>
         </div>
       </form>
     </>

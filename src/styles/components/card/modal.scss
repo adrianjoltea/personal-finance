@@ -9,7 +9,7 @@
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   padding: 3.2rem 4rem;
   transition: all 0.5s;
-  min-width: 100rem;
+  max-width: 100rem;
   &-button {
     position: absolute;
     top: 2rem;

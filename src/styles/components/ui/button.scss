@@ -13,6 +13,19 @@
     background-color: var(--color-brand-600);
     color: var(--color-grey-800);
     box-shadow: var(--shadow-lg);
+    &:hover {
+      background-color: var(--color-brand-700);
+    }
+  }
+  &-form {
+    width: 50%;
+    font-size: $h4-size;
+    background-color: var(--color-brand-600);
+    color: var(--color-grey-800);
+    box-shadow: var(--shadow-lg);
+    &:hover {
+      background-color: var(--color-brand-700);
+    }
   }
 
   &-transactions {
@@ -21,9 +34,14 @@
     background-color: var(--color-grey-200);
     color: var(--color-grey-800);
 
+    &:hover {
+      background-color: var(--color-grey-300);
+    }
+
     &:active,
     &:focus {
       background-color: var(--color-brand-600);
+      color: var(--color-brand-50);
     }
   }
   &-login {

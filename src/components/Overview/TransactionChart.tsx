@@ -36,7 +36,7 @@ export default function TransactionChart() {
   useEffect(() => {
     const fetchTransactions = async (days: number) => {
       try {
-        const transactionsData = await getPastTransactions(days || 7);
+        const transactionsData = await getPastTransactions((days || 7) - 1);
         setTransactions(transactionsData);
       } catch (error) {
         console.error("Error fetching transactions:", error);
