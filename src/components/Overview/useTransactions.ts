@@ -5,6 +5,7 @@ interface Transaction {
   amount: number;
   description: string;
   createdAt: Date;
+  category: string;
 }
 
 export function useTransactions() {

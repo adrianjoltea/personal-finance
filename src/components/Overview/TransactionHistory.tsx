@@ -1,43 +1,23 @@
-import { useEffect, useState } from "react";
-import getTransactions from "../Transactions/getTransactions";
+import { useState } from "react";
+
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { formatDate } from "../../hooks/useFormatDate";
-interface Transaction {
-  amount: number;
-  description: string;
-  createdAt: Date;
-}
+import { useTransactions } from "./useTransactions";
 
 export default function TransactionHistory() {
-  const [transactions, setTransactions] = useState<Transaction[] | undefined>(
-    undefined
-  );
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
-  useEffect(() => {
-    const fetchTransactions = async () => {
-      try {
-        const transactionsData = await getTransactions();
-        setTransactions(transactionsData);
-      } catch (error) {
-        console.error("Error fetching transactions:", error);
-      }
-    };
-
-    fetchTransactions();
-  }, []);
+  const transactions = useTransactions();
 
   if (transactions === undefined) return <>loading</>;
 
-  const sortedData = [...transactions].sort(
-    (a: Transaction, b: Transaction) => {
-      if (sortOrder === "asc") {
-        return a.amount - b.amount;
-      } else {
-        return b.amount - a.amount;
-      }
+  const sortedData = [...transactions].sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.amount - b.amount;
+    } else {
+      return b.amount - a.amount;
     }
-  );
+  });
 
   function toggleSortOrder() {
     setSortOrder(prev => (prev === "asc" ? "desc" : "asc"));
@@ -54,9 +34,10 @@ export default function TransactionHistory() {
           Amount
         </div>
         <div className="transaction-table-row-item">Created At</div>
-        <div className="transaction-table-row-item">Description </div>
+        <div className="transaction-table-row-item">Description</div>
+        <div className="transaction-table-row-item">Category</div>
       </div>
-      {sortedData.map((data: Transaction, i) => (
+      {sortedData.map((data, i) => (
         <div className="transaction-table-row" key={i}>
           {/* {Temporary currency} */}
           <p
@@ -70,6 +51,7 @@ export default function TransactionHistory() {
             {formatDate(data.createdAt)}
           </p>
           <p className="transaction-table-row-item">{data.description}</p>
+          <p className="transaction-table-row-item">{data.category}</p>
         </div>
       ))}
     </div>

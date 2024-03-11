@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import Input from "../ui/Input";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
 import addDeposit from "./addDeposit";
 import Card from "../Overview/Card";
 import toast from "react-hot-toast";
+import { toggleModal } from "../../context/modalSlice";
 
 export default function DepositForm() {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("job");
-
+  const dispatch = useDispatch();
   const mainCard = useSelector(getMainCard);
+
   const submitData = {
     amount: parseFloat(amount),
     description,
@@ -33,6 +35,7 @@ export default function DepositForm() {
 
     if (parseFloat(amount) > 0) {
       addDeposit(submitData);
+      dispatch(toggleModal({ modalId: "deposit", open: false }));
     }
   }
 
@@ -52,7 +55,7 @@ export default function DepositForm() {
           onChange={e => setAmount(e.target.value)}
         />
         <Input
-          type="string"
+          type="text"
           id="description"
           name="description"
           placeholder="Enter your description"
@@ -60,18 +63,21 @@ export default function DepositForm() {
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
-        <div>
-          <label htmlFor="category">Category:</label>
+        <div className="form-group">
+          <label htmlFor="category" className="form-label">
+            Category:
+          </label>
           <select
             id="category"
             name="category"
             value={category}
             onChange={e => setCategory(e.target.value)}
+            className="form-input"
           >
-            <option value="job">Job</option>
-            <option value="side job">Side Job</option>
-            <option value="freelancing">Freelancing</option>
-            <option value="other">Other</option>
+            <option value="Job">Job</option>
+            <option value="Side job">Side Job</option>
+            <option value="Freelancing">Freelancing</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div className="form-btn">
