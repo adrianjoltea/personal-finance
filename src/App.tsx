@@ -64,7 +64,15 @@ export default function App() {
               <Route path="/login" element={<Login />} />
             </Routes>
           </BrowserRouter>
-          <Toaster position="top-center" />
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              style: {
+                background: "var(--color-grey-50)",
+                color: "var(--color-grey-800)",
+              },
+            }}
+          />
         </>
       ) : (
         <AppOffline />

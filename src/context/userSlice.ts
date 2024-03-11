@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface User {
   id: string;
-  firstName: string;
-  lastName: string;
+  username: string;
   email: string;
+  profilePicture: string;
 }
 
 interface UserProps {

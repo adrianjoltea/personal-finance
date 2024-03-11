@@ -1,6 +1,7 @@
 @import "../base/colors";
 @import "../components/header/dark-mode.scss";
 @import "../components/header/mobile-view.scss";
+@import "../components/header/profile.scss";
 .header-app {
   grid-row: 1/2;
   grid-column: 3/-1;
@@ -9,9 +10,30 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background-color: var(--color-grey-0);
+  background-color: var(--color-grey-100);
   transition: all 0.3s ease;
   @include respond(tab-port) {
     height: 10dvh;
+  }
+}
+
+.profile {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+
+  img {
+    width: 4rem;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    outline: 2px solid var(--color-grey-200);
+  }
+
+  p {
+    font-size: $p-size;
   }
 }

@@ -25,6 +25,11 @@ interface FetchUserResponse {
   loading: boolean;
 }
 
+interface updateUserProps {
+  username: string;
+  profilePicture: File | null;
+}
+
 export async function fetchUser(): Promise<FetchUserProps> {
   try {
     const res = await fetch(`${apiUrl}/users`, {
@@ -65,6 +70,38 @@ export async function fetchCurrentUser(): Promise<FetchUserResponse> {
     loading = false;
 
     return { data, isAuthenticated: !!data?._id, loading };
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+}
+export async function updateUser(dataUser: updateUserProps) {
+  try {
+    console.log(dataUser);
+    const formData = new FormData();
+
+    // Append JSON data
+    formData.append("username", dataUser.username);
+
+    // Append profilePicture if available
+    if (dataUser.profilePicture) {
+      const file = dataUser.profilePicture; // Assuming dataUser.profilePicture is a File object
+      formData.append("profilePicture", file, file.name);
+    }
+
+    const res = await fetch(`${apiUrl2}/auth/update-profile`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: formData,
+    });
+
+    if (!res.ok) throw new Error("Could not update the bank account");
+
+    const updatedData = await res.json();
+    console.log(updatedData);
+    return { data: updatedData };
   } catch (err) {
     console.log(err);
     throw err;

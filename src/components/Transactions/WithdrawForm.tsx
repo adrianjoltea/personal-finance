@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
 import transaction from "./addDeposit";
 import Card from "../Overview/Card";
+import toast from "react-hot-toast";
 
 export default function WithdrawForm() {
   const [amount, setAmount] = useState("");
@@ -19,7 +20,9 @@ export default function WithdrawForm() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(submitData);
+
+    if (!amount || !description) toast.error("Please fill out the fields");
+
     if (parseFloat(amount) > 0) {
       transaction(submitData);
     }

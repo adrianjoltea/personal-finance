@@ -11,7 +11,7 @@
     width: 50%;
     font-size: $h3-size;
     background-color: var(--color-brand-600);
-    color: var(--color-grey-800);
+    color: $color-white;
     box-shadow: var(--shadow-lg);
     &:hover {
       background-color: var(--color-brand-700);
