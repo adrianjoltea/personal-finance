@@ -9,18 +9,20 @@ self.addEventListener("install", (e: ExtendableEvent) => {
     })
   );
 });
-self.addEventListener("fetch", e => {
+self.addEventListener("fetch", (e: FetchEvent) => {
   e.respondWith(
     caches.match(e.request).then(response => {
       return (
-        response || fetch(e.request).catch(() => caches.match("offline.html"))
+        response ||
+        (fetch(e.request).catch(() =>
+          caches.match("offline.html")
+        ) as Promise<Response>)
       );
     })
   );
 });
-self.addEventListener("activate", e => {
-  const cacheWhiteList = [];
-  cacheWhiteList.push(CACHE_NAME);
+self.addEventListener("activate", (e: ExtendableEvent) => {
+  const cacheWhiteList = [CACHE_NAME];
 
   e.waitUntil(
     caches.keys().then(cacheNames =>

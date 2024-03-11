@@ -23,6 +23,11 @@ export default function WithdrawForm() {
 
     if (!amount || !description) toast.error("Please fill out the fields");
 
+    if (parseFloat(amount) <= 0) {
+      toast.error("Amount must be greater than 0");
+      return;
+    }
+
     if (parseFloat(amount) > 0) {
       transaction(submitData);
     }

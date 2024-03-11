@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import Input from "../ui/Input";
 import { updateUser } from "../../services/apiUser";
+import toast from "react-hot-toast";
 
 export default function UserData() {
   const [username, setUsername] = useState("");
@@ -13,11 +14,14 @@ export default function UserData() {
 
   function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
+
     setAvatar(file || null);
   }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (!username || !avatar) toast.error("Please fill out atleast one field");
 
     updateUser(submitData);
   }

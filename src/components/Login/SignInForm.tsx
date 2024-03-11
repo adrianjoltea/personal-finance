@@ -69,6 +69,7 @@ export default function SignInForm() {
           content="Repeat password"
           placeholder="Repeat your password"
         />
+
         <div className="login-form-container">
           <button className="btn btn-login">Sign in</button>
         </div>

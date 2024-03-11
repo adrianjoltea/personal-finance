@@ -1,4 +1,3 @@
-import React from "react";
 import UserData from "../components/UserSettings/UserData";
 
 export default function Settings() {

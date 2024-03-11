@@ -1,4 +1,3 @@
-import React from "react";
 import DepositForm from "../Transactions/DepositForm";
 import WithdrawForm from "../Transactions/WithdrawForm";
 import Modal from "./Modal";
@@ -16,6 +15,7 @@ export default function CardOperations() {
   const openWithdrawModal = () => {
     dispatch(toggleModal({ modalId: "withdraw", open: true }));
   };
+
   const openCreateModal = () => {
     dispatch(toggleModal({ modalId: "create", open: true }));
   };

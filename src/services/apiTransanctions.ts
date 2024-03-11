@@ -4,6 +4,7 @@ interface transactions {
   amount: number;
   description: string;
   createdAt: Date;
+  category: string;
 }
 
 interface TransactionsRespose {
@@ -14,6 +15,7 @@ interface transactionProps {
   amount: number | string;
   description: string;
   bankAccountId: string;
+  category: string;
 }
 
 interface PastTransactions {

@@ -1,4 +1,3 @@
-import React from "react";
 import "./index.css";
 import { FaBolt } from "react-icons/fa6";
 export default function AppOffline() {
