@@ -10,7 +10,8 @@ export function processTransactions(transactionData: transactions[]) {
 
   transactionData.forEach(transaction => {
     const { category, amount } = transaction;
-    const currentTotal = categoryMap.get(category) || 0;
+    const lowerCaseCategory = category.toLowerCase();
+    const currentTotal = categoryMap.get(lowerCaseCategory) || 0;
     categoryMap.set(category, currentTotal + amount);
   });
   const categoryWiseData = Array.from(categoryMap).map(
