@@ -10,5 +10,9 @@ export default function TotalExpenses() {
     return acc;
   }, 0);
 
-  return <div>TotalExpenses: {totaExpense}</div>;
+  return (
+    <div className="transactions-overview transactions-overview-green">
+      Total Expenses: {totaExpense}
+    </div>
+  );
 }

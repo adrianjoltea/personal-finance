@@ -10,5 +10,9 @@ export default function TotalIncomes() {
     return acc;
   }, 0);
 
-  return <div>TotalIncomes: {totalIncome}</div>;
+  return (
+    <div className="transactions-overview transactions-overview-yellow">
+      Total Incomes: {totalIncome}
+    </div>
+  );
 }

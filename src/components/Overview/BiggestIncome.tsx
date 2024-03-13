@@ -14,7 +14,7 @@ export default function BiggestIncome() {
     transactions[0]
   );
   return (
-    <div>
+    <div className="transactions-overview transactions-overview-blue">
       <h4>Biggest Income</h4>
       {biggestIncomeTransaction ? (
         <div>

@@ -14,7 +14,7 @@ export default function BiggestExpense() {
     transactions[0]
   );
   return (
-    <div>
+    <div className="transactions-overview transactions-overview-red">
       <h4>Biggest Expense</h4>
       {biggestExpenseTransaction ? (
         <div>
