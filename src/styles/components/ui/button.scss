@@ -16,6 +16,10 @@
     &:hover {
       background-color: var(--color-brand-700);
     }
+
+    @include respond(tab-port) {
+      width: 80%;
+    }
   }
   &-form {
     width: 50%;
@@ -34,6 +38,10 @@
     background-color: var(--color-grey-200);
     color: var(--color-grey-800);
 
+    @include respond(tab-port) {
+      margin-bottom: 5rem;
+    }
+
     &:hover {
       background-color: var(--color-grey-300);
     }
@@ -47,6 +55,11 @@
   &-login {
     background-color: var(--color-indigo-100);
     color: var(--color-grey-800);
+    width: 100%;
+    font-size: $p-size;
+  }
+  &-sign {
+    width: 100%;
   }
 
   &-logout {

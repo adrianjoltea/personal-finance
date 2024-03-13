@@ -5,10 +5,10 @@
   display: grid;
   grid-template-rows: 10dvh 90dvh;
   grid-auto-columns: min-content;
-  grid-template-columns: 15rem 15rem repeat(8, 1fr);
+  grid-template-columns: 12rem 12rem repeat(8, 1fr);
   transition: all 0.2s;
   &.collapsed {
-    grid-template-columns: 5rem 5rem repeat(8, 1fr);
+    grid-template-columns: 3rem 3rem repeat(8, 1fr);
   }
   @include respond(tab-land) {
     grid-template-columns: 10rem 10rem repeat(8, 1fr);
@@ -28,6 +28,14 @@
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
+
+  &-mobile {
+    @include respond(tab-port) {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
   @include respond(tab-port) {
     width: 100%;
   }

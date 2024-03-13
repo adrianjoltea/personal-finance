@@ -13,43 +13,4 @@
 @import "./components/ui/spinner.scss";
 @import "./components/offline/offline.scss";
 @import "./pages/Settings.scss";
-
-.card-main-transactions {
-  grid-row: 1/4;
-  grid-column: 3/6;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  gap: $gap-hg;
-  &-divider {
-    flex-wrap: wrap;
-    width: 50%;
-    display: flex;
-    gap: $gap-hg;
-  }
-}
-
-.transactions-overview {
-  padding: $padding-sm;
-  text-align: center;
-  font-size: $p-size;
-  height: min-content;
-  width: 100%;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: $gap-sm;
-  color: $color-white;
-  &-blue {
-    background-color: $blue-700;
-  }
-  &-red {
-    background-color: $red-700;
-  }
-  &-green {
-    background-color: $green-700;
-  }
-  &-yellow {
-    background-color: $yellow-700;
-  }
-}
+@import "./components/overview/transaction-main.scss";

@@ -14,7 +14,7 @@ export default function Login() {
           {/* <p>{signIn ? "Already a user" : "Create an account"} </p> */}
           <button
             onClick={() => setSignin(oposite => !oposite)}
-            className="btn"
+            className="btn btn-sign"
           >
             {signIn ? "Log in" : "Sign in"}
           </button>

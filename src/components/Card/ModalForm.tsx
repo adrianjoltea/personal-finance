@@ -37,11 +37,6 @@ export default function ModalForm({ modalId }: ModalProps) {
     dispatch(toggleModal({ modalId, open: false }));
   };
 
-  const validateName = (value: string) => {
-    const isValid = /^[a-zA-Z]+$/.test(value) && value.trim() !== "";
-    return isValid || "Invalid name format";
-  };
-
   return (
     <div>
       <div className="card-transactions-container">
@@ -62,7 +57,10 @@ export default function ModalForm({ modalId }: ModalProps) {
             value={username}
             {...register("name", {
               required: "This field is required",
-              validate: validateName,
+              pattern: {
+                value: /^[a-zA-Z0-9]*$/,
+                message: "Name can only contain letters and numbers",
+              },
             })}
             onChange={e => setUsername(e.target.value)}
           />

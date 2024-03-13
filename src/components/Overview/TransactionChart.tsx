@@ -16,6 +16,7 @@ import getPastTransactions from "../Transactions/PastTransactions";
 import { useSelector } from "react-redux";
 import { getDark } from "../../context/darkModeSlice";
 import { useSearchParams } from "react-router-dom";
+import { useThreshold } from "../../hooks/useResponsive";
 
 interface Transaction {
   expense: number;
@@ -27,7 +28,8 @@ export default function TransactionChart() {
   const [transactions, setTransactions] = useState<Transaction[] | undefined>(
     []
   );
-
+  const thresholdWidth = 900;
+  const isThresholdMet = useThreshold(thresholdWidth);
   const [searchParams] = useSearchParams();
   const daysFromParams = Number(searchParams.get("days"));
   console.log(daysFromParams);
@@ -71,7 +73,7 @@ export default function TransactionChart() {
 
   return (
     <div className="transaction-chart">
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height={isThresholdMet ? "100%" : 400}>
         <AreaChart data={chartData}>
           <CartesianGrid strokeDasharray="4 4" />
           <XAxis

@@ -111,7 +111,6 @@
   height: var(--border-radius);
   position: absolute;
   right: -0.2rem;
-  // background-color: var(--color-grey-300);
 }
 .sidebar-collapse::before {
   top: calc(var(--border-radius) * -1);
