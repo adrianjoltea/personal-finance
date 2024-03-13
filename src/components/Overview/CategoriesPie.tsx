@@ -1,75 +1,94 @@
 import { useTransactions } from "./useTransactions";
 import { processTransactions } from "./getCategories";
-import {
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  PolarAngleAxis,
-  PolarGrid,
-  PolarRadiusAxis,
-  Radar,
-  RadarChart,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
-import { categoryColors } from "../../common/variables";
+import { useSelector } from "react-redux";
+
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { getDark } from "../../context/darkModeSlice";
+
+type LegendOptions = {
+  display: boolean;
+  position: "top" | "bottom" | "left" | "right" | "chartArea";
+  labels: {
+    color: string;
+    padding: number;
+  };
+};
+
+type ChartOptions = {
+  plugins: {
+    legend: LegendOptions;
+  };
+};
 
 export default function CategoriesPie() {
-  try {
-    const trasactions = useTransactions();
-    const categories = processTransactions(trasactions);
+  const trasactions = useTransactions();
+  const dark = useSelector(getDark);
+  ChartJS.register(ArcElement, Tooltip, Legend);
+  const categories = processTransactions(trasactions);
 
-    console.log(categories);
+  const labels = categories.map(entry => entry.category);
+  const amount = categories.map(entry => entry.totalAmount);
 
-    return (
-      <div className="chart-pie">
-        <ResponsiveContainer width="100%" height={380}>
-          {/* <PieChart>
-            <Pie
-              data={categories}
-              dataKey="totalAmount"
-              // nameKey="category"
-              innerRadius={60}
-              outerRadius={120}
-              cx="50%"
-              cy="50%"
-              paddingAngle={3}
-            >
-              {categories.map(entry => (
-                <Cell
-                  key={entry.category}
-                  fill={categoryColors[entry.category.toLowerCase()]}
-                  // fill="blue"
-                />
-              ))}
-            </Pie>
-            <Tooltip />
-            <Legend
-              verticalAlign="middle"
-              align="right"
-              layout="vertical"
-              iconSize={15}
-              iconType="circle"
-            />
-          </PieChart> */}
-          <RadarChart cx="50%" cy="50%" outerRadius="80%" data={categories}>
-            <PolarGrid />
-            <PolarAngleAxis dataKey="category" />
-            <PolarRadiusAxis />
-            <Radar
-              name="Mike"
-              dataKey="totalAmount"
-              stroke="#8884d8"
-              fill="#8884d8"
-              fillOpacity={0.5}
-            />
-          </RadarChart>
-        </ResponsiveContainer>
-      </div>
-    );
-  } catch (error) {
-    console.error("Error rendering CategoriesPie:", error);
-    return null; // Or render an error message
-  }
+  const darkColors = [
+    "#ef4444",
+    "#f97316",
+    "#eab308",
+    "#84cc16",
+    "#22c55e",
+    "#14b8a6",
+    "#3b82f6",
+    "#a855f7",
+    "#b020c9",
+    "#6b02ff",
+  ];
+
+  const lightColors = [
+    "#b91c1c",
+    "#c2410c",
+    "#a16207",
+    "#4d7c0f",
+    "#15803d",
+    "#0f766e",
+    "#1d4ed8",
+    "#7e22ce",
+    "#8a189e",
+    "#5304c3",
+  ];
+
+  const backgroundColors = dark ? lightColors : darkColors;
+
+  const data = {
+    responsive: true,
+    maintainAspectRatio: false,
+    labels: labels,
+    datasets: [
+      {
+        label: "total amount",
+        data: amount,
+        backgroundColor: backgroundColors,
+        borderColor: `${dark ? "#d1d5db" : "#4b5563"}`,
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options: ChartOptions = {
+    plugins: {
+      legend: {
+        display: true,
+        position: "bottom",
+        labels: {
+          color: `${dark ? "#fff" : "#000"}`,
+          padding: 10,
+        },
+      },
+    },
+  };
+
+  return (
+    <div className="chart-pie">
+      <Doughnut data={data} options={options} redraw={true} />
+    </div>
+  );
 }

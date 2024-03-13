@@ -9,7 +9,7 @@
   height: 15rem;
   flex-shrink: 0;
   font-size: $p-size;
-  width: 30rem;
+  min-width: 30rem;
   box-shadow: var(--shadow-lg);
   color: $color-white;
   &-container {

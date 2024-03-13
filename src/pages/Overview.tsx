@@ -7,11 +7,11 @@ import TransactionChartButtons from "../components/Overview/TransactionChartButt
 export default function Overview() {
   return (
     <div className="main-page">
+      <Card />
+      <CategoriesPie />
       <CardMainTransactions />
       <TransactionChart />
-      <Card />
       <TransactionChartButtons />
-      <CategoriesPie />
     </div>
   );
 }
