@@ -22,10 +22,10 @@ type ChartOptions = {
 };
 
 export default function CategoriesPie() {
-  const trasactions = useTransactions();
+  const { transactions = [] } = useTransactions();
   const dark = useSelector(getDark);
   ChartJS.register(ArcElement, Tooltip, Legend);
-  const categories = processTransactions(trasactions);
+  const categories = processTransactions(transactions);
 
   const labels = categories.map(entry => entry.category);
   const amount = categories.map(entry => entry.totalAmount);

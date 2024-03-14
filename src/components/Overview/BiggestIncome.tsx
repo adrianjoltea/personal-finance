@@ -3,7 +3,7 @@ import { formatDate } from "../../hooks/useFormatDate";
 import { useTransactions } from "./useTransactions";
 
 export default function BiggestIncome() {
-  const transactions = useTransactions();
+  const { transactions = [] } = useTransactions();
 
   const biggestIncomeTransaction = transactions?.reduce(
     (maxIncomeTransaction, currentTransaction) => {

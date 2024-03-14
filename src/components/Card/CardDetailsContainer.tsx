@@ -14,16 +14,10 @@ interface CardInput {
 }
 
 export default function CardDetailsContainer() {
-  // const [mainCard, setMainCard] = useState(null);
   const dispatch = useDispatch();
 
   const cardsDB = useSelector(getCard);
   console.log(cardsDB);
-  // const dataArray: {
-  //   nameUser: string;
-  //   balance: number;
-  //   currency: string;
-  // }[] = [];
 
   function handleCardClick(clickedCard: object) {
     console.log("ciava", clickedCard);
@@ -36,17 +30,22 @@ export default function CardDetailsContainer() {
   }
 
   return (
-    <ScrollContainer>
-      {cardsDB.map((card: CardInput, index: number) => (
-        <CardDetails
-          _id={card._id}
-          key={index}
-          name={card.name}
-          balance={card.balance}
-          currency={card.currency}
-          handleClick={handleCardClick}
-        />
-      ))}
-    </ScrollContainer>
+    <>
+      {cardsDB.length === 0 && (
+        <div className="empty-page">Please add a card</div>
+      )}
+      <ScrollContainer>
+        {cardsDB.map((card: CardInput, index: number) => (
+          <CardDetails
+            _id={card._id}
+            key={index}
+            name={card.name}
+            balance={card.balance}
+            currency={card.currency}
+            handleClick={handleCardClick}
+          />
+        ))}
+      </ScrollContainer>
+    </>
   );
 }

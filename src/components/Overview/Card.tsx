@@ -15,12 +15,18 @@ export default function Card() {
 
   return (
     <div className="main-card-container">
-      <CardDetails
-        name={mainCard?.name}
-        balance={mainCard?.balance}
-        currency={mainCard?.currency}
-        _id={mainCard?._id}
-      />
+      {mainCard.name === undefined ? (
+        <div className="empty-page">
+          Please select the a card from the card page
+        </div>
+      ) : (
+        <CardDetails
+          name={mainCard?.name}
+          balance={mainCard?.balance}
+          currency={mainCard?.currency}
+          _id={mainCard?._id}
+        />
+      )}
     </div>
   );
 }

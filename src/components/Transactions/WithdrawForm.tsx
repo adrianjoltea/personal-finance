@@ -6,6 +6,7 @@ import transaction from "./addDeposit";
 import Card from "../Overview/Card";
 import toast from "react-hot-toast";
 import { toggleModal } from "../../context/modalSlice";
+import { validateTransaction } from "./validateTransactions";
 
 export default function WithdrawForm() {
   const [amount, setAmount] = useState("");
@@ -24,15 +25,17 @@ export default function WithdrawForm() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!amount || !description) toast.error("Please fill out the fields");
-
-    if (parseFloat(amount) <= 0) {
-      toast.error("Amount must be greater than 0");
-      return;
+    const validationError = validateTransaction(amount, description, mainCard);
+    if (validationError) {
+      toast.error(validationError, {
+        className: "toast",
+      });
     }
-
-    if (parseFloat(amount) > 0) {
+    if (!validationError && parseFloat(amount) <= mainCard.balance) {
       transaction(submitData);
+      toast.success("Succesfully made the withdraw", {
+        className: "toast",
+      });
       dispatch(toggleModal({ modalId: "withdraw", open: false }));
     }
   }

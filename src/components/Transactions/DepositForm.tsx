@@ -6,6 +6,7 @@ import addDeposit from "./addDeposit";
 import Card from "../Overview/Card";
 import toast from "react-hot-toast";
 import { toggleModal } from "../../context/modalSlice";
+import { validateTransaction } from "./validateTransactions";
 
 export default function DepositForm() {
   const [amount, setAmount] = useState("");
@@ -26,15 +27,18 @@ export default function DepositForm() {
     e.preventDefault();
     console.log(submitData);
 
-    if (!amount || !description) toast.error("Please fill out the fields");
-
-    if (parseFloat(amount) <= 0) {
-      toast.error("Amount must be greater than 0");
-      return;
+    const validationError = validateTransaction(amount, description, mainCard);
+    if (validationError) {
+      toast.error(validationError, {
+        className: "toast",
+      });
     }
 
-    if (parseFloat(amount) > 0) {
+    if (!validationError) {
       addDeposit(submitData);
+      toast.success("Succesfully made the deposit", {
+        className: "toast",
+      });
       dispatch(toggleModal({ modalId: "deposit", open: false }));
     }
   }

@@ -1,7 +1,7 @@
 import { useTransactions } from "./useTransactions";
 
 export default function TotalIncomes() {
-  const transactions = useTransactions();
+  const { transactions = [] } = useTransactions();
 
   const totalIncome = transactions.reduce((acc, cur) => {
     if (cur.amount > 0) {

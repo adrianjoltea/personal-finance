@@ -46,7 +46,7 @@
     text-decoration: none;
     text-transform: uppercase;
     font-size: 1.7rem;
-    color: var(--color-brand-500);
+    color: var(--color-grey-800);
     font-weight: 700;
     transition: all 0.3s;
     display: block;
@@ -55,7 +55,7 @@
     gap: $gap-md;
     align-items: center;
     &.active {
-      color: var(--color-brand-800);
+      color: var(--color-brand-500);
     }
     @include respond(tab-land) {
       font-size: 1.3rem;
@@ -82,7 +82,9 @@
     background-color: var(--color-grey-50);
     border: 1px solid var(--color-grey-300);
     transition: all 0.7s ease-in-out;
-
+    @include respond(tab-port) {
+      display: none;
+    }
     &-btn {
       z-index: 2;
       position: relative;
@@ -94,7 +96,7 @@
 
 .active__nav {
   display: block;
-  position: absolute;
+  position: fixed;
   left: 0;
   display: flex;
   justify-content: center;

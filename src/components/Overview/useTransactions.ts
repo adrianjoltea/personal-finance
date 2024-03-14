@@ -12,19 +12,23 @@ export function useTransactions() {
   const [transactions, setTransactions] = useState<Transaction[] | undefined>(
     []
   );
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
+        setLoading(true);
         const transactionsData = await getTransactions();
         setTransactions(transactionsData);
       } catch (error) {
         console.error("Error fetching transactions:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchTransactions();
   }, []);
 
-  return transactions ?? [];
+  return { transactions, loading };
 }

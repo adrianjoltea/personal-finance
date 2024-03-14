@@ -31,7 +31,12 @@ export default function LoginForm() {
       return;
     }
 
-    const isAuthenticated = await Login(submitData);
+    const { isAuthenticated } = await Login(submitData);
+
+    if (!isAuthenticated)
+      toast.error("Please use some valid data", {
+        className: "toast",
+      });
     if (isAuthenticated) navigate("/");
   }
 

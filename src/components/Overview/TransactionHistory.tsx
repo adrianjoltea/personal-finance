@@ -3,13 +3,13 @@ import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { formatDate } from "../../hooks/useFormatDate";
 import { useTransactions } from "./useTransactions";
+import { useThreshold } from "../../hooks/useResponsive";
 
 export default function TransactionHistory() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
-
-  const transactions = useTransactions();
-
-  if (transactions === undefined) return <>loading</>;
+  const thresholdWidth = 400;
+  const isThresholdMet = useThreshold(thresholdWidth);
+  const { transactions = [], loading } = useTransactions();
 
   const sortedData = [...transactions].sort((a, b) => {
     if (sortOrder === "asc") {
@@ -22,7 +22,6 @@ export default function TransactionHistory() {
   function toggleSortOrder() {
     setSortOrder(prev => (prev === "asc" ? "desc" : "asc"));
   }
-
   return (
     <div className="transaction-table">
       <div className="transaction-table-row">
@@ -35,8 +34,14 @@ export default function TransactionHistory() {
         </div>
         <div className="transaction-table-row-item">Created At</div>
         <div className="transaction-table-row-item">Description</div>
-        <div className="transaction-table-row-item">Category</div>
+        {isThresholdMet && (
+          <div className="transaction-table-row-item">Category</div>
+        )}
       </div>
+      {loading && <div className="empty-page">Loading...</div>}
+      {!loading && sortedData.length === 0 && (
+        <div className="empty-page">Please make a transcation</div>
+      )}
       {sortedData.map((data, i) => (
         <div className="transaction-table-row" key={i}>
           {/* {Temporary currency} */}
@@ -51,7 +56,9 @@ export default function TransactionHistory() {
             {formatDate(data.createdAt)}
           </p>
           <p className="transaction-table-row-item">{data.description}</p>
-          <p className="transaction-table-row-item">{data.category}</p>
+          {isThresholdMet && (
+            <p className="transaction-table-row-item">{data.category}</p>
+          )}
         </div>
       ))}
     </div>

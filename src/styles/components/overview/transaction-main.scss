@@ -8,6 +8,10 @@
   @include respond(tab-port) {
     margin-block: 10rem;
   }
+  @media (max-width: 400px) {
+    flex-direction: column;
+    align-items: center;
+  }
   &-divider {
     flex-wrap: wrap;
     width: 50%;
@@ -29,15 +33,15 @@
   color: $color-white;
 
   &-blue {
-    background-color: $blue-700;
+    background-color: $green-600;
   }
   &-red {
-    background-color: $red-700;
+    background-color: $red-600;
   }
   &-green {
-    background-color: $green-700;
+    background-color: $red-700;
   }
   &-yellow {
-    background-color: $yellow-700;
+    background-color: $green-700;
   }
 }

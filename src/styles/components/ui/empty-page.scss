@@ -1,0 +1,9 @@
+.empty-page {
+  grid-row: 1/-1;
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: center;
+  font-size: $h3-size;
+  text-align: center;
+  margin-top: 2rem;
+}

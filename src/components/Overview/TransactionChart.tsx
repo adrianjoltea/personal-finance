@@ -73,7 +73,7 @@ export default function TransactionChart() {
 
   return (
     <div className="transaction-chart">
-      <ResponsiveContainer width="100%" height={isThresholdMet ? "100%" : 400}>
+      <ResponsiveContainer width="100%" height={isThresholdMet ? "100%" : 300}>
         <AreaChart data={chartData}>
           <CartesianGrid strokeDasharray="4 4" />
           <XAxis
