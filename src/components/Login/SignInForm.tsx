@@ -17,18 +17,21 @@ export default function SignInForm() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      const isAuthenticated = await Register(submitData);
+      const { isAuthenticated, error } = await Register(submitData);
+      console.log(isAuthenticated, error);
 
       if (isAuthenticated) {
         toast.success("Please move to the login page");
+      } else if (error) {
+        toast.error(error, {
+          className: "toast",
+        });
       } else {
-        // Handle authentication failure
         toast.error("Authentication failed. Please check your credentials.", {
           className: "toast",
         });
       }
     } catch (error) {
-      // Handle other errors (e.g., network issues)
       console.error(error);
       toast.error("An error occurred. Please try again later.", {
         className: "toast",
@@ -41,7 +44,6 @@ export default function SignInForm() {
         <Input
           type="text"
           id="username"
-          // className="login-form-container-input"
           value={username}
           onChange={e => setUsername(e.target.value)}
           content="Username"
@@ -52,7 +54,6 @@ export default function SignInForm() {
           type="password"
           id="password"
           autoComplete="current-password"
-          // className="login-form-container-input"
           value={password}
           onChange={e => setPassword(e.target.value)}
           content="Password"
@@ -63,7 +64,6 @@ export default function SignInForm() {
           type="password"
           id="current-password"
           autoComplete="current-password"
-          // className="login-form-container-input"
           value={currentPassword}
           onChange={e => setCurrentPassword(e.target.value)}
           content="Repeat password"

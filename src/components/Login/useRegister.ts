@@ -8,19 +8,32 @@ interface submitDataProps {
 interface RegisterResult {
   isAuthenticated: boolean;
   loading: boolean;
+  error?: string;
 }
 
 export default async function Register(
   submitData: submitDataProps
-): Promise<RegisterResult | boolean> {
+): Promise<RegisterResult> {
   try {
     const { isAuthenticated, loading } = await register(submitData);
 
     if (!isAuthenticated) console.log("Register unsuccessfull");
 
     return { isAuthenticated, loading };
-  } catch (err) {
-    console.error(err);
-    return false;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(error);
+      return {
+        isAuthenticated: false,
+        loading: false,
+        error: error.message,
+      };
+    } else {
+      return {
+        isAuthenticated: false,
+        loading: false,
+        error: "An unknown error occurred during registration",
+      };
+    }
   }
 }

@@ -23,6 +23,10 @@
   &-name {
     display: flex;
     flex-direction: column;
+    span {
+      display: flex;
+      justify-content: space-between;
+    }
   }
   &-name-placeholder {
     display: flex;
@@ -64,4 +68,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  color: $color-white;
+  cursor: pointer;
 }

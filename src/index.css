@@ -710,6 +710,9 @@ body {
   .card-balance, .card-name {
     display: flex;
     flex-direction: column; }
+    .card-balance span, .card-name span {
+      display: flex;
+      justify-content: space-between; }
   .card-name-placeholder {
     display: flex;
     justify-content: space-between;
@@ -739,6 +742,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; }
+
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer; }
 
 .card-operations-container {
   grid-row: 5/-1;

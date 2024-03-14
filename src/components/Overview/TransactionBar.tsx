@@ -1,4 +1,3 @@
-import React from "react";
 import { useTransactions } from "./useTransactions";
 import { processTransactions } from "./getCategories";
 import {

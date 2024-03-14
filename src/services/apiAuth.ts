@@ -88,7 +88,9 @@ export async function register(
     });
 
     if (!res.ok) {
-      throw new Error(`${res.statusText}`);
+      const errorResponse = await res.json();
+      const errorMessage = errorResponse.message;
+      throw new Error(errorMessage);
     }
 
     authResponse.loading = false;

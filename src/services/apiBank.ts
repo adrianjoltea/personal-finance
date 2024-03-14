@@ -8,6 +8,10 @@ interface FetchBankResponse {
   data: Bank[];
 }
 
+interface DeleteProps {
+  _id: string;
+}
+
 interface CardsData {
   id: string;
   name: string;
@@ -51,6 +55,28 @@ export async function fetchBanks(): Promise<FetchBankResponse> {
   } catch (err) {
     console.log(err);
     throw err;
+  }
+}
+
+export async function deleteCard({ _id }: DeleteProps) {
+  try {
+    const submitData = {
+      _id,
+    };
+    const res = await fetch(`${apiUrl2}/bankaccounts/delete`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(submitData),
+    });
+    if (!res.ok) throw new Error("Could not delete the card");
+
+    const data = await res.json();
+    return { data };
+  } catch (err) {
+    console.log(err);
   }
 }
 

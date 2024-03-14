@@ -34,7 +34,7 @@ export default function LoginForm() {
     const { isAuthenticated } = await Login(submitData);
 
     if (!isAuthenticated)
-      toast.error("Please use some valid data", {
+      toast.error("The password or the username are incorect", {
         className: "toast",
       });
     if (isAuthenticated) navigate("/");
@@ -48,7 +48,7 @@ export default function LoginForm() {
           id="username"
           name="username"
           autoComplete="email"
-          placeholder="Enter your email"
+          placeholder="Enter your username"
           // className="login-form-container-input"
           value={username}
           onChange={e => setUsername(e.target.value)}
