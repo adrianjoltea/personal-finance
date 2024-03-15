@@ -25,7 +25,12 @@ export default function WithdrawForm() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const validationError = validateTransaction(amount, description, mainCard);
+    const validationError = validateTransaction(
+      amount,
+      description,
+      mainCard,
+      true
+    );
     if (validationError) {
       toast.error(validationError, {
         className: "toast",

@@ -4,6 +4,7 @@ interface withdrawProps {
   amount: number;
   description: string;
   bankAccountId: string;
+  category: string;
 }
 
 export default async function addWithdraw(dataApi: withdrawProps) {

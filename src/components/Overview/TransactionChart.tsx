@@ -10,7 +10,7 @@ import {
   Legend,
 } from "recharts";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { formatDate } from "../../hooks/useFormatDate";
 import getPastTransactions from "../Transactions/PastTransactions";
 import { useSelector } from "react-redux";
@@ -48,28 +48,33 @@ export default function TransactionChart() {
     fetchTransactions(daysFromParams);
   }, [daysFromParams]);
   console.log(transactions);
-  // Restructure data
-  const chartData = transactions?.map(transaction => ({
-    day: formatDate(transaction.day),
-    income: transaction.income,
-    expenses: transaction.expense,
-  }));
 
-  const chartBrush = transactions?.length;
+  const chartData = useMemo(() => {
+    if (!transactions) return [];
+    return transactions.map(transaction => ({
+      day: formatDate(transaction.day),
+      income: transaction.income,
+      expenses: transaction.expense,
+    }));
+  }, [transactions]);
 
-  const colors = isDarkMode
-    ? {
-        income: { stroke: "#4f46e5", fill: "#4f46e5" },
-        expenses: { stroke: "#22c55e", fill: "#22c55e" },
-        text: "#e5e7eb",
-        background: "#18212f",
-      }
-    : {
-        income: { stroke: "#4f46e5", fill: "#adbdfc" },
-        expenses: { stroke: "#16a34a", fill: "#aefac8" },
-        text: "#374151",
-        background: "#fff",
-      };
+  const chartBrush = useMemo(() => transactions?.length, [transactions]);
+
+  const colors = useMemo(() => {
+    return isDarkMode
+      ? {
+          income: { stroke: "#4f46e5", fill: "#4f46e5" },
+          expenses: { stroke: "#22c55e", fill: "#22c55e" },
+          text: "#e5e7eb",
+          background: "#18212f",
+        }
+      : {
+          income: { stroke: "#4f46e5", fill: "#adbdfc" },
+          expenses: { stroke: "#16a34a", fill: "#aefac8" },
+          text: "#374151",
+          background: "#fff",
+        };
+  }, [isDarkMode]);
 
   return (
     <div className="transaction-chart">

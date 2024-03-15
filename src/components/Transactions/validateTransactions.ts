@@ -8,7 +8,8 @@ interface Card {
 export function validateTransaction(
   amount: string,
   description: string,
-  mainCard: Card
+  mainCard: Card,
+  withdraw?: boolean
 ) {
   if (!amount || !description) {
     return "Please fill out all the fields";
@@ -18,7 +19,7 @@ export function validateTransaction(
     return "Amount must be greater than 0";
   }
 
-  if (parseFloat(amount) > mainCard.balance) {
+  if (withdraw && parseFloat(amount) > mainCard.balance) {
     return "The amount is greater than the balance";
   }
 
