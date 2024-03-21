@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "../ui/Input";
+import Input from "../Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
 import transaction from "./addDeposit";

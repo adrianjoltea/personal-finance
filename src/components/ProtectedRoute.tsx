@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Spinner from "./Spinner";
+import Spinner from "./Ui/Spinner";
 import getCurrentUser from "./User/getCurrentUser";
 
 interface ProtectedRouteProps {

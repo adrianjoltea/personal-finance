@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "../ui/Input";
+import Input from "../Ui/Input";
 
 import Register from "./useRegister";
 import toast from "react-hot-toast";

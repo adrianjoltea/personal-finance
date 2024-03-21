@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../ui/Input";
+import Input from "../Ui/Input";
 
 import toast from "react-hot-toast";
 import Login from "./useLogin";
 
 export default function LoginForm() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("AdrianJoltea");
+  const [password, setPassword] = useState("123");
 
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();

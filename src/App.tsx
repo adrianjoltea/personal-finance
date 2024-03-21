@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./pages/AppLayout";
 import Overview from "./pages/Overview";
 import Card from "./pages/Card";
-import Account from "./pages/Account";
 import PageNotFound from "./pages/PageNotFound";
 import { useSelector } from "react-redux";
 import { getDark } from "./context/darkModeSlice";
@@ -12,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import Settings from "./pages/Settings";
 import AppOffline from "./AppOffline";
+import Invest from "./pages/Invest";
 
 export default function App() {
   const dark = useSelector(getDark);
@@ -57,7 +57,7 @@ export default function App() {
               >
                 <Route path="/" element={<Overview />} />
                 <Route path="card" element={<Card />} />
-                <Route path="account" element={<Account />} />
+                <Route path="invest" element={<Invest />} />
                 <Route path="settings" element={<Settings />} />
               </Route>
               <Route path="*" element={<PageNotFound />} />

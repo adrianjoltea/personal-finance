@@ -6,6 +6,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { getNav, toggleNav } from "../../context/darkModeSlice";
+import { IoMdPerson } from "react-icons/io";
 
 interface AsideProps {
   navOpen: boolean;
@@ -34,14 +35,14 @@ export default function Aside({ navOpen, setNavOpen }: AsideProps) {
           </li>
           <li>
             <NavLink to="/card" className="sidebar__link">
-              <FaIdCard /> {navOpen && <span>Card</span>}
+              <FaIdCard /> {navOpen && <span>Cards</span>}
             </NavLink>
           </li>
-          {/* <li>
-            <NavLink to="/Account" className="sidebar__link">
-              <IoMdPerson /> {navOpen && <span>Account</span>}
+          <li>
+            <NavLink to="/invest" className="sidebar__link">
+              <IoMdPerson /> {navOpen && <span>Invest</span>}
             </NavLink>
-          </li> */}
+          </li>
           {/* <li>
             <NavLink to="/login" className="sidebar__link">
               <IoMdPerson /> {navOpen && <span>login</span>}

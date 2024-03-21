@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import Error from "../Error";
+import Error from "../Ui/Error";
 import { toggleModal } from "../../context/modalSlice";
 
 import CreateBankAccount from "./useCreateBankAccont";

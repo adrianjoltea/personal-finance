@@ -11,6 +11,10 @@ export function validateTransaction(
   mainCard: Card,
   withdraw?: boolean
 ) {
+  if (!mainCard._id) {
+    return "Please select a card";
+  }
+
   if (!amount || !description) {
     return "Please fill out all the fields";
   }
@@ -21,10 +25,6 @@ export function validateTransaction(
 
   if (withdraw && parseFloat(amount) > mainCard.balance) {
     return "The amount is greater than the balance";
-  }
-
-  if (!mainCard._id) {
-    return "Please select a card";
   }
 
   return null;

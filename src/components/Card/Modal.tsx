@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 interface ModalProps {
   children: ReactNode;
   modalId: string;
+  handleCloseModal?: () => void;
 }
 
 interface RootState {
@@ -13,7 +14,11 @@ interface RootState {
   };
 }
 
-export default function Modal({ children, modalId }: ModalProps) {
+export default function Modal({
+  children,
+  modalId,
+  handleCloseModal,
+}: ModalProps) {
   const open = useSelector((state: RootState) => getModal(state, modalId));
   const dispatch = useDispatch();
 
@@ -22,7 +27,11 @@ export default function Modal({ children, modalId }: ModalProps) {
       <div className="modal">
         <button
           className="modal-button"
-          onClick={() => dispatch(toggleModal({ modalId, open: false }))}
+          onClick={
+            handleCloseModal
+              ? handleCloseModal
+              : () => dispatch(toggleModal({ modalId, open: false }))
+          }
         >
           X
         </button>

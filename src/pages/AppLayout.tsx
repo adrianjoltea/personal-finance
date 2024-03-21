@@ -17,12 +17,13 @@ export default function AppLayout() {
     const fetchData = async () => {
       try {
         const { data, isAuthenticated } = await getCurrentUser();
-        const dataCards = await getCardsUser();
+        const cards = await getCardsUser();
 
         // Ensure the user is authenticated before dispatching the update
         if (isAuthenticated) {
           dispatch(updateUser(data));
-          dispatch(setCurrentCards(dataCards));
+          dispatch(setCurrentCards(cards));
+          // setDataCards(cards);
         } else {
           console.log("User not authenticated");
         }

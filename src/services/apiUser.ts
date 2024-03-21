@@ -75,6 +75,7 @@ export async function fetchCurrentUser(): Promise<FetchUserResponse> {
     throw err;
   }
 }
+
 export async function updateUser(dataUser: updateUserProps) {
   try {
     console.log(dataUser);

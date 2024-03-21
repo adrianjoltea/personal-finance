@@ -1,6 +1,6 @@
-import Darkmode from "../header/Darkmode";
-import MobileView from "../header/MobileView";
-import Profile from "../header/Profile";
+import Darkmode from "../Header/Darkmode";
+import MobileView from "../Header/MobileView";
+import Profile from "../Header/Profile";
 import SignOut from "../Login/SignOut";
 
 export default function Header() {

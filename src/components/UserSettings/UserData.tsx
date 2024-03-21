@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import Input from "../ui/Input";
+import Input from "../Ui/Input";
 import { updateUser } from "../../services/apiUser";
 import toast from "react-hot-toast";
 
