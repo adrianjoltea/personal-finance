@@ -17,11 +17,8 @@ export default function CardDetailsContainer() {
   const dispatch = useDispatch();
 
   const cardsDB = useSelector(getCard);
-  console.log(cardsDB);
 
   function handleCardClick(clickedCard: object) {
-    console.log("ciava", clickedCard);
-
     const debounceLocalStorageWrite = debounce(() => {
       localStorage.setItem("mainCard", JSON.stringify(clickedCard));
     }, 1500);

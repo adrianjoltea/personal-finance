@@ -18,8 +18,6 @@ export default function SignInForm() {
     e.preventDefault();
     try {
       const { isAuthenticated, error } = await Register(submitData);
-      console.log(isAuthenticated, error);
-
       if (isAuthenticated) {
         toast.success("Please move to the login page");
       } else if (error) {

@@ -92,7 +92,6 @@ export async function withdraw(
 
     const data = await res.json();
 
-    console.log(data);
     return { data };
   } catch (err) {
     console.log(err);
@@ -127,11 +126,9 @@ export async function addTransaction(
     };
     localStorage.setItem("mainCard", JSON.stringify(updatedMainCard));
 
-    console.log(data);
     return { data };
   } catch (err) {
     console.log(err);
     throw err;
   }
 }
-// type Value = Awaited<ReturnType<typeof deposit>>;

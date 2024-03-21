@@ -24,8 +24,6 @@ export default function StockLineChart({ data }: StockLineChartProps) {
     index: index + 1,
   }));
 
-  console.log(chartData);
-
   return (
     <div className="stock-line-chart">
       <ResponsiveContainer

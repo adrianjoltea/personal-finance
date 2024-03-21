@@ -12,8 +12,6 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const navigate = useNavigate();
   const isAuthenticated = !!localStorage.getItem("accessToken");
 
-  console.log(isAuthenticated);
-
   const [ifLoading, setIfLoading] = useState(true);
   // setIfLoading(loading);
   useEffect(() => {

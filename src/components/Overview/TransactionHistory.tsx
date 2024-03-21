@@ -23,7 +23,7 @@ export default function TransactionHistory() {
     setSortOrder(prev => (prev === "asc" ? "desc" : "asc"));
   }
   return (
-    <div className="transaction-table">
+    <div className="transaction-table-overview transaction-table">
       <div className="transaction-table-row">
         <div
           className="transaction-table-row-item transaction-table-title"

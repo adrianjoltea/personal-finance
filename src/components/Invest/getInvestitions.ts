@@ -4,6 +4,9 @@ interface Stocks {
   amount: number;
   boughtPrice: number;
   user: string;
+  _id: string;
+  stockId: string;
+  name: string;
 }
 
 interface AvailableStocks {

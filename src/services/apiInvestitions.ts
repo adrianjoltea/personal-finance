@@ -11,6 +11,9 @@ interface Stocks {
   amount: number;
   boughtPrice: number;
   user: string;
+  _id: string;
+  stockId: string;
+  name: string;
 }
 
 interface BuyStocks {
@@ -27,6 +30,17 @@ interface AvailableStocks {
   previousValue: [number];
   changePercent: number;
   _id: string;
+}
+
+interface SellStocks {
+  amount: number;
+  _id: string;
+  sellPrice: number | undefined;
+  cardId: string;
+}
+
+interface SellStocksResponse {
+  data: SellStocks[];
 }
 
 interface AvailableStocksResponse {
@@ -53,7 +67,6 @@ export async function getInvetitions(): Promise<InvestitionsResponse> {
 
     const data: Investitions[] = await res.json();
 
-    console.log(data);
     return { data };
   } catch (err) {
     console.log(err);
@@ -75,7 +88,7 @@ export async function buyStocks(dataApi: BuyStocks) {
     if (!res.ok) throw new Error("Could not send the investition");
 
     const data = await res.json();
-    console.log(data);
+
     return data;
   } catch (err) {
     console.log(err);
@@ -95,7 +108,6 @@ export async function getStocksUser(): Promise<StocksResponse> {
 
     const data: Stocks[] = await res.json();
 
-    console.log(data);
     return { data };
   } catch (err) {
     console.log(err);
@@ -116,7 +128,29 @@ export async function getStocks(): Promise<AvailableStocksResponse> {
 
     const data: AvailableStocks[] = await res.json();
 
-    console.log(data);
+    return { data };
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+}
+
+export async function sellStocks(
+  dataApi: SellStocks
+): Promise<SellStocksResponse> {
+  try {
+    const res = await fetch(`${apiUrl2}/invest/sell-stock`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(dataApi),
+    });
+
+    if (!res.ok) throw new Error("Could not get the stocks");
+
+    const data = await res.json();
     return { data };
   } catch (err) {
     console.log(err);

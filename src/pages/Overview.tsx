@@ -11,7 +11,6 @@ export default function Overview() {
   const thresholdWidth = 900;
   const isThresholdMet = useThreshold(thresholdWidth);
   const { transactions = [] } = useTransactions();
-  console.log(transactions);
 
   return (
     <div className="main-page">

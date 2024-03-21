@@ -2,11 +2,10 @@ import { useSearchParams } from "react-router-dom";
 
 export default function TransactionChartButtons() {
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
   const setDaysParam = (days: number) => {
     setSearchParams({ days: days.toString() });
   };
-
+  console.log(searchParams);
   return (
     <div className="transaction-btns">
       <button className="btn btn-transactions" onClick={() => setDaysParam(7)}>

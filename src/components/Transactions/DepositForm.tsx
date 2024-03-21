@@ -21,11 +21,9 @@ export default function DepositForm() {
     bankAccountId: mainCard._id,
     category,
   };
-  console.log(mainCard._id);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(submitData);
 
     const validationError = validateTransaction(amount, description, mainCard);
     if (validationError) {

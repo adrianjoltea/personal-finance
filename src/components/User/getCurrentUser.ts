@@ -15,7 +15,6 @@ interface FetchUserResponse {
 export default async function getCurrentUser(): Promise<FetchUserResponse> {
   try {
     const { data, isAuthenticated, loading } = await fetchCurrentUser();
-    console.log(data);
     return { data, isAuthenticated, loading };
   } catch (err) {
     console.error(err);

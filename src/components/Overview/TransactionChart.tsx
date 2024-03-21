@@ -32,7 +32,6 @@ export default function TransactionChart() {
   const isThresholdMet = useThreshold(thresholdWidth);
   const [searchParams] = useSearchParams();
   const daysFromParams = Number(searchParams.get("days"));
-  console.log(daysFromParams);
 
   const isDarkMode = useSelector(getDark);
   useEffect(() => {
@@ -47,7 +46,6 @@ export default function TransactionChart() {
 
     fetchTransactions(daysFromParams);
   }, [daysFromParams]);
-  console.log(transactions);
 
   const chartData = useMemo(() => {
     if (!transactions) return [];

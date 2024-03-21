@@ -43,7 +43,6 @@ export async function fetchUser(): Promise<FetchUserProps> {
 
     const data: UserProps = await res.json();
 
-    console.log(data);
     return { data };
   } catch (err) {
     console.log(err);
@@ -66,7 +65,6 @@ export async function fetchCurrentUser(): Promise<FetchUserResponse> {
 
     const data: User = await res.json();
 
-    console.log(data, !!data._id);
     loading = false;
 
     return { data, isAuthenticated: !!data?._id, loading };
@@ -78,7 +76,6 @@ export async function fetchCurrentUser(): Promise<FetchUserResponse> {
 
 export async function updateUser(dataUser: updateUserProps) {
   try {
-    console.log(dataUser);
     const formData = new FormData();
 
     // Append JSON data
@@ -101,7 +98,7 @@ export async function updateUser(dataUser: updateUserProps) {
     if (!res.ok) throw new Error("Could not update the bank account");
 
     const updatedData = await res.json();
-    console.log(updatedData);
+
     return { data: updatedData };
   } catch (err) {
     console.log(err);

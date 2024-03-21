@@ -11,8 +11,6 @@ interface MainCardProps {
 }
 export default function Card() {
   const mainCard: MainCardProps = useSelector(getMainCard);
-  console.log(mainCard);
-
   return (
     <div className="main-card-container">
       {mainCard.name === undefined ? (

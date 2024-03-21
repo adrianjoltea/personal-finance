@@ -12,7 +12,6 @@ import {
 export default function TransactionBar() {
   const { transactions = [] } = useTransactions();
   const categories = processTransactions(transactions);
-  console.log(categories);
   return (
     <div className="bar-chart">
       <ResponsiveContainer width="100%" height="100%">

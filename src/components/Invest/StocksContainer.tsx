@@ -2,8 +2,7 @@ import AvailableStocks from "./AvailableStocks";
 import { useStocks } from "./getInvestitions";
 
 export default function InvesitionsContainer() {
-  const { stocks, availableStocks } = useStocks();
-  console.log(stocks, availableStocks);
+  const { availableStocks } = useStocks();
   return (
     <div className="stocks-container">
       {availableStocks.map(stock => (

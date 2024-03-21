@@ -26,11 +26,8 @@ export default function StockModal({ _id, name, currentValue }: StockModal) {
     cardId: mainCard._id,
   };
 
-  console.log(submitData);
-
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(submitData);
 
     if (amount * currentValue > mainCard.balance) {
       toast.error("Insufficent funds", {

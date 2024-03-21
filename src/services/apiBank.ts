@@ -50,7 +50,6 @@ export async function fetchBanks(): Promise<FetchBankResponse> {
 
     const data: Bank[] = await res.json();
 
-    console.log(data);
     return { data };
   } catch (err) {
     console.log(err);
@@ -93,7 +92,6 @@ export async function fetchCardsUser(): Promise<FetchCardsData> {
     if (!res.ok) throw new Error("Could not get the curent user cards");
 
     const data: CardsData[] = await res.json();
-    console.log(data);
     return { data };
   } catch (err) {
     console.log(err);
@@ -117,7 +115,6 @@ export async function createBankAccounts(
     if (!res.ok) throw new Error("Could not get the curent user cards");
 
     const data: BankAccounts = await res.json();
-    console.log(data);
     return { data };
   } catch (err) {
     console.log(err);
@@ -129,7 +126,6 @@ export async function updateBankAccount(
   data: UpdateBankAccountData
 ): Promise<FetchBankAccounts> {
   try {
-    console.log(data);
     const res = await fetch(`${apiUrl}/bank-accounts/${accountId}`, {
       method: "PUT",
       headers: {
@@ -142,7 +138,6 @@ export async function updateBankAccount(
     if (!res.ok) throw new Error("Could not update the bank account");
 
     const updatedData = await res.json();
-    console.log(updatedData);
     return { data: updatedData };
   } catch (err) {
     console.log(err);

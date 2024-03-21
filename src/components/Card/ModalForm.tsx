@@ -27,7 +27,6 @@ export default function ModalForm({ modalId }: ModalProps) {
   const [currency, setCurrency] = useState("");
 
   const onSubmit: SubmitHandler<IFormInput> = data => {
-    console.log(data);
     const formatedData = {
       name: data.name,
       balance: Number(data.balance),

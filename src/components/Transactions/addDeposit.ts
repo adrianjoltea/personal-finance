@@ -10,8 +10,6 @@ interface withdrawProps {
 export default async function transaction(dataApi: withdrawProps) {
   try {
     const { data } = await addTransaction(dataApi);
-
-    console.log(data);
     return data;
   } catch (err) {
     console.log(err);

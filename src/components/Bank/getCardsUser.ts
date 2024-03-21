@@ -10,7 +10,7 @@ interface CardResults {
 export default async function getCardsUser(): Promise<CardResults[]> {
   try {
     const { data } = await fetchCardsUser();
-    console.log(data);
+
     return data;
   } catch (err) {
     console.error(err);

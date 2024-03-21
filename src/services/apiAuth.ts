@@ -27,8 +27,6 @@ interface FetchRegisterProps {
 
 export const login = async (dataApi: LoginData): Promise<AuthResponse> => {
   try {
-    console.log(dataApi);
-
     const authResponse: AuthResponse = {
       data: { accessToken: undefined },
       isAuthenticated: false,
@@ -53,12 +51,9 @@ export const login = async (dataApi: LoginData): Promise<AuthResponse> => {
     if (data.accessToken) {
       localStorage.setItem("accessToken", data.accessToken);
     }
-    // Handle the data
-    console.log("Data received:", data);
+
     return { ...authResponse, data, isAuthenticated: response.ok };
   } catch (error) {
-    // Handle errors
-
     console.error("Fetch error:", error);
 
     return {
@@ -96,8 +91,6 @@ export async function register(
     authResponse.loading = false;
 
     const data: RegisterProps = await res.json();
-
-    console.log("data received", data);
 
     return { ...authResponse, data, isAuthenticated: res.ok };
   } catch (err) {

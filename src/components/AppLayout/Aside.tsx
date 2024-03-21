@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { FaCompass } from "react-icons/fa";
 import { FaGear, FaIdCard } from "react-icons/fa6";
-
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
@@ -43,11 +42,7 @@ export default function Aside({ navOpen, setNavOpen }: AsideProps) {
               <IoMdPerson /> {navOpen && <span>Invest</span>}
             </NavLink>
           </li>
-          {/* <li>
-            <NavLink to="/login" className="sidebar__link">
-              <IoMdPerson /> {navOpen && <span>login</span>}
-            </NavLink>
-          </li> */}
+
           <li>
             <NavLink to="/settings" className="sidebar__link">
               <FaGear /> {navOpen && <span>settings</span>}
