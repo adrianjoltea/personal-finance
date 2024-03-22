@@ -1156,6 +1156,11 @@ body {
   grid-column: 1/-1;
   display: flex;
   justify-content: space-between; }
+  @media only screen and (max-width: 37.5em) {
+    .stocks-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem; } }
 
 .invest-data {
   display: flex;
@@ -1177,5 +1182,9 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column; }
+  @media only screen and (max-width: 37.5em) {
+    .invest-card {
+      width: 80%;
+      height: 40rem; } }
   .invest-card-amount {
     margin-bottom: 3rem; }

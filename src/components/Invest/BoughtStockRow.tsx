@@ -22,7 +22,7 @@ export default function BoughtStockRow({
   sellPriceId,
   name,
 }: BoughtStock) {
-  const { availableStocks } = useStocks();
+  const { availableStocks, refetchStocks } = useStocks();
 
   const stock = availableStocks.find(stock => stock._id === sellPriceId);
 
@@ -37,7 +37,8 @@ export default function BoughtStockRow({
     toast.success("Succesfully sold the stock", {
       className: "toast",
     });
-    sellStock(submitData);
+    await sellStock(submitData);
+    await refetchStocks();
   }
 
   const profit = stock
