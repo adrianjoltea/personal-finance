@@ -1,34 +1,12 @@
 import { apiUrl } from "../common/variables";
 import { apiUrl2 } from "../common/variables";
-
-interface UserProps {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-}
-
-interface FetchUserProps {
-  data: UserProps;
-}
-
-interface User {
-  firstName: string;
-  lastName: string;
-  email: string;
-  _id: string;
-}
-
-interface FetchUserResponse {
-  data: User;
-  isAuthenticated: boolean;
-  loading: boolean;
-}
-
-interface updateUserProps {
-  username: string;
-  profilePicture: File | null;
-}
+import {
+  FetchUserProps,
+  FetchUserResponse,
+  UpdateUserProps,
+  User,
+  UserProps,
+} from "./Interfaces/UserInterface";
 
 export async function fetchUser(): Promise<FetchUserProps> {
   try {
@@ -74,7 +52,7 @@ export async function fetchCurrentUser(): Promise<FetchUserResponse> {
   }
 }
 
-export async function updateUser(dataUser: updateUserProps) {
+export async function updateUser(dataUser: UpdateUserProps) {
   try {
     const formData = new FormData();
 

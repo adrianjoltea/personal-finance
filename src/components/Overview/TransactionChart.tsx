@@ -10,7 +10,7 @@ import {
   Legend,
 } from "recharts";
 
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { formatDate } from "../../hooks/useFormatDate";
 import getPastTransactions from "../Transactions/PastTransactions";
 import { useSelector } from "react-redux";
@@ -46,7 +46,6 @@ export default function TransactionChart() {
 
     fetchTransactions(daysFromParams);
   }, [daysFromParams]);
-
   const chartData = useMemo(() => {
     if (!transactions) return [];
     return transactions.map(transaction => ({

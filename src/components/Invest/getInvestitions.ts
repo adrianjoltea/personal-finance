@@ -26,8 +26,8 @@ export function useStocks() {
       setLoading(true);
       const stocksData = await getStocksUser();
       const availableStocksData = await getStocks();
-      setStocks([...stocksData.data]); // Create a new array to update state
-      setAvailableStocks([...availableStocksData.data]); // Create a new array to update state
+      setStocks(stocksData.data);
+      setAvailableStocks(availableStocksData.data);
     } catch (error) {
       console.error("Error fetching Stocks:", error);
     } finally {
@@ -37,16 +37,20 @@ export function useStocks() {
 
   useEffect(() => {
     fetchStocks();
+    console.log("ciava2");
   }, []);
-
+  useEffect(() => {
+    console.log("ciava2");
+    console.log(stocks);
+    console.log(availableStocks);
+  }, [stocks, availableStocks]);
   const refetchStocks = async () => {
     try {
       await fetchStocks();
-      console.log("ciava2");
     } catch (error) {
       console.error("Error refetching stocks:", error);
     }
   };
 
-  return { stocks, loading, availableStocks, refetchStocks };
+  return { stocks, loading, availableStocks, refetchStocks, fetchStocks };
 }

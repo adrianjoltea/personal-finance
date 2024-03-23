@@ -22,7 +22,7 @@ export default function BoughtStockRow({
   sellPriceId,
   name,
 }: BoughtStock) {
-  const { availableStocks, refetchStocks } = useStocks();
+  const { availableStocks, fetchStocks } = useStocks();
 
   const stock = availableStocks.find(stock => stock._id === sellPriceId);
 
@@ -34,11 +34,15 @@ export default function BoughtStockRow({
   };
 
   async function handleSellStock() {
-    toast.success("Succesfully sold the stock", {
-      className: "toast",
-    });
-    await sellStock(submitData);
-    await refetchStocks();
+    try {
+      toast.success("Succesfully sold the stock", {
+        className: "toast",
+      });
+      await sellStock(submitData);
+      await fetchStocks();
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   const profit = stock

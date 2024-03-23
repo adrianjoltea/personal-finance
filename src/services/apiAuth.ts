@@ -1,29 +1,11 @@
 import { apiUrl2 } from "../common/variables";
-
-interface LoginData {
-  username: string;
-  password: string;
-}
-interface LoginResponse {
-  accessToken?: string;
-}
-
-interface AuthResponse {
-  data: LoginResponse;
-  isAuthenticated: boolean;
-  loading: boolean;
-}
-
-interface RegisterProps {
-  username: string;
-  password: string;
-}
-
-interface FetchRegisterProps {
-  data: RegisterProps;
-  isAuthenticated: boolean;
-  loading: boolean;
-}
+import {
+  AuthResponse,
+  FetchRegisterProps,
+  LoginData,
+  LoginResponse,
+  RegisterProps,
+} from "./Interfaces/AuthInterface";
 
 export const login = async (dataApi: LoginData): Promise<AuthResponse> => {
   try {

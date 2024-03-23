@@ -10,7 +10,6 @@ import getCurrentUser from "../components/User/getCurrentUser";
 
 export default function AppLayout() {
   const [navOpen, setNavOpen] = useState(true);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
