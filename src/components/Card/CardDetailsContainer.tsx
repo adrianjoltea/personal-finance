@@ -1,10 +1,9 @@
 import CardDetails from "./CardDetails";
-
 import ScrollContainer from "react-indiana-drag-scroll";
-import { useDispatch, useSelector } from "react-redux";
-
-import { getCard, setMainCard } from "../../context/userCardsSlice";
+import { useDispatch } from "react-redux";
+import { setMainCard } from "../../context/userCardsSlice";
 import { debounce } from "lodash";
+import { useCardsUsers } from "../Bank/getCardsUser";
 
 interface CardInput {
   _id?: string;
@@ -15,8 +14,7 @@ interface CardInput {
 
 export default function CardDetailsContainer() {
   const dispatch = useDispatch();
-
-  const cardsDB = useSelector(getCard);
+  const { cards } = useCardsUsers();
 
   function handleCardClick(clickedCard: object) {
     const debounceLocalStorageWrite = debounce(() => {
@@ -28,11 +26,11 @@ export default function CardDetailsContainer() {
 
   return (
     <>
-      {cardsDB.length === 0 && (
+      {cards?.length === 0 && (
         <div className="empty-page">Please add a card</div>
       )}
       <ScrollContainer>
-        {cardsDB.map((card: CardInput, index: number) => (
+        {cards?.map((card: CardInput, index: number) => (
           <CardDetails
             _id={card._id}
             key={index}

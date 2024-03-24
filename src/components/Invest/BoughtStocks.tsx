@@ -1,29 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useStocks } from "./getInvestitions";
 import BoughtStockRow from "./BoughtStockRow";
 import { getMainCard } from "../../context/userCardsSlice";
 import { useSelector } from "react-redux";
-
-interface Stocks {
-  _id: string;
-  amount: number;
-  boughtPrice: number;
-  user: string;
-  name: string;
-  stockId: string;
-}
+import { useStocks } from "./getInvestitions";
 
 export default function BoughtStocks() {
   const { stocks } = useStocks();
   const mainCard = useSelector(getMainCard);
   console.log("ciava");
-  const [stateStock, setStateStock] = useState<Stocks[]>([]);
-
-  useEffect(() => {
-    if (stocks) {
-      setStateStock(stocks);
-    }
-  }, [stocks]);
 
   return (
     <div className="transaction-table transaction-table-invest">
@@ -37,7 +20,7 @@ export default function BoughtStocks() {
       {stocks?.length === 0 && (
         <div className="empty-page">Please buy a stock</div>
       )}
-      {stateStock?.map((data, i) => (
+      {stocks?.map((data, i) => (
         <BoughtStockRow
           key={i}
           amount={data.amount}

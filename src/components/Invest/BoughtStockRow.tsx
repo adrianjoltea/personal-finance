@@ -1,7 +1,6 @@
 import React from "react";
+import { useSellStock } from "./useSellStock";
 import { useStocks } from "./getInvestitions";
-import sellStock from "./sellStock";
-import toast from "react-hot-toast";
 
 interface BoughtStock {
   amount: number;
@@ -22,9 +21,9 @@ export default function BoughtStockRow({
   sellPriceId,
   name,
 }: BoughtStock) {
-  const { availableStocks, fetchStocks } = useStocks();
-
-  const stock = availableStocks.find(stock => stock._id === sellPriceId);
+  const { availableStocks } = useStocks();
+  const { isSelling, sellStock } = useSellStock();
+  const stock = availableStocks?.find(stock => stock._id === sellPriceId);
 
   const submitData = {
     amount,
@@ -33,16 +32,8 @@ export default function BoughtStockRow({
     cardId,
   };
 
-  async function handleSellStock() {
-    try {
-      toast.success("Succesfully sold the stock", {
-        className: "toast",
-      });
-      await sellStock(submitData);
-      await fetchStocks();
-    } catch (err) {
-      console.error(err);
-    }
+  function handleSellStock() {
+    sellStock(submitData);
   }
 
   const profit = stock
@@ -62,7 +53,7 @@ export default function BoughtStockRow({
       <p className="transaction-table-row-item">{boughtPrice}</p>
       <p className="transaction-table-row-item">{stock?.currentValue}</p>
       <div className="transaction-table-row-item">
-        <button className="btn" onClick={handleSellStock}>
+        <button className="btn" onClick={handleSellStock} disabled={isSelling}>
           Sell for {stock ? amount * stock.currentValue : "N/A"}
         </button>
       </div>

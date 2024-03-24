@@ -12,6 +12,16 @@ import { Toaster } from "react-hot-toast";
 import Settings from "./pages/Settings";
 import AppOffline from "./AppOffline";
 import Invest from "./pages/Invest";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 0,
+    },
+  },
+});
 
 export default function App() {
   const dark = useSelector(getDark);
@@ -46,33 +56,37 @@ export default function App() {
     <>
       {isOnline ? (
         <>
-          <BrowserRouter>
-            <Routes>
-              <Route
-                element={
-                  <ProtectedRoute>
-                    <AppLayout />
-                  </ProtectedRoute>
-                }
-              >
-                <Route path="/" element={<Overview />} />
-                <Route path="card" element={<Card />} />
-                <Route path="invest" element={<Invest />} />
-                <Route path="settings" element={<Settings />} />
-              </Route>
-              <Route path="*" element={<PageNotFound />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </BrowserRouter>
-          <Toaster
-            position="top-center"
-            toastOptions={{
-              style: {
-                background: "var(--color-grey-50)",
-                color: "var(--color-grey-800)",
-              },
-            }}
-          />
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={false} />
+
+            <BrowserRouter>
+              <Routes>
+                <Route
+                  element={
+                    <ProtectedRoute>
+                      <AppLayout />
+                    </ProtectedRoute>
+                  }
+                >
+                  <Route path="/" element={<Overview />} />
+                  <Route path="card" element={<Card />} />
+                  <Route path="invest" element={<Invest />} />
+                  <Route path="settings" element={<Settings />} />
+                </Route>
+                <Route path="*" element={<PageNotFound />} />
+                <Route path="/login" element={<Login />} />
+              </Routes>
+            </BrowserRouter>
+            <Toaster
+              position="top-center"
+              toastOptions={{
+                style: {
+                  background: "var(--color-grey-50)",
+                  color: "var(--color-grey-800)",
+                },
+              }}
+            />
+          </QueryClientProvider>
         </>
       ) : (
         <AppOffline />

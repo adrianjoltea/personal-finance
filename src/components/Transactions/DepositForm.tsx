@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "../Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
-import addDeposit from "./addDeposit";
+import { useAddTransaction } from "./addDeposit";
 import Card from "../Overview/Card";
 import toast from "react-hot-toast";
 import { toggleModal } from "../../context/modalSlice";
@@ -14,6 +14,7 @@ export default function DepositForm() {
   const [category, setCategory] = useState("job");
   const dispatch = useDispatch();
   const mainCard = useSelector(getMainCard);
+  const { isLoading, addTransactions } = useAddTransaction();
 
   const submitData = {
     amount: parseFloat(amount),
@@ -33,10 +34,8 @@ export default function DepositForm() {
     }
 
     if (!validationError) {
-      addDeposit(submitData);
-      toast.success("Succesfully made the deposit", {
-        className: "toast",
-      });
+      addTransactions(submitData);
+
       dispatch(toggleModal({ modalId: "deposit", open: false }));
     }
   }
@@ -83,7 +82,9 @@ export default function DepositForm() {
           </select>
         </div>
         <div className="form-btn">
-          <button className="btn btn-form">Deposit</button>
+          <button className="btn btn-form" disabled={isLoading}>
+            Deposit
+          </button>
         </div>
       </form>
     </div>

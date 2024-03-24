@@ -1,17 +1,43 @@
+import {
+  Query,
+  QueryKey,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
+
+import toast from "react-hot-toast";
+
 import { addTransaction } from "../../services/apiTransanctions";
+import {
+  TransactionsRespose,
+  transactionProps,
+} from "../../services/Interfaces/TransactionsInterface";
 
-interface withdrawProps {
-  amount: number;
-  description: string;
-  bankAccountId: string;
-  category: string;
-}
+export function useAddTransaction() {
+  const queryClient = useQueryClient();
 
-export default async function transaction(dataApi: withdrawProps) {
-  try {
-    const { data } = await addTransaction(dataApi);
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
+  const { mutate: addTransactions, isLoading } = useMutation<
+    TransactionsRespose,
+    Error,
+    transactionProps
+  >({
+    mutationFn: submitData => addTransaction(submitData),
+    onSuccess: () => {
+      toast.success("Transaction made successfully", {
+        className: "toast",
+      });
+
+      queryClient.invalidateQueries({
+        predicate: (query: Query<unknown, Error, unknown, QueryKey>) => {
+          const queryKeyArray = query.queryKey as string[];
+          return ["cards", "transactions"].includes(queryKeyArray[0]);
+        },
+      });
+    },
+    onError: err =>
+      toast.error(err.message, {
+        className: "toast",
+      }),
+  });
+  return { isLoading, addTransactions };
 }

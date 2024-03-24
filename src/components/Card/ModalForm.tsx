@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import Error from "../Ui/Error";
 import { toggleModal } from "../../context/modalSlice";
 
-import CreateBankAccount from "./useCreateBankAccont";
+import { useCreateCard } from "./useCreateBankAccont";
 import CardDetails from "./CardDetails";
 
 interface IFormInput {
@@ -21,6 +21,7 @@ export default function ModalForm({ modalId }: ModalProps) {
   const { register, handleSubmit, formState } = useForm<IFormInput>();
   const dispatch = useDispatch();
   const { errors } = formState;
+  const { isCreating, createCard } = useCreateCard();
 
   const [username, setUsername] = useState("");
   const [balance, setBalance] = useState("");
@@ -32,7 +33,7 @@ export default function ModalForm({ modalId }: ModalProps) {
       balance: Number(data.balance),
       currency: data.currency,
     };
-    CreateBankAccount(formatedData);
+    createCard(formatedData);
     dispatch(toggleModal({ modalId, open: false }));
   };
 
@@ -106,7 +107,9 @@ export default function ModalForm({ modalId }: ModalProps) {
           >
             Cancel
           </button>
-          <button className="btn btn-form">Submit</button>
+          <button className="btn btn-form" disabled={isCreating}>
+            Submit
+          </button>
         </div>
       </form>
     </div>

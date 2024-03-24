@@ -9,3 +9,20 @@ export default async function getTransactions() {
     console.log(err);
   }
 }
+import { useQuery } from "@tanstack/react-query";
+
+export function useTransactions() {
+  const {
+    data: transactionData,
+    isLoading: isLoading,
+    refetch: refetchTransactions,
+  } = useQuery({ queryKey: ["transactions"], queryFn: fetchTransactions });
+
+  const transactions = transactionData?.data;
+
+  return {
+    transactions,
+    loading: isLoading,
+    refetchTransactions,
+  };
+}

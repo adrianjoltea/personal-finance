@@ -4,9 +4,9 @@ import Card from "../Overview/Card";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
-import addStock from "./addStock";
 import toast from "react-hot-toast";
 import { toggleModal } from "../../context/modalSlice";
+import { useBuyStock } from "./useAddStock";
 
 interface StockModal {
   _id: string;
@@ -18,6 +18,7 @@ export default function StockModal({ _id, name, currentValue }: StockModal) {
   const [amount, setAmount] = useState(1);
   const mainCard = useSelector(getMainCard);
   const dispatch = useDispatch();
+  const { isAdding, buyStock } = useBuyStock();
   const submitData = {
     _id,
     name,
@@ -36,11 +37,8 @@ export default function StockModal({ _id, name, currentValue }: StockModal) {
       return;
     }
 
-    await addStock(submitData);
+    buyStock(submitData);
     dispatch(toggleModal({ modalId: "stock", open: false }));
-    toast.success("Use them wisely", {
-      className: "toast",
-    });
   }
 
   return (
@@ -73,7 +71,7 @@ export default function StockModal({ _id, name, currentValue }: StockModal) {
         </div>
 
         <div className="form-btn">
-          <button className="btn btn-form" disabled={!mainCard._id}>
+          <button className="btn btn-form" disabled={!mainCard._id || isAdding}>
             Invest
           </button>
         </div>

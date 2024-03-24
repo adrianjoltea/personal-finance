@@ -1,59 +1,16 @@
 import { apiUrl2 } from "../common/variables";
-
-interface Investitions {
-  amount: number;
-  chance: number;
-  name: string;
-  description: string;
-}
-
-interface Stocks {
-  amount: number;
-  boughtPrice: number;
-  user: string;
-  _id: string;
-  stockId: string;
-  name: string;
-}
-
-interface BuyStocks {
-  amount: number;
-  boughtPrice: number;
-  _id: string;
-  name?: string;
-  cardId: string;
-}
-
-interface AvailableStocks {
-  name: string;
-  currentValue: number;
-  previousValue: [number];
-  changePercent: number;
-  _id: string;
-}
-
-interface SellStocks {
-  amount: number;
-  _id: string;
-  sellPrice: number | undefined;
-  cardId: string;
-}
-
-interface SellStocksResponse {
-  data: SellStocks[];
-}
-
-interface AvailableStocksResponse {
-  data: AvailableStocks[];
-}
-
-interface StocksResponse {
-  data: Stocks[];
-}
-
-interface InvestitionsResponse {
-  data: Investitions[];
-}
+import {
+  AvailableStocks,
+  AvailableStocksResponse,
+  BuyStocks,
+  BuyStocksResponse,
+  Investitions,
+  InvestitionsResponse,
+  SellStocks,
+  SellStocksResponse,
+  Stocks,
+  StocksResponse,
+} from "./Interfaces/Investitions";
 
 export async function getInvetitions(): Promise<InvestitionsResponse> {
   try {
@@ -74,7 +31,9 @@ export async function getInvetitions(): Promise<InvestitionsResponse> {
   }
 }
 
-export async function buyStocks(dataApi: BuyStocks) {
+export async function buyStocks(
+  dataApi: BuyStocks
+): Promise<BuyStocksResponse> {
   try {
     const res = await fetch(`${apiUrl2}/invest/add-stock`, {
       method: "POST",
@@ -89,9 +48,10 @@ export async function buyStocks(dataApi: BuyStocks) {
 
     const data = await res.json();
 
-    return data;
+    return { data };
   } catch (err) {
     console.log(err);
+    throw err;
   }
 }
 

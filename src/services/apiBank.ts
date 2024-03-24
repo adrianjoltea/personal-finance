@@ -1,61 +1,12 @@
 import { apiUrl, apiUrl2 } from "../common/variables";
-
-interface Bank {
-  id: string;
-  name: string;
-}
-interface FetchBankResponse {
-  data: Bank[];
-}
-
-interface DeleteProps {
-  _id: string;
-}
-
-interface CardsData {
-  id: string;
-  name: string;
-  balance: number;
-  currency: string;
-}
-
-interface FetchCardsData {
-  data: CardsData[];
-}
-
-interface BankAccounts {
-  name: string;
-  balance: number;
-  currency: string;
-}
-
-interface UpdateBankAccountData {
-  balance: number;
-  userId: string;
-}
-
-interface FetchBankAccounts {
-  data: BankAccounts;
-}
-export async function fetchBanks(): Promise<FetchBankResponse> {
-  try {
-    const res = await fetch(`${apiUrl}/bankaccounts/get`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!res.ok) throw new Error("Could not get the banks");
-
-    const data: Bank[] = await res.json();
-
-    return { data };
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
-}
+import {
+  BankAccounts,
+  CardsData,
+  DeleteProps,
+  FetchBankAccounts,
+  FetchCardsData,
+  UpdateBankAccountData,
+} from "./Interfaces/BankInterface";
 
 export async function deleteCard({ _id }: DeleteProps) {
   try {

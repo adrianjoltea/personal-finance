@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Input from "../Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
-import transaction from "./addDeposit";
+
 import Card from "../Overview/Card";
 import toast from "react-hot-toast";
 import { toggleModal } from "../../context/modalSlice";
 import { validateTransaction } from "./validateTransactions";
+import { useAddTransaction } from "./addDeposit";
 
 export default function WithdrawForm() {
   const [amount, setAmount] = useState("");
@@ -14,7 +15,7 @@ export default function WithdrawForm() {
   const [category, setCategory] = useState("Miscellaneous");
   const dispatch = useDispatch();
   const mainCard = useSelector(getMainCard);
-
+  const { isLoading, addTransactions } = useAddTransaction();
   const submitData = {
     amount: -parseFloat(amount),
     description,
@@ -37,10 +38,8 @@ export default function WithdrawForm() {
       });
     }
     if (!validationError && parseFloat(amount) <= mainCard.balance) {
-      transaction(submitData);
-      toast.success("Succesfully made the withdraw", {
-        className: "toast",
-      });
+      addTransactions(submitData);
+
       dispatch(toggleModal({ modalId: "withdraw", open: false }));
     }
   }
@@ -88,7 +87,9 @@ export default function WithdrawForm() {
           </select>
         </div>
         <div className="form-btn">
-          <button className="btn btn-form">Withdraw</button>
+          <button className="btn btn-form" disabled={isLoading}>
+            Withdraw
+          </button>
         </div>
       </form>
     </>

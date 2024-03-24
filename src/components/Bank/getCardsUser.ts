@@ -1,19 +1,18 @@
 import { fetchCardsUser } from "../../services/apiBank";
+import { useQuery } from "@tanstack/react-query";
 
-interface CardResults {
-  id: string;
-  name: string;
-  balance: number;
-  currency: string;
-}
+export function useCardsUsers() {
+  const {
+    data: cardsData,
+    isLoading: isLoading,
+    refetch: refetchCards,
+  } = useQuery({ queryKey: ["cards"], queryFn: fetchCardsUser });
 
-export default async function getCardsUser(): Promise<CardResults[]> {
-  try {
-    const { data } = await fetchCardsUser();
+  const cards = cardsData?.data;
 
-    return data;
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
+  return {
+    cards,
+    loading: isLoading,
+    refetchCards,
+  };
 }

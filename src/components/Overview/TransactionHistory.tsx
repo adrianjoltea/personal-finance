@@ -2,16 +2,16 @@ import { useState } from "react";
 
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { formatDate } from "../../hooks/useFormatDate";
-import { useTransactions } from "./useTransactions";
+
 import { useThreshold } from "../../hooks/useResponsive";
+import { useTransactions } from "../Transactions/getTransactions";
 
 export default function TransactionHistory() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const thresholdWidth = 400;
   const isThresholdMet = useThreshold(thresholdWidth);
-  const { transactions = [], loading } = useTransactions();
-
-  const sortedData = [...transactions].sort((a, b) => {
+  const { transactions, loading } = useTransactions();
+  const sortedData = [...(transactions ?? [])].sort((a, b) => {
     if (sortOrder === "asc") {
       return a.amount - b.amount;
     } else {
