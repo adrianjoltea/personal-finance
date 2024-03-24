@@ -705,7 +705,11 @@ body {
   font-size: 1.6rem;
   min-width: 30rem;
   box-shadow: var(--shadow-lg);
-  color: #ffffff; }
+  color: #ffffff;
+  transition: all 0.5s; }
+  .card:hover {
+    background-color: var(--color-brand-700);
+    scale: 1.1; }
   .card-container {
     display: flex;
     gap: 10rem;
