@@ -1,11 +1,20 @@
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
 import { fetchPastTransactions } from "../../services/apiTransanctions";
 
-export default async function getPastTransactions(day: number) {
-  try {
-    const { data } = await fetchPastTransactions(day);
+export function usePastTranscations() {
+  const [searchParams] = useSearchParams();
 
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
+  const numDays = !searchParams.get("days")
+    ? 7
+    : Number(searchParams.get("days"));
+
+  const { isLoading, data: pastTransactions } = useQuery({
+    queryFn: () => fetchPastTransactions(numDays || 7),
+    queryKey: ["transactions", `last-${numDays}`],
+  });
+
+  const pastTransaction = pastTransactions?.data;
+
+  return { isLoading, pastTransaction };
 }

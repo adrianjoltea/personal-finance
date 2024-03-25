@@ -14,7 +14,7 @@ export default function DepositForm() {
   const [category, setCategory] = useState("job");
   const dispatch = useDispatch();
   const mainCard = useSelector(getMainCard);
-  const { isLoading, addTransactions } = useAddTransaction();
+  const { isPending, addTransactions } = useAddTransaction();
 
   const submitData = {
     amount: parseFloat(amount),
@@ -82,7 +82,7 @@ export default function DepositForm() {
           </select>
         </div>
         <div className="form-btn">
-          <button className="btn btn-form" disabled={isLoading}>
+          <button className="btn btn-form" disabled={isPending}>
             Deposit
           </button>
         </div>

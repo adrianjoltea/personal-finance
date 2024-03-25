@@ -28,7 +28,7 @@ export async function fetchTransactions(): Promise<TransactionsRespose> {
 }
 
 export async function fetchPastTransactions(
-  day: number
+  day: string | number
 ): Promise<PastTransactionsResponse> {
   try {
     const res = await fetch(

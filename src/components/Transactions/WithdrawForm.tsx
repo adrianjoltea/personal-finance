@@ -15,7 +15,7 @@ export default function WithdrawForm() {
   const [category, setCategory] = useState("Miscellaneous");
   const dispatch = useDispatch();
   const mainCard = useSelector(getMainCard);
-  const { isLoading, addTransactions } = useAddTransaction();
+  const { isPending, addTransactions } = useAddTransaction();
   const submitData = {
     amount: -parseFloat(amount),
     description,
@@ -40,7 +40,8 @@ export default function WithdrawForm() {
     if (!validationError && parseFloat(amount) <= mainCard.balance) {
       addTransactions(submitData);
 
-      dispatch(toggleModal({ modalId: "withdraw", open: false }));
+      if (!isPending)
+        dispatch(toggleModal({ modalId: "withdraw", open: false }));
     }
   }
 
@@ -87,7 +88,7 @@ export default function WithdrawForm() {
           </select>
         </div>
         <div className="form-btn">
-          <button className="btn btn-form" disabled={isLoading}>
+          <button className="btn btn-form" disabled={isPending}>
             Withdraw
           </button>
         </div>

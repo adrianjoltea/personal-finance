@@ -9,7 +9,7 @@ import { createBankAccounts } from "../../services/apiBank";
 export function useCreateCard() {
   const queryClient = useQueryClient();
 
-  const { isLoading: isCreating, mutate: createCard } = useMutation<
+  const { isPending: isCreating, mutate: createCard } = useMutation<
     FetchBankAccounts,
     Error,
     BankAccounts

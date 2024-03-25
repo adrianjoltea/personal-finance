@@ -1,10 +1,9 @@
-import { useTransactions } from "./useTransactions";
 import { processTransactions } from "./getCategories";
 import { useSelector } from "react-redux";
-
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { getDark } from "../../context/darkModeSlice";
+import { useTransactions } from "../Transactions/getTransactions";
 
 type LegendOptions = {
   display: boolean;
@@ -22,10 +21,10 @@ type ChartOptions = {
 };
 
 export default function CategoriesPie() {
-  const { transactions = [] } = useTransactions();
+  const { transactions } = useTransactions();
   const dark = useSelector(getDark);
   ChartJS.register(ArcElement, Tooltip, Legend);
-  const categories = processTransactions(transactions);
+  const categories = processTransactions(transactions ? transactions : []);
 
   const labels = categories.map(entry => entry.category);
   const amount = categories.map(entry => entry.totalAmount);

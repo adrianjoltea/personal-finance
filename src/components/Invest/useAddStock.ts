@@ -9,7 +9,7 @@ import { buyStocks } from "../../services/apiInvestitions";
 export function useBuyStock() {
   const queryClient = useQueryClient();
 
-  const { isLoading: isAdding, mutate: buyStock } = useMutation<
+  const { isPending: isAdding, mutate: buyStock } = useMutation<
     BuyStocksResponse,
     Error,
     BuyStocks

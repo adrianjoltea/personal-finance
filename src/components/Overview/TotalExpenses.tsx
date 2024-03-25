@@ -1,11 +1,11 @@
 import { useMemo } from "react";
-import { useTransactions } from "./useTransactions";
+import { useTransactions } from "../Transactions/getTransactions";
 
 export default function TotalExpenses() {
-  const { transactions = [] } = useTransactions();
+  const { transactions } = useTransactions();
 
   const totalExpense = useMemo(() => {
-    return transactions.reduce((acc, cur) => {
+    return transactions?.reduce((acc, cur) => {
       if (cur.amount < 0) {
         acc += cur.amount;
       }

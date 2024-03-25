@@ -9,7 +9,7 @@ import {
 export function useSellStock() {
   const queryClient = useQueryClient();
 
-  const { isLoading: isSelling, mutate: sellStock } = useMutation<
+  const { isPending: isSelling, mutate: sellStock } = useMutation<
     SellStocksResponse,
     Error,
     SellStocks

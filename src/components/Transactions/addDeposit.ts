@@ -4,9 +4,7 @@ import {
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
-
 import toast from "react-hot-toast";
-
 import { addTransaction } from "../../services/apiTransanctions";
 import {
   TransactionsRespose,
@@ -16,7 +14,7 @@ import {
 export function useAddTransaction() {
   const queryClient = useQueryClient();
 
-  const { mutate: addTransactions, isLoading } = useMutation<
+  const { mutate: addTransactions, isPending } = useMutation<
     TransactionsRespose,
     Error,
     transactionProps
@@ -39,5 +37,5 @@ export function useAddTransaction() {
         className: "toast",
       }),
   });
-  return { isLoading, addTransactions };
+  return { isPending, addTransactions };
 }
