@@ -1,16 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-interface Card {
-  _id: string;
-  name: string;
-  balance: number;
-  currency: string;
-}
-
-interface CardProps {
-  cards: Card[];
-  mainCard: Card;
-}
+import { CardProps } from "./Interface/BankInterface";
 
 const initialState = {
   cards: [],
@@ -21,11 +10,6 @@ const cardSlice = createSlice({
   name: "userCards",
   initialState,
   reducers: {
-    // addCard(state, action) {
-    //   if (action.payload !== null) {
-    //     state.cards = [...state.cards, action.payload];
-    //   }
-    // },
     setMainCard(state, action) {
       if (action.payload !== null) {
         state.mainCard = action.payload;

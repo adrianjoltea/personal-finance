@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface ModalState {
-  open: boolean;
-}
-
-interface ModalProps {
-  modals: Record<string, ModalState>;
-}
+import { ModalProps } from "./Interface/ModalInterface";
 
 const initialState: ModalProps = {
   modals: {},

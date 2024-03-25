@@ -1,4 +1,5 @@
 import { apiUrl2 } from "../common/variables";
+
 import {
   AvailableStocks,
   AvailableStocksResponse,
@@ -11,19 +12,14 @@ import {
   Stocks,
   StocksResponse,
 } from "./Interfaces/Investitions";
+import { fetchData } from "./reusableApi";
 
 export async function getInvetitions(): Promise<InvestitionsResponse> {
   try {
-    const res = await fetch(`${apiUrl2}/invest/get`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (!res.ok) throw new Error("Could not get the banks");
-
-    const data: Investitions[] = await res.json();
-
+    const data: Investitions[] = await fetchData(
+      `${apiUrl2}/invest/get`,
+      "GET"
+    );
     return { data };
   } catch (err) {
     console.log(err);
@@ -35,19 +31,11 @@ export async function buyStocks(
   dataApi: BuyStocks
 ): Promise<BuyStocksResponse> {
   try {
-    const res = await fetch(`${apiUrl2}/invest/add-stock`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(dataApi),
-    });
-
-    if (!res.ok) throw new Error("Could not send the investition");
-
-    const data = await res.json();
-
+    const data = await fetchData(
+      `${apiUrl2}/invest/add-stock`,
+      "POST",
+      dataApi
+    );
     return { data };
   } catch (err) {
     console.log(err);
@@ -57,17 +45,10 @@ export async function buyStocks(
 
 export async function getStocksUser(): Promise<StocksResponse> {
   try {
-    const res = await fetch(`${apiUrl2}/invest/see-stocks`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    });
-    if (!res.ok) throw new Error("Could not get the stocks");
-
-    const data: Stocks[] = await res.json();
-
+    const data: Stocks[] = await fetchData(
+      `${apiUrl2}/invest/see-stocks`,
+      "GET"
+    );
     return { data };
   } catch (err) {
     console.log(err);
@@ -77,17 +58,10 @@ export async function getStocksUser(): Promise<StocksResponse> {
 
 export async function getStocks(): Promise<AvailableStocksResponse> {
   try {
-    const res = await fetch(`${apiUrl2}/invest/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    });
-    if (!res.ok) throw new Error("Could not get the stocks");
-
-    const data: AvailableStocks[] = await res.json();
-
+    const data: AvailableStocks[] = await fetchData(
+      `${apiUrl2}/invest/`,
+      "GET"
+    );
     return { data };
   } catch (err) {
     console.log(err);
@@ -99,18 +73,11 @@ export async function sellStocks(
   dataApi: SellStocks
 ): Promise<SellStocksResponse> {
   try {
-    const res = await fetch(`${apiUrl2}/invest/sell-stock`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(dataApi),
-    });
-
-    if (!res.ok) throw new Error("Could not get the stocks");
-
-    const data = await res.json();
+    const data = await fetchData(
+      `${apiUrl2}/invest/sell-stock`,
+      "PATCH",
+      dataApi
+    );
     return { data };
   } catch (err) {
     console.log(err);

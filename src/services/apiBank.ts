@@ -7,42 +7,29 @@ import {
   FetchCardsData,
   UpdateBankAccountData,
 } from "./Interfaces/BankInterface";
+import { fetchData } from "./reusableApi";
 
 export async function deleteCard({ _id }: DeleteProps) {
   try {
-    const submitData = {
-      _id,
-    };
-    const res = await fetch(`${apiUrl2}/bankaccounts/delete`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(submitData),
-    });
-    if (!res.ok) throw new Error("Could not delete the card");
-
-    const data = await res.json();
+    const submitData = { _id };
+    const data = await fetchData(
+      `${apiUrl2}/bankaccounts/delete`,
+      "DELETE",
+      submitData
+    );
     return { data };
   } catch (err) {
     console.log(err);
+    throw err;
   }
 }
 
 export async function fetchCardsUser(): Promise<FetchCardsData> {
   try {
-    const res = await fetch(`${apiUrl2}/bankaccounts/get`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    });
-
-    if (!res.ok) throw new Error("Could not get the curent user cards");
-
-    const data: CardsData[] = await res.json();
+    const data: CardsData[] = await fetchData(
+      `${apiUrl2}/bankaccounts/get`,
+      "GET"
+    );
     return { data };
   } catch (err) {
     console.log(err);
@@ -54,41 +41,28 @@ export async function createBankAccounts(
   dataUser: BankAccounts
 ): Promise<FetchBankAccounts> {
   try {
-    const res = await fetch(`${apiUrl2}/bankaccounts/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(dataUser),
-    });
-
-    if (!res.ok) throw new Error("Could not get the curent user cards");
-
-    const data: BankAccounts = await res.json();
+    const data: BankAccounts = await fetchData(
+      `${apiUrl2}/bankaccounts/create`,
+      "POST",
+      dataUser
+    );
     return { data };
   } catch (err) {
     console.log(err);
     throw err;
   }
 }
+
 export async function updateBankAccount(
   accountId: string,
   data: UpdateBankAccountData
 ): Promise<FetchBankAccounts> {
   try {
-    const res = await fetch(`${apiUrl}/bank-accounts/${accountId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!res.ok) throw new Error("Could not update the bank account");
-
-    const updatedData = await res.json();
+    const updatedData = await fetchData(
+      `${apiUrl}/bank-accounts/${accountId}`,
+      "PUT",
+      data
+    );
     return { data: updatedData };
   } catch (err) {
     console.log(err);

@@ -3,9 +3,9 @@ import {
   AuthResponse,
   FetchRegisterProps,
   LoginData,
-  LoginResponse,
   RegisterProps,
 } from "./Interfaces/AuthInterface";
+import { fetchData } from "./reusableApi";
 
 export const login = async (dataApi: LoginData): Promise<AuthResponse> => {
   try {
@@ -15,26 +15,15 @@ export const login = async (dataApi: LoginData): Promise<AuthResponse> => {
       loading: true,
     };
 
-    const response = await fetch(`${apiUrl2}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dataApi),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Network response was not ok: ${response.statusText}`);
-    }
+    const response = await fetchData(`${apiUrl2}/auth/login`, "POST", dataApi);
 
     authResponse.loading = false;
 
-    const data: LoginResponse = await response.json();
-    if (data.accessToken) {
-      localStorage.setItem("accessToken", data.accessToken);
+    if (response.accessToken) {
+      localStorage.setItem("accessToken", response.accessToken);
     }
 
-    return { ...authResponse, data, isAuthenticated: response.ok };
+    return { ...authResponse, data: response, isAuthenticated: true };
   } catch (error) {
     console.error("Fetch error:", error);
 
@@ -56,25 +45,11 @@ export async function register(
       loading: true,
     };
 
-    const res = await fetch(`${apiUrl2}/auth/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dataApi),
-    });
-
-    if (!res.ok) {
-      const errorResponse = await res.json();
-      const errorMessage = errorResponse.message;
-      throw new Error(errorMessage);
-    }
+    const res = await fetchData(`${apiUrl2}/auth/register`, "POST", dataApi);
 
     authResponse.loading = false;
 
-    const data: RegisterProps = await res.json();
-
-    return { ...authResponse, data, isAuthenticated: res.ok };
+    return { ...authResponse, data: res, isAuthenticated: true };
   } catch (err) {
     console.log(err);
     throw err;

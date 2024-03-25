@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-interface GeneralState {
-  dark: boolean;
-  navOpen: boolean;
-}
+import { GeneralState } from "./Interface/DarkModeInterface";
 
 const initialState: GeneralState = {
   dark: localStorage.getItem("darkMode") === "true" ? true : false,

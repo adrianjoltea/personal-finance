@@ -1,15 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-interface User {
-  id: string;
-  username: string;
-  email: string;
-  profilePicture: string;
-}
-
-interface UserProps {
-  user: User;
-}
+import { UserProps } from "./Interface/UserInterface";
 
 const initialState = {
   user: [],

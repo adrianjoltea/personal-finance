@@ -1,5 +1,4 @@
-import { apiUrl } from "../common/variables";
-import { apiUrl2 } from "../common/variables";
+import { apiUrl, apiUrl2 } from "../common/variables";
 import {
   FetchUserProps,
   FetchUserResponse,
@@ -7,19 +6,11 @@ import {
   User,
   UserProps,
 } from "./Interfaces/UserInterface";
+import { fetchData } from "./reusableApi";
 
 export async function fetchUser(): Promise<FetchUserProps> {
   try {
-    const res = await fetch(`${apiUrl}/users`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!res.ok) throw new Error("Could not get the curent user");
-
-    const data: UserProps = await res.json();
+    const data: UserProps = await fetchData(`${apiUrl}/users`, "GET");
 
     return { data };
   } catch (err) {
@@ -30,22 +21,12 @@ export async function fetchUser(): Promise<FetchUserProps> {
 
 export async function fetchCurrentUser(): Promise<FetchUserResponse> {
   try {
-    let loading = true;
-    const res = await fetch(`${apiUrl2}/auth/me`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    });
+    const data: User = await fetchData(`${apiUrl2}/auth/me`, "GET");
 
-    if (!res.ok) throw new Error("Could not get the curent user");
+    const isAuthenticated: boolean = !!data?._id;
+    const loading: boolean = false;
 
-    const data: User = await res.json();
-
-    loading = false;
-
-    return { data, isAuthenticated: !!data?._id, loading };
+    return { data, isAuthenticated, loading };
   } catch (err) {
     console.log(err);
     throw err;
@@ -56,26 +37,18 @@ export async function updateUser(dataUser: UpdateUserProps) {
   try {
     const formData = new FormData();
 
-    // Append JSON data
     formData.append("username", dataUser.username);
 
-    // Append profilePicture if available
     if (dataUser.profilePicture) {
-      const file = dataUser.profilePicture; // Assuming dataUser.profilePicture is a File object
+      const file = dataUser.profilePicture;
       formData.append("profilePicture", file, file.name);
     }
 
-    const res = await fetch(`${apiUrl2}/auth/update-profile`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: formData,
-    });
-
-    if (!res.ok) throw new Error("Could not update the bank account");
-
-    const updatedData = await res.json();
+    const updatedData = await fetchData(
+      `${apiUrl2}/auth/update-profile`,
+      "PATCH",
+      formData
+    );
 
     return { data: updatedData };
   } catch (err) {

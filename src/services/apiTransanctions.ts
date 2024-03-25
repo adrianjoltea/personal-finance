@@ -3,26 +3,15 @@ import {
   PastTransactionsResponse,
   TransactionsRespose,
   transactionProps,
-  transactions,
 } from "./Interfaces/TransactionsInterface";
+import { fetchData } from "./reusableApi";
 
 export async function fetchTransactions(): Promise<TransactionsRespose> {
   try {
-    const res = await fetch(`${apiUrl2}/transactions/get`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    });
-
-    if (!res.ok) throw new Error("Could not get the transactions");
-
-    const data: transactions[] = await res.json();
-
+    const data = await fetchData(`${apiUrl2}/transactions/get`, "GET");
     return { data };
   } catch (err) {
-    console.log(err);
+    console.error(err);
     throw err;
   }
 }
@@ -31,48 +20,29 @@ export async function fetchPastTransactions(
   day: string | number
 ): Promise<PastTransactionsResponse> {
   try {
-    const res = await fetch(
+    const data = await fetchData(
       `${apiUrl2}/transactions/past-transactions/${day}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
+      "GET"
     );
-
-    if (!res.ok) throw new Error("Could not get the transactions");
-
-    const data = await res.json();
-
     return { data };
   } catch (err) {
-    console.log(err);
+    console.error(err);
     throw err;
   }
 }
 
 export async function withdraw(
   dataApi: transactionProps
-): Promise<TransactionsRespose> {
+): Promise<PastTransactionsResponse> {
   try {
-    const res = await fetch(`${apiUrl}/transactions/withdraw`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(dataApi),
-    });
-
-    if (!res.ok) throw new Error("Could not add an transaction");
-
-    const data = await res.json();
-
+    const data = await fetchData(
+      `${apiUrl}/transactions/withdraw`,
+      "POST",
+      dataApi
+    );
     return { data };
   } catch (err) {
-    console.log(err);
+    console.error(err);
     throw err;
   }
 }
@@ -81,32 +51,22 @@ export async function addTransaction(
   dataApi: transactionProps
 ): Promise<TransactionsRespose> {
   try {
-    const res = await fetch(`${apiUrl2}/transactions/transaction`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(dataApi),
-    });
-
-    if (!res.ok) throw new Error("Could not add an transaction");
-
-    const data = await res.json();
-
+    const data = await fetchData(
+      `${apiUrl2}/transactions/transaction`,
+      "POST",
+      dataApi
+    );
     const currentMainCard = JSON.parse(
       localStorage.getItem("mainCard") || "{}"
     );
-    const currentBalance = currentMainCard.balance;
     const updatedMainCard = {
       ...currentMainCard,
-      balance: currentBalance + data.amount,
+      balance: currentMainCard.balance + data.amount,
     };
     localStorage.setItem("mainCard", JSON.stringify(updatedMainCard));
-
     return { data };
   } catch (err) {
-    console.log(err);
+    console.error(err);
     throw err;
   }
 }

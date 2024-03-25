@@ -39,6 +39,7 @@ export default function BoughtStockRow({
   const profit = stock
     ? amount * stock.currentValue > amount * boughtPrice
     : false;
+  const profitAmount = stock && amount * stock.currentValue;
 
   return (
     <div className="transaction-table-row" key={i}>
@@ -54,7 +55,7 @@ export default function BoughtStockRow({
       <p className="transaction-table-row-item">{stock?.currentValue}</p>
       <div className="transaction-table-row-item">
         <button className="btn" onClick={handleSellStock} disabled={isSelling}>
-          Sell for {stock ? amount * stock.currentValue : "N/A"}
+          Sell for {stock ? profitAmount?.toFixed(2) : "N/A"}
         </button>
       </div>
     </div>
