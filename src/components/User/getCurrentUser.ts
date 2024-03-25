@@ -12,15 +12,6 @@ interface FetchUserResponse {
   isAuthenticated: boolean;
   loading: boolean;
 }
-export default async function getCurrentUser(): Promise<FetchUserResponse> {
-  try {
-    const { data, isAuthenticated, loading } = await fetchCurrentUser();
-    return { data, isAuthenticated, loading };
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
-}
 export function useUser() {
   const { isPending, data: user } = useQuery<FetchUserResponse>({
     queryKey: ["user"],

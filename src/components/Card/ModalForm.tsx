@@ -6,18 +6,9 @@ import { toggleModal } from "../../context/modalSlice";
 
 import { useCreateCard } from "./useCreateBankAccont";
 import CardDetails from "./CardDetails";
+import { IFormInput, ModalFormProps } from "./Interface/CardInterface";
 
-interface IFormInput {
-  name: string;
-  balance: number;
-  currency: string;
-}
-
-interface ModalProps {
-  modalId: string;
-}
-
-export default function ModalForm({ modalId }: ModalProps) {
+export default function ModalForm({ modalId }: ModalFormProps) {
   const { register, handleSubmit, formState } = useForm<IFormInput>();
   const dispatch = useDispatch();
   const { errors } = formState;

@@ -1,14 +1,6 @@
-import React from "react";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import { useThreshold } from "../../hooks/useResponsive";
-
-interface StockData {
-  previousValue: number[];
-}
-
-interface StockLineChartProps {
-  data: StockData;
-}
+import { StockLineChartProps } from "./Interface/InvestInterface";
 
 export default function StockLineChart({ data }: StockLineChartProps) {
   const last30Values = data.previousValue.slice(-30);

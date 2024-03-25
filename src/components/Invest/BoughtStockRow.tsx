@@ -1,16 +1,7 @@
 import React from "react";
 import { useSellStock } from "./useSellStock";
 import { useStocks } from "./getInvestitions";
-
-interface BoughtStock {
-  amount: number;
-  boughtPrice: number;
-  i: number;
-  stockId: string;
-  cardId: string;
-  sellPriceId: string;
-  name: string;
-}
+import { BoughtStock } from "./Interface/InvestInterface";
 
 export default function BoughtStockRow({
   amount,

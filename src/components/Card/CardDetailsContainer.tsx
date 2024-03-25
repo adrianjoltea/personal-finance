@@ -4,13 +4,7 @@ import { useDispatch } from "react-redux";
 import { setMainCard } from "../../context/userCardsSlice";
 import { debounce } from "lodash";
 import { useCardsUsers } from "../Bank/getCardsUser";
-
-interface CardInput {
-  _id?: string;
-  name: string;
-  balance: number;
-  currency: string;
-}
+import { CardInput } from "./Interface/CardInterface";
 
 export default function CardDetailsContainer() {
   const dispatch = useDispatch();

@@ -4,21 +4,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { getDark } from "../../context/darkModeSlice";
 import { useTransactions } from "../Transactions/getTransactions";
-
-type LegendOptions = {
-  display: boolean;
-  position: "top" | "bottom" | "left" | "right" | "chartArea";
-  labels: {
-    color: string;
-    padding: number;
-  };
-};
-
-type ChartOptions = {
-  plugins: {
-    legend: LegendOptions;
-  };
-};
+import { ChartOptions } from "./Interface/OverviewInterface";
 
 export default function CategoriesPie() {
   const { transactions } = useTransactions();

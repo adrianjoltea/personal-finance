@@ -5,23 +5,21 @@ import Aside from "../components/AppLayout/Aside";
 import { updateUser } from "../context/userSlice";
 import { useDispatch } from "react-redux";
 import { setCurrentCards } from "../context/userCardsSlice";
-import getCurrentUser from "../components/User/getCurrentUser";
 import { useCardsUsers } from "../components/Bank/getCardsUser";
+import { useUser } from "../components/User/getCurrentUser";
 
 export default function AppLayout() {
   const [navOpen, setNavOpen] = useState(true);
+  const { user, isAuthenticated } = useUser();
+
   const dispatch = useDispatch();
   const { cards } = useCardsUsers();
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data, isAuthenticated } = await getCurrentUser();
-
-        // Ensure the user is authenticated before dispatching the update
         if (isAuthenticated) {
-          dispatch(updateUser(data));
+          dispatch(updateUser(user));
           dispatch(setCurrentCards(cards));
-          // setDataCards(cards);
         } else {
           console.log("User not authenticated");
         }
@@ -31,7 +29,7 @@ export default function AppLayout() {
     };
 
     fetchData();
-  }, [dispatch, cards]);
+  }, [isAuthenticated, user, cards, dispatch]);
 
   return (
     <div className={`app-layout ${navOpen ? "" : "collapsed"}`}>

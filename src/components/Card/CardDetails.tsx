@@ -2,20 +2,7 @@ import { BiTrash } from "react-icons/bi";
 import { formatCurrency } from "../../hooks/useFormatCurrency";
 import { FaCcMastercard } from "react-icons/fa";
 import { deleteCard } from "../../services/apiBank";
-interface ClickedCard {
-  name: string;
-  currency: string;
-  balance: number;
-  _id: string | undefined;
-}
-
-interface CardDetailsProps {
-  balance: number;
-  currency: string;
-  name: string;
-  _id: string | undefined;
-  handleClick?: (clickedCard: ClickedCard) => void;
-}
+import { CardDetailsProps } from "./Interface/CardInterface";
 
 export default function CardDetails({
   balance,

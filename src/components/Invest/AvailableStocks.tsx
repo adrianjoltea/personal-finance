@@ -4,14 +4,7 @@ import { useDispatch } from "react-redux";
 import StockModal from "./StockModal";
 import { toggleModal } from "../../context/modalSlice";
 import { useState } from "react";
-
-interface Investitions {
-  currentValue: number;
-  changePercent: number;
-  name: string;
-  previousValue: number[];
-  _id: string;
-}
+import { Investitions } from "./Interface/InvestInterface";
 
 export default function AvailableStocks({
   currentValue,

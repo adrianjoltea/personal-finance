@@ -22,7 +22,7 @@ export default function UserData() {
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!username || !avatar) toast.error("Please fill out atleast one field");
+    if (!username && !avatar) toast.error("Please fill out atleast one field");
 
     updateCurrentUser(submitData);
   }

@@ -1,19 +1,5 @@
-import { ChangeEvent } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-
-interface InputProps {
-  type: string;
-  name?: string;
-  id: string;
-  placeholder: string;
-  content: string;
-  value: string | number | Blob | null;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  autoComplete?: string;
-  forPassword?: boolean;
-  handleShow?: () => void;
-  showPassword?: boolean;
-}
+import { InputProps } from "./Interface/UiInterface";
 
 export default function Input({
   type,

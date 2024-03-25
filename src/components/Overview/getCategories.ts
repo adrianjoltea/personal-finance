@@ -1,11 +1,6 @@
-interface transactions {
-  amount: number;
-  description: string;
-  createdAt: Date;
-  category: string;
-}
+import { Transactions } from "./Interface/OverviewInterface";
 
-export function processTransactions(transactionData: transactions[]) {
+export function processTransactions(transactionData: Transactions[]) {
   const categoryMap = new Map<string, number>();
 
   transactionData.forEach(transaction => {

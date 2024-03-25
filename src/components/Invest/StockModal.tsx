@@ -7,14 +7,13 @@ import { getMainCard } from "../../context/userCardsSlice";
 import toast from "react-hot-toast";
 import { toggleModal } from "../../context/modalSlice";
 import { useBuyStock } from "./useAddStock";
+import { StockModalInterface } from "./Interface/InvestInterface";
 
-interface StockModal {
-  _id: string;
-  name: string;
-  currentValue: number;
-}
-
-export default function StockModal({ _id, name, currentValue }: StockModal) {
+export default function StockModal({
+  _id,
+  name,
+  currentValue,
+}: StockModalInterface) {
   const [amount, setAmount] = useState(1);
   const mainCard = useSelector(getMainCard);
   const dispatch = useDispatch();

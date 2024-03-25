@@ -1,19 +1,7 @@
-import { ReactNode } from "react";
 import { getModal, toggleModal } from "../../context/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
-
-interface ModalProps {
-  children: ReactNode;
-  modalId: string;
-  handleCloseModal?: () => void;
-}
-
-interface RootState {
-  modal: {
-    modals: Record<string, { open: boolean }>;
-  };
-}
+import { ModalProps, RootState } from "./Interface/CardInterface";
 
 export default function Modal({
   children,
