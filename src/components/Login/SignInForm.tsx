@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import Input from "../Ui/Input";
-
-import Register from "./useRegister";
-import toast from "react-hot-toast";
+import { useSignIn } from "./useRegister";
 
 export default function SignInForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
-
+  const { signIn } = useSignIn();
   const submitData = {
     username,
     password,
@@ -16,25 +14,27 @@ export default function SignInForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    try {
-      const { isAuthenticated, error } = await Register(submitData);
-      if (isAuthenticated) {
-        toast.success("Please move to the login page");
-      } else if (error) {
-        toast.error(error, {
-          className: "toast",
-        });
-      } else {
-        toast.error("Authentication failed. Please check your credentials.", {
-          className: "toast",
-        });
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("An error occurred. Please try again later.", {
-        className: "toast",
-      });
-    }
+
+    signIn(submitData);
+    // try {
+    //   const { isAuthenticated, error } = await Register(submitData);
+    //   if (isAuthenticated) {
+    //     toast.success("Please move to the login page");
+    //   } else if (error) {
+    //     toast.error(error, {
+    //       className: "toast",
+    //     });
+    //   } else {
+    //     toast.error("Authentication failed. Please check your credentials.", {
+    //       className: "toast",
+    //     });
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    //   toast.error("An error occurred. Please try again later.", {
+    //     className: "toast",
+    //   });
+    // }
   }
   return (
     <>

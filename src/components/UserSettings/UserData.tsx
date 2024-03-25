@@ -1,12 +1,13 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import Input from "../Ui/Input";
-import { updateUser } from "../../services/apiUser";
+
 import toast from "react-hot-toast";
+import { useUpdateUser } from "./useUpdateUser";
 
 export default function UserData() {
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState<File | null>(null);
-
+  const { updateCurrentUser } = useUpdateUser();
   const submitData = {
     username,
     profilePicture: avatar,
@@ -23,7 +24,7 @@ export default function UserData() {
 
     if (!username || !avatar) toast.error("Please fill out atleast one field");
 
-    updateUser(submitData);
+    updateCurrentUser(submitData);
   }
 
   return (

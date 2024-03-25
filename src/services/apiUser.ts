@@ -36,19 +36,23 @@ export async function fetchCurrentUser(): Promise<FetchUserResponse> {
 export async function updateUser(dataUser: UpdateUserProps) {
   try {
     const formData = new FormData();
-
     formData.append("username", dataUser.username);
-
     if (dataUser.profilePicture) {
       const file = dataUser.profilePicture;
       formData.append("profilePicture", file, file.name);
     }
 
-    const updatedData = await fetchData(
-      `${apiUrl2}/auth/update-profile`,
-      "PATCH",
-      formData
-    );
+    const res = await fetch(`${apiUrl2}/auth/update-profile`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: formData,
+    });
+
+    if (!res.ok) throw new Error("Could not update the user profile");
+
+    const updatedData = await res.json();
 
     return { data: updatedData };
   } catch (err) {

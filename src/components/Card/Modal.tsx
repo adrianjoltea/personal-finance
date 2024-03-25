@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { getModal, toggleModal } from "../../context/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 
 interface ModalProps {
   children: ReactNode;
@@ -19,19 +20,18 @@ export default function Modal({
   modalId,
   handleCloseModal,
 }: ModalProps) {
-  const open = useSelector((state: RootState) => getModal(state, modalId));
   const dispatch = useDispatch();
-
+  const open = useSelector((state: RootState) => getModal(state, modalId));
+  function close() {
+    dispatch(toggleModal({ modalId, open: false }));
+  }
+  const ref = useOutsideClick(close);
   return open ? (
     <div className="overlay">
-      <div className="modal">
+      <div className="modal" ref={ref}>
         <button
           className="modal-button"
-          onClick={
-            handleCloseModal
-              ? handleCloseModal
-              : () => dispatch(toggleModal({ modalId, open: false }))
-          }
+          onClick={handleCloseModal ? handleCloseModal : close}
         >
           X
         </button>

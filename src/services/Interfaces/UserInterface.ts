@@ -10,10 +10,9 @@ interface FetchUserProps {
 }
 
 interface User {
-  firstName: string;
-  lastName: string;
-  email: string;
+  username: string;
   _id: string;
+  profilePicture: string;
 }
 
 interface FetchUserResponse {
@@ -27,10 +26,15 @@ interface UpdateUserProps {
   profilePicture: File | null;
 }
 
+interface UpdateUserResponse {
+  data: UpdateUserProps[];
+}
+
 export type {
   UserProps,
   FetchUserProps,
   User,
   FetchUserResponse,
   UpdateUserProps,
+  UpdateUserResponse,
 };

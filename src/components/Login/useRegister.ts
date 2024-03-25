@@ -1,39 +1,58 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { register } from "../../services/apiAuth";
+import { useNavigate } from "react-router-dom";
+import { LoginResult, submitDataProps } from "./Interface/AuthInterface";
+import toast from "react-hot-toast";
 
-interface submitDataProps {
-  username: string;
-  password: string;
-}
+// export default async function Register(
+//   submitData: submitDataProps
+// ): Promise<RegisterResult> {
+//   try {
+//     const { isAuthenticated, loading } = await register(submitData);
 
-interface RegisterResult {
-  isAuthenticated: boolean;
-  loading: boolean;
-  error?: string;
-}
+//     if (!isAuthenticated) console.log("Register unsuccessfull");
 
-export default async function Register(
-  submitData: submitDataProps
-): Promise<RegisterResult> {
-  try {
-    const { isAuthenticated, loading } = await register(submitData);
+//     return { isAuthenticated, loading };
+//   } catch (error) {
+//     if (error instanceof Error) {
+//       console.log(error);
+//       return {
+//         isAuthenticated: false,
+//         loading: false,
+//         error: error.message,
+//       };
+//     } else {
+//       return {
+//         isAuthenticated: false,
+//         loading: false,
+//         error: "An unknown error occurred during registration",
+//       };
+//     }
+//   }
+// }
 
-    if (!isAuthenticated) console.log("Register unsuccessfull");
+export function useSignIn() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
-    return { isAuthenticated, loading };
-  } catch (error) {
-    if (error instanceof Error) {
+  const { mutate: signIn, isPending } = useMutation<
+    LoginResult,
+    Error,
+    submitDataProps
+  >({
+    mutationFn: submitData => register(submitData),
+    onSuccess: user => {
+      queryClient.setQueryData(["user"], user);
+      navigate("/");
+      toast.success("Account succesfully created!", {
+        className: "toast",
+      });
+    },
+    onError: error => {
+      toast.error(error.message);
       console.log(error);
-      return {
-        isAuthenticated: false,
-        loading: false,
-        error: error.message,
-      };
-    } else {
-      return {
-        isAuthenticated: false,
-        loading: false,
-        error: "An unknown error occurred during registration",
-      };
-    }
-  }
+    },
+  });
+
+  return { signIn, isPending };
 }

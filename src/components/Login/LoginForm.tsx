@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import Input from "../Ui/Input";
 
 import toast from "react-hot-toast";
-import Login from "./useLogin";
+import { useLogin } from "./useLogin";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("AdrianJoltea");
   const [password, setPassword] = useState("123");
 
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
 
+  const { login } = useLogin();
   const submitData = {
     username,
     password,
@@ -30,14 +30,11 @@ export default function LoginForm() {
       });
       return;
     }
-
-    const { isAuthenticated } = await Login(submitData);
-
-    if (!isAuthenticated)
-      toast.error("The password or the username are incorect", {
-        className: "toast",
-      });
-    if (isAuthenticated) navigate("/");
+    login(submitData, {
+      onSettled: () => {
+        setUsername(""), setPassword("");
+      },
+    });
   }
 
   return (

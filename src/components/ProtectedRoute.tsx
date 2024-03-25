@@ -1,8 +1,7 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import Spinner from "./Ui/Spinner";
-import getCurrentUser from "./User/getCurrentUser";
+import { useUser } from "./User/getCurrentUser";
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -10,25 +9,17 @@ interface ProtectedRouteProps {
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const navigate = useNavigate();
-  const isAuthenticated = !!localStorage.getItem("accessToken");
+  const { isPending, isAuthenticated } = useUser();
 
-  const [ifLoading, setIfLoading] = useState(true);
-  // setIfLoading(loading);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { loading } = await getCurrentUser();
-        setIfLoading(loading);
-      } catch (err) {
-        console.error(err);
-        setIfLoading(true);
-      }
-    };
+  useEffect(
+    function () {
+      if (!isAuthenticated && !isPending) navigate("/login");
+    },
+    [isAuthenticated, isPending, navigate]
+  );
 
-    fetchData();
-    if (!isAuthenticated) navigate("/login");
-  }, [isAuthenticated, navigate]);
+  if (!isAuthenticated && !isPending) navigate("/login");
 
-  if (ifLoading) return <Spinner />;
+  if (isPending) return <Spinner />;
   if (isAuthenticated) return <>{children}</>;
 }
