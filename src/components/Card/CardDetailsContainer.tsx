@@ -3,7 +3,7 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import { useDispatch } from "react-redux";
 import { setMainCard } from "../../context/userCardsSlice";
 import { debounce } from "lodash";
-import { useCardsUsers } from "../Bank/getCardsUser";
+import { useCardsUsers } from "./hooks/useCardsUser";
 import { CardInput } from "./Interface/CardInterface";
 
 export default function CardDetailsContainer() {

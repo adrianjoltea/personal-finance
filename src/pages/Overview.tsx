@@ -4,7 +4,7 @@ import CategoriesPie from "../components/Overview/CategoriesPie";
 
 import TransactionChart from "../components/Overview/TransactionChart";
 import TransactionChartButtons from "../components/Overview/TransactionChartButtons";
-import { useTransactions } from "../components/Transactions/getTransactions";
+import { useTransactions } from "../components/Transactions/hooks/useTransactions";
 
 import { useThreshold } from "../hooks/useResponsive";
 

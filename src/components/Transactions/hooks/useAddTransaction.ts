@@ -5,11 +5,11 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { addTransaction } from "../../services/apiTransanctions";
+import { addTransaction } from "../../../services/apiTransanctions";
 import {
   TransactionsRespose,
   transactionProps,
-} from "../../services/Interfaces/TransactionsInterface";
+} from "../../../services/Interfaces/TransactionsInterface";
 
 export function useAddTransaction() {
   const queryClient = useQueryClient();

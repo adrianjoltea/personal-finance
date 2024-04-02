@@ -1,4 +1,4 @@
-import { Transactions } from "./Interface/OverviewInterface";
+import { Transactions } from "../Interface/OverviewInterface";
 
 export function processTransactions(transactionData: Transactions[]) {
   const categoryMap = new Map<string, number>();

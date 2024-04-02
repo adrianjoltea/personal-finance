@@ -1,5 +1,5 @@
 import { apiUrl2 } from "../../common/variables";
-import { useUser } from "../User/getCurrentUser";
+import { useUser } from "../User/useUser";
 
 export default function Profile() {
   const { user } = useUser();

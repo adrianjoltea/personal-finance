@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { formatDate } from "../../hooks/useFormatDate";
+import { formatDate } from "../../utils/formatDate";
 
 import { useThreshold } from "../../hooks/useResponsive";
-import { useTransactions } from "../Transactions/getTransactions";
+import { useTransactions } from "../Transactions/hooks/useTransactions";
 
 export default function TransactionHistory() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");

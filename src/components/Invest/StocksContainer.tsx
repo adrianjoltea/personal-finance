@@ -1,5 +1,5 @@
 import AvailableStocks from "./AvailableStocks";
-import { useStocks } from "./getInvestitions";
+import { useStocks } from "./hooks/useStocks";
 
 export default function InvesitionsContainer() {
   const { availableStocks } = useStocks();

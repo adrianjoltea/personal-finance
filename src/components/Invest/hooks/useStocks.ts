@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getStocks, getStocksUser } from "../../services/apiInvestitions";
+import { getStocks, getStocksUser } from "../../../services/apiInvestitions";
 
 export function useStocks() {
   const {

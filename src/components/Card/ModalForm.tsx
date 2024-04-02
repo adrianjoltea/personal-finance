@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import Error from "../Ui/Error";
 import { toggleModal } from "../../context/modalSlice";
 
-import { useCreateCard } from "./useCreateBankAccont";
+import { useCreateCard } from "./hooks/useCreateCard";
 import CardDetails from "./CardDetails";
 import { IFormInput, ModalFormProps } from "./Interface/CardInterface";
 

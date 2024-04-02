@@ -1,4 +1,4 @@
-import { useTransactions } from "../Transactions/getTransactions";
+import { useTransactions } from "../Transactions/hooks/useTransactions";
 import BiggestExpense from "./BiggestExpense";
 import BiggestIncome from "./BiggestIncome";
 import TotalExpenses from "./TotalExpenses";

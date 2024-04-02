@@ -10,7 +10,7 @@ import {
   Legend,
 } from "recharts";
 import React, { useMemo } from "react";
-import { formatDate } from "../../hooks/useFormatDate";
+import { formatDate } from "../../utils/formatDate";
 import { useSelector } from "react-redux";
 import { getDark } from "../../context/darkModeSlice";
 import { useThreshold } from "../../hooks/useResponsive";

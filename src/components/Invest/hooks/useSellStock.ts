@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { sellStocks } from "../../services/apiInvestitions";
+import { sellStocks } from "../../../services/apiInvestitions";
 import toast from "react-hot-toast";
 import {
   SellStocks,
   SellStocksResponse,
-} from "../../services/Interfaces/Investitions";
+} from "../../../services/Interfaces/Investitions";
 
 export function useSellStock() {
   const queryClient = useQueryClient();

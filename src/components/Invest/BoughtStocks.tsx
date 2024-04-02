@@ -1,7 +1,7 @@
 import BoughtStockRow from "./BoughtStockRow";
 import { getMainCard } from "../../context/userCardsSlice";
 import { useSelector } from "react-redux";
-import { useStocks } from "./getInvestitions";
+import { useStocks } from "./hooks/useStocks";
 
 export default function BoughtStocks() {
   const { stocks } = useStocks();

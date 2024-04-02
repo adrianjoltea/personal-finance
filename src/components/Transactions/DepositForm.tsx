@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "../Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
-import { useAddTransaction } from "./addDeposit";
+import { useAddTransaction } from "./hooks/useAddTransaction";
 import Card from "../Overview/Card";
 import toast from "react-hot-toast";
 import { toggleModal } from "../../context/modalSlice";

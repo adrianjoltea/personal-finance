@@ -1,5 +1,5 @@
 import { BiTrash } from "react-icons/bi";
-import { formatCurrency } from "../../hooks/useFormatCurrency";
+import { formatCurrency } from "../../utils/formatCurrency";
 import { FaCcMastercard } from "react-icons/fa";
 import { deleteCard } from "../../services/apiBank";
 import { CardDetailsProps } from "./Interface/CardInterface";

@@ -3,8 +3,8 @@ import toast from "react-hot-toast";
 import {
   BankAccounts,
   FetchBankAccounts,
-} from "../../services/Interfaces/BankInterface";
-import { createBankAccounts } from "../../services/apiBank";
+} from "../../../services/Interfaces/BankInterface";
+import { createBankAccounts } from "../../../services/apiBank";
 
 export function useCreateCard() {
   const queryClient = useQueryClient();

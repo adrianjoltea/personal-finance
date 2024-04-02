@@ -1,6 +1,5 @@
 import { getModal, toggleModal } from "../../context/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { ModalProps, RootState } from "./Interface/CardInterface";
 
 export default function Modal({
@@ -13,10 +12,10 @@ export default function Modal({
   function close() {
     dispatch(toggleModal({ modalId, open: false }));
   }
-  const ref = useOutsideClick(close);
+
   return open ? (
     <div className="overlay">
-      <div className="modal" ref={ref}>
+      <div className="modal">
         <button
           className="modal-button"
           onClick={handleCloseModal ? handleCloseModal : close}

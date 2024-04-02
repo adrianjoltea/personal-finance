@@ -1,6 +1,6 @@
-import { formatCurrency } from "../../hooks/useFormatCurrency";
-import { formatDate } from "../../hooks/useFormatDate";
-import { useTransactions } from "../Transactions/getTransactions";
+import { formatCurrency } from "../../utils/formatCurrency";
+import { formatDate } from "../../utils/formatDate";
+import { useTransactions } from "../Transactions/hooks/useTransactions";
 
 export default function BiggestIncome() {
   const { transactions } = useTransactions();

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useTransactions } from "../Transactions/getTransactions";
+import { useTransactions } from "../Transactions/hooks/useTransactions";
 
 export default function TotalExpenses() {
   const { transactions } = useTransactions();

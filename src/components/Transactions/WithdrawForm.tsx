@@ -7,7 +7,7 @@ import Card from "../Overview/Card";
 import toast from "react-hot-toast";
 import { toggleModal } from "../../context/modalSlice";
 import { validateTransaction } from "./validateTransactions";
-import { useAddTransaction } from "./addDeposit";
+import { useAddTransaction } from "./hooks/useAddTransaction";
 
 export default function WithdrawForm() {
   const [amount, setAmount] = useState("");

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
 import toast from "react-hot-toast";
 import { toggleModal } from "../../context/modalSlice";
-import { useBuyStock } from "./useAddStock";
+import { useBuyStock } from "./hooks/useBuyStock";
 import { StockModalInterface } from "./Interface/InvestInterface";
 
 export default function StockModal({

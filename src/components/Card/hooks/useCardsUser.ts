@@ -1,4 +1,4 @@
-import { fetchCardsUser } from "../../services/apiBank";
+import { fetchCardsUser } from "../../../services/apiBank";
 import { useQuery } from "@tanstack/react-query";
 
 export function useCardsUsers() {

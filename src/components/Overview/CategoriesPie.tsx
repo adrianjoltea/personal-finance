@@ -1,10 +1,10 @@
-import { processTransactions } from "./getCategories";
+import { processTransactions } from "./hooks/useProccessTransactions";
 import { useSelector } from "react-redux";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { getDark } from "../../context/darkModeSlice";
-import { useTransactions } from "../Transactions/getTransactions";
 import { ChartOptions } from "./Interface/OverviewInterface";
+import { useTransactions } from "../Transactions/hooks/useTransactions";
 
 export default function CategoriesPie() {
   const { transactions } = useTransactions();

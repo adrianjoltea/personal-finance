@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Input from "../Ui/Input";
 
 import toast from "react-hot-toast";
-import { useLogin } from "./useLogin";
+import { useLogin } from "./hooks/useLogin";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("AdrianJoltea");

@@ -1,15 +1,5 @@
-import { fetchTransactions } from "../../services/apiTransanctions";
-
-export default async function getTransactions() {
-  try {
-    const { data } = await fetchTransactions();
-
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
-}
 import { useQuery } from "@tanstack/react-query";
+import { fetchTransactions } from "../../../services/apiTransanctions";
 
 export function useTransactions() {
   const {

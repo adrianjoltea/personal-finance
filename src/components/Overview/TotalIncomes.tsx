@@ -1,4 +1,4 @@
-import { useTransactions } from "../Transactions/getTransactions";
+import { useTransactions } from "../Transactions/hooks/useTransactions";
 
 export default function TotalIncomes() {
   const { transactions } = useTransactions();

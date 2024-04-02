@@ -3,8 +3,8 @@ import toast from "react-hot-toast";
 import {
   BuyStocks,
   BuyStocksResponse,
-} from "../../services/Interfaces/Investitions";
-import { buyStocks } from "../../services/apiInvestitions";
+} from "../../../services/Interfaces/Investitions";
+import { buyStocks } from "../../../services/apiInvestitions";
 
 export function useBuyStock() {
   const queryClient = useQueryClient();

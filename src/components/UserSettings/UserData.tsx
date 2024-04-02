@@ -1,9 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import Input from "../Ui/Input";
-
 import toast from "react-hot-toast";
 import { useUpdateUser } from "./useUpdateUser";
-
 export default function UserData() {
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState<File | null>(null);

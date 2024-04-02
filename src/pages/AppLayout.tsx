@@ -5,8 +5,8 @@ import Aside from "../components/AppLayout/Aside";
 import { updateUser } from "../context/userSlice";
 import { useDispatch } from "react-redux";
 import { setCurrentCards } from "../context/userCardsSlice";
-import { useCardsUsers } from "../components/Bank/getCardsUser";
-import { useUser } from "../components/User/getCurrentUser";
+import { useCardsUsers } from "../components/Card/hooks/useCardsUser";
+import { useUser } from "../components/User/useUser";
 
 export default function AppLayout() {
   const [navOpen, setNavOpen] = useState(true);
