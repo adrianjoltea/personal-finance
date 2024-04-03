@@ -14,7 +14,7 @@ import { formatDate } from "../../utils/formatDate";
 import { useSelector } from "react-redux";
 import { getDark } from "../../context/darkModeSlice";
 import { useThreshold } from "../../hooks/useResponsive";
-import { usePastTranscations } from "../Transactions/PastTransactions";
+import { usePastTranscations } from "../Transactions/hooks/usePastTransactions";
 
 export default function TransactionChart() {
   const thresholdWidth = 900;

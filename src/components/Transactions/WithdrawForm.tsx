@@ -6,7 +6,7 @@ import { getMainCard } from "../../context/userCardsSlice";
 import Card from "../Overview/Card";
 import toast from "react-hot-toast";
 import { toggleModal } from "../../context/modalSlice";
-import { validateTransaction } from "./validateTransactions";
+import { validateTransaction } from "./utils/validateTransactions";
 import { useAddTransaction } from "./hooks/useAddTransaction";
 
 export default function WithdrawForm() {

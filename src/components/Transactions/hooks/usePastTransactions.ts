@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
-import { fetchPastTransactions } from "../../services/apiTransanctions";
+import { fetchPastTransactions } from "../../../services/apiTransanctions";
 
 export function usePastTranscations() {
   const [searchParams] = useSearchParams();

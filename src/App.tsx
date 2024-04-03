@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./pages/AppLayout";
-import Overview from "./pages/Overview";
-import Card from "./pages/Card";
 import PageNotFound from "./pages/PageNotFound";
 import { useSelector } from "react-redux";
 import { getDark } from "./context/darkModeSlice";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
-import Settings from "./pages/Settings";
 import AppOffline from "./AppOffline";
-import Invest from "./pages/Invest";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import LazyLoader from "./components/Ui/LazyLoader";
+
+const Card = lazy(() => import("./pages/Card"));
+const Overview = lazy(() => import("./pages/Overview"));
+const Invest = lazy(() => import("./pages/Invest"));
+const Settings = lazy(() => import("./pages/Settings"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -60,22 +62,24 @@ export default function App() {
             <ReactQueryDevtools initialIsOpen={false} />
 
             <BrowserRouter>
-              <Routes>
-                <Route
-                  element={
-                    <ProtectedRoute>
-                      <AppLayout />
-                    </ProtectedRoute>
-                  }
-                >
-                  <Route path="/" element={<Overview />} />
-                  <Route path="card" element={<Card />} />
-                  <Route path="invest" element={<Invest />} />
-                  <Route path="settings" element={<Settings />} />
-                </Route>
-                <Route path="*" element={<PageNotFound />} />
-                <Route path="/login" element={<Login />} />
-              </Routes>
+              <Suspense fallback={<LazyLoader show={true} delay={500} />}>
+                <Routes>
+                  <Route
+                    element={
+                      <ProtectedRoute>
+                        <AppLayout />
+                      </ProtectedRoute>
+                    }
+                  >
+                    <Route path="/" element={<Overview />} />
+                    <Route path="card" element={<Card />} />
+                    <Route path="invest" element={<Invest />} />
+                    <Route path="settings" element={<Settings />} />
+                  </Route>
+                  <Route path="*" element={<PageNotFound />} />
+                  <Route path="/login" element={<Login />} />
+                </Routes>
+              </Suspense>
             </BrowserRouter>
             <Toaster
               position="top-center"

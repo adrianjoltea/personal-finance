@@ -18,4 +18,9 @@ interface ErrorProps {
   children: ReactNode;
 }
 
-export type { InputProps, ErrorProps };
+interface LazyLoaderProps {
+  show: boolean;
+  delay: number;
+}
+
+export type { InputProps, ErrorProps, LazyLoaderProps };

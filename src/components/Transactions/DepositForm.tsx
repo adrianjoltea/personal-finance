@@ -6,7 +6,7 @@ import { useAddTransaction } from "./hooks/useAddTransaction";
 import Card from "../Overview/Card";
 import toast from "react-hot-toast";
 import { toggleModal } from "../../context/modalSlice";
-import { validateTransaction } from "./validateTransactions";
+import { validateTransaction } from "./utils/validateTransactions";
 
 export default function DepositForm() {
   const [amount, setAmount] = useState("");
