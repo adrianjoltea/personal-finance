@@ -27,11 +27,7 @@ export const login = async (dataApi: LoginData): Promise<AuthResponse> => {
   } catch (error) {
     console.error("Fetch error:", error);
 
-    return {
-      data: { accessToken: undefined },
-      isAuthenticated: false,
-      loading: false,
-    };
+    throw new Error((error as Error).message);
   }
 };
 

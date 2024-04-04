@@ -1,4 +1,3 @@
-import React from "react";
 import { useSellStock } from "./hooks/useSellStock";
 import { useStocks } from "./hooks/useStocks";
 import { BoughtStock } from "./Interface/InvestInterface";

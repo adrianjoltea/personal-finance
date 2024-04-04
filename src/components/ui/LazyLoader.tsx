@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { LazyLoaderProps } from "./Interface/UiInterface";
 import Spinner from "./Spinner";
 

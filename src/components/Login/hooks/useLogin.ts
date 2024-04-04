@@ -20,10 +20,11 @@ export function useLogin() {
     },
     onError: err => {
       console.log("ERROR", err);
-      toast.error("Provided email or password are incorect", {
+      toast.error("Provided email or password are incorrect", {
         className: "toast",
       });
     },
   });
+
   return { login, isPending };
 }

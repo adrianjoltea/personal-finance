@@ -9,7 +9,7 @@ import {
   AreaChart,
   Legend,
 } from "recharts";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { formatDate } from "../../utils/formatDate";
 import { useSelector } from "react-redux";
 import { getDark } from "../../context/darkModeSlice";

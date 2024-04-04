@@ -1,6 +1,7 @@
 async function handleResponse<T>(res: Response): Promise<T> {
   if (!res.ok) {
-    throw new Error("Network response was not ok");
+    const errorData = await res.json();
+    throw new Error(errorData.message || "Network response was not ok");
   }
   return res.json();
 }
