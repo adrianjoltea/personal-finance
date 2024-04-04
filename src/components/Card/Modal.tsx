@@ -14,7 +14,7 @@ export default function Modal({
   }
 
   return open ? (
-    <div className="overlay">
+    <div className="overlay" onClick={close}>
       <div className="modal">
         <button
           className="modal-button"

@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { useLogin } from "./hooks/useLogin";
 
 export default function LoginForm() {
-  const [username, setUsername] = useState("AdrianJoltea");
+  const [username, setUsername] = useState("nush20");
   const [password, setPassword] = useState("123");
 
   const [showPassword, setShowPassword] = useState(false);
