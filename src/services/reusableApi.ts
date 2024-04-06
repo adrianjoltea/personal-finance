@@ -6,11 +6,11 @@ async function handleResponse<T>(res: Response): Promise<T> {
   return res.json();
 }
 
-export async function fetchData(
+export async function fetchData<T, B>(
   url: string,
   method: string,
-  body?: any
-): Promise<any> {
+  body?: B
+): Promise<T> {
   const res = await fetch(url, {
     method,
     headers: {
@@ -19,5 +19,5 @@ export async function fetchData(
     },
     body: body && JSON.stringify(body),
   });
-  return handleResponse(res);
+  return handleResponse<T>(res);
 }

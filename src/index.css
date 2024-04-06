@@ -624,7 +624,8 @@ body {
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   padding: 3.2rem 4rem;
   transition: all 0.5s;
-  max-width: 100rem; }
+  max-width: 100rem;
+  z-index: 100; }
   .modal-button {
     position: absolute;
     top: 2rem;
@@ -643,7 +644,7 @@ body {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(4px);
-  z-index: 1000;
+  z-index: 10;
   transition: all 0.5s; }
 
 body {

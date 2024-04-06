@@ -62,7 +62,7 @@ export default function App() {
             <ReactQueryDevtools initialIsOpen={false} />
 
             <BrowserRouter>
-              <Suspense fallback={<LazyLoader show={true} delay={500} />}>
+              <Suspense fallback={<LazyLoader show={true} delay={0} />}>
                 <Routes>
                   <Route
                     element={
@@ -87,6 +87,7 @@ export default function App() {
                 style: {
                   background: "var(--color-grey-50)",
                   color: "var(--color-grey-800)",
+                  textAlign: "center",
                 },
               }}
             />

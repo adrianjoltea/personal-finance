@@ -13,9 +13,13 @@ export default function Modal({
     dispatch(toggleModal({ modalId, open: false }));
   }
 
+  function handleClickInsideModal(e: React.MouseEvent<HTMLDivElement>) {
+    e.stopPropagation();
+  }
+
   return open ? (
     <div className="overlay" onClick={close}>
-      <div className="modal">
+      <div className="modal" onClick={handleClickInsideModal}>
         <button
           className="modal-button"
           onClick={handleCloseModal ? handleCloseModal : close}
