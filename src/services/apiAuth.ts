@@ -3,6 +3,7 @@ import {
   AuthResponse,
   FetchRegisterProps,
   LoginData,
+  LoginResponse,
   RegisterProps,
 } from "./Interfaces/AuthInterface";
 import { fetchData } from "./reusableApi";
@@ -15,7 +16,11 @@ export const login = async (dataApi: LoginData): Promise<AuthResponse> => {
       loading: true,
     };
 
-    const response = await fetchData(`${apiUrl2}/auth/login`, "POST", dataApi);
+    const response = await fetchData<LoginResponse, LoginData>(
+      `${apiUrl2}/auth/login`,
+      "POST",
+      dataApi
+    );
 
     authResponse.loading = false;
 
@@ -41,11 +46,15 @@ export async function register(
       loading: true,
     };
 
-    const res = await fetchData(`${apiUrl2}/auth/register`, "POST", dataApi);
+    const res = await fetchData<FetchRegisterProps, RegisterProps>(
+      `${apiUrl2}/auth/register`,
+      "POST",
+      dataApi
+    );
 
     authResponse.loading = false;
 
-    return { ...authResponse, data: res, isAuthenticated: true };
+    return { ...authResponse, data: res.data, isAuthenticated: true };
   } catch (err) {
     console.log(err);
     throw err;

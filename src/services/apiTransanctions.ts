@@ -1,14 +1,20 @@
-import { apiUrl, apiUrl2 } from "../common/variables";
+import { apiUrl2 } from "../common/variables";
 import {
+  AddTransactionResponse,
+  PastTransactions,
   PastTransactionsResponse,
   TransactionsRespose,
   transactionProps,
+  transactions,
 } from "./Interfaces/TransactionsInterface";
 import { fetchData } from "./reusableApi";
 
 export async function fetchTransactions(): Promise<TransactionsRespose> {
   try {
-    const data = await fetchData(`${apiUrl2}/transactions/get`, "GET");
+    const data: transactions[] = await fetchData(
+      `${apiUrl2}/transactions/get`,
+      "GET"
+    );
     return { data };
   } catch (err) {
     console.error(err);
@@ -20,7 +26,7 @@ export async function fetchPastTransactions(
   day: string | number
 ): Promise<PastTransactionsResponse> {
   try {
-    const data = await fetchData(
+    const data: PastTransactions[] = await fetchData(
       `${apiUrl2}/transactions/past-transactions/${day}`,
       "GET"
     );
@@ -31,34 +37,20 @@ export async function fetchPastTransactions(
   }
 }
 
-export async function withdraw(
-  dataApi: transactionProps
-): Promise<PastTransactionsResponse> {
-  try {
-    const data = await fetchData(
-      `${apiUrl}/transactions/withdraw`,
-      "POST",
-      dataApi
-    );
-    return { data };
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
-}
-
 export async function addTransaction(
   dataApi: transactionProps
-): Promise<TransactionsRespose> {
+): Promise<AddTransactionResponse> {
   try {
-    const data = await fetchData(
+    const data: transactionProps = await fetchData(
       `${apiUrl2}/transactions/transaction`,
       "POST",
       dataApi
     );
+
     const currentMainCard = JSON.parse(
       localStorage.getItem("mainCard") || "{}"
     );
+    console.log(data);
     const updatedMainCard = {
       ...currentMainCard,
       balance: currentMainCard.balance + data.amount,

@@ -15,7 +15,9 @@ interface transactionProps {
   bankAccountId: string;
   category: string;
 }
-
+interface AddTransactionResponse {
+  data: transactionProps;
+}
 interface PastTransactions {
   day: Date;
   expense: number;
@@ -32,4 +34,5 @@ export type {
   TransactionsRespose,
   PastTransactions,
   PastTransactionsResponse,
+  AddTransactionResponse,
 };

@@ -58,12 +58,11 @@ export async function updateBankAccount(
   data: UpdateBankAccountData
 ): Promise<FetchBankAccounts> {
   try {
-    const updatedData = await fetchData(
-      `${apiUrl}/bank-accounts/${accountId}`,
-      "PUT",
-      data
-    );
-    return { data: updatedData };
+    const updatedData = await fetchData<
+      FetchBankAccounts,
+      UpdateBankAccountData
+    >(`${apiUrl}/bank-accounts/${accountId}`, "PUT", data);
+    return { data: updatedData.data };
   } catch (err) {
     console.log(err);
     throw err;

@@ -31,12 +31,12 @@ export async function buyStocks(
   dataApi: BuyStocks
 ): Promise<BuyStocksResponse> {
   try {
-    const data = await fetchData(
+    const data = await fetchData<BuyStocksResponse, BuyStocks>(
       `${apiUrl2}/invest/add-stock`,
       "POST",
       dataApi
     );
-    return { data };
+    return data;
   } catch (err) {
     console.log(err);
     throw err;
@@ -73,12 +73,12 @@ export async function sellStocks(
   dataApi: SellStocks
 ): Promise<SellStocksResponse> {
   try {
-    const data = await fetchData(
+    const data = await fetchData<SellStocksResponse, SellStocks>(
       `${apiUrl2}/invest/sell-stock`,
       "PATCH",
       dataApi
     );
-    return { data };
+    return data;
   } catch (err) {
     console.log(err);
     throw err;

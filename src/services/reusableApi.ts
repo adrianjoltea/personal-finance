@@ -3,7 +3,9 @@ async function handleResponse<T>(res: Response): Promise<T> {
     const errorData = await res.json();
     throw new Error(errorData.message || "Network response was not ok");
   }
-  return res.json();
+
+  const responseData: T = await res.json();
+  return responseData;
 }
 
 export async function fetchData<T, B>(

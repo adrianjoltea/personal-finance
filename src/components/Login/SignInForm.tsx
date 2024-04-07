@@ -16,25 +16,6 @@ export default function SignInForm() {
     e.preventDefault();
 
     signIn(submitData);
-    // try {
-    //   const { isAuthenticated, error } = await Register(submitData);
-    //   if (isAuthenticated) {
-    //     toast.success("Please move to the login page");
-    //   } else if (error) {
-    //     toast.error(error, {
-    //       className: "toast",
-    //     });
-    //   } else {
-    //     toast.error("Authentication failed. Please check your credentials.", {
-    //       className: "toast",
-    //     });
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    //   toast.error("An error occurred. Please try again later.", {
-    //     className: "toast",
-    //   });
-    // }
   }
   return (
     <>

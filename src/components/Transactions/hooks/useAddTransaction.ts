@@ -7,7 +7,7 @@ import {
 import toast from "react-hot-toast";
 import { addTransaction } from "../../../services/apiTransanctions";
 import {
-  TransactionsRespose,
+  AddTransactionResponse,
   transactionProps,
 } from "../../../services/Interfaces/TransactionsInterface";
 
@@ -15,7 +15,7 @@ export function useAddTransaction() {
   const queryClient = useQueryClient();
 
   const { mutate: addTransactions, isPending } = useMutation<
-    TransactionsRespose,
+    AddTransactionResponse,
     Error,
     transactionProps
   >({
