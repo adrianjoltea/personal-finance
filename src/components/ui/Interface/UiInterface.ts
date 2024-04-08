@@ -1,11 +1,11 @@
 import { ChangeEvent } from "react";
 import { ReactNode } from "react";
 interface InputProps {
-  type: string;
+  type?: string;
   name?: string;
   id: string;
-  placeholder: string;
-  content: string;
+  placeholder?: string;
+  content?: string;
   value: string | number | Blob | null;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   autoComplete?: string;

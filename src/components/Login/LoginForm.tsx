@@ -41,26 +41,17 @@ export default function LoginForm() {
     <>
       <form className="login-form" onSubmit={handleSubmit}>
         <Input
-          type="text"
           id="username"
-          name="username"
-          autoComplete="email"
-          placeholder="Enter your username"
-          // className="login-form-container-input"
+          autoComplete="username"
           value={username}
           onChange={e => setUsername(e.target.value)}
-          content="Username"
         />
 
         <Input
           type={showPassword ? "text" : "password"}
           id="password"
-          autoComplete="curent-password"
-          // className="login-form-container-input"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          content="Password"
-          placeholder="Enter your password"
           forPassword={true}
           handleShow={handleShowPassword}
           showPassword={showPassword}

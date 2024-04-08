@@ -14,7 +14,7 @@ export default function StockModal({
   name,
   currentValue,
 }: StockModalInterface) {
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState("");
   const mainCard = useSelector(getMainCard);
   const dispatch = useDispatch();
   const { isAdding, buyStock } = useBuyStock();
@@ -22,14 +22,16 @@ export default function StockModal({
     _id,
     name,
     boughtPrice: currentValue,
-    amount,
+    amount: +amount,
     cardId: mainCard._id,
   };
+  const formatedAmount = +amount;
 
+  console.log(submitData);
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (amount * currentValue > mainCard.balance) {
+    if (formatedAmount * currentValue > mainCard.balance) {
       toast.error("Insufficent funds", {
         className: "toast",
       });
@@ -49,23 +51,22 @@ export default function StockModal({
         <Input
           type="number"
           id="amount"
-          name="amount"
-          placeholder="Enter your amount"
-          content="Amount"
           value={amount}
-          onChange={e => setAmount(+e.target.value)}
+          onChange={e => setAmount(e.target.value)}
         />
 
         <div className="form-stocks">
           <span
             className={
-              amount * currentValue > mainCard.balance
+              formatedAmount * currentValue > mainCard.balance
                 ? "form-error"
                 : undefined
             }
           >
-            {amount > 0 &&
-              `Invest ${(amount * currentValue).toFixed(2)}$ in ${name}`}
+            {formatedAmount > 0 &&
+              `Invest ${(formatedAmount * currentValue).toFixed(
+                2
+              )}$ in ${name}`}
           </span>
         </div>
 

@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
 import { useAddTransaction } from "./hooks/useAddTransaction";
 import Card from "../Overview/Card";
-import toast from "react-hot-toast";
+
 import { toggleModal } from "../../context/modalSlice";
-import { validateTransaction } from "./utils/validateTransactions";
+import { validateTransactionToast } from "./utils/validateTransactions";
 
 export default function DepositForm() {
   const [amount, setAmount] = useState("");
@@ -26,16 +26,13 @@ export default function DepositForm() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const validationError = validateTransaction(amount, description, mainCard);
-    if (validationError) {
-      toast.error(validationError, {
-        className: "toast",
-      });
-    }
-
+    const validationError = validateTransactionToast(
+      amount,
+      description,
+      mainCard
+    );
     if (!validationError) {
       addTransactions(submitData);
-
       dispatch(toggleModal({ modalId: "deposit", open: false }));
     }
   }
@@ -49,18 +46,11 @@ export default function DepositForm() {
         <Input
           type="number"
           id="amount"
-          name="amount"
-          placeholder="Enter your amount"
-          content="Amount"
           value={amount}
           onChange={e => setAmount(e.target.value)}
         />
         <Input
-          type="text"
           id="description"
-          name="description"
-          placeholder="Enter your description"
-          content="Description"
           value={description}
           onChange={e => setDescription(e.target.value)}
         />

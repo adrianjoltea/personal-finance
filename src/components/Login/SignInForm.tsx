@@ -32,7 +32,6 @@ export default function SignInForm() {
         <Input
           type="password"
           id="password"
-          autoComplete="current-password"
           value={password}
           onChange={e => setPassword(e.target.value)}
           content="Password"

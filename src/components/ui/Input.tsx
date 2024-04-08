@@ -1,28 +1,29 @@
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { InputProps } from "./Interface/UiInterface";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 
 export default function Input({
-  type,
-  name,
+  type = "text",
   id,
-  placeholder,
-  content,
   value,
   onChange,
   autoComplete,
+  placeholder,
   forPassword,
   handleShow,
   showPassword,
 }: InputProps) {
+  const content = capitalizeFirstLetter(id);
+  const defaultPlaceholder = `Enter your ${id}`;
   return (
     <div className="form-group">
       {type !== "file" ? (
         <input
           className="form-input"
           type={type}
-          name={name}
+          name={id}
           id={id}
-          placeholder={placeholder}
+          placeholder={!placeholder ? defaultPlaceholder : placeholder}
           value={value as string}
           onChange={onChange}
           autoComplete={autoComplete}
@@ -31,14 +32,14 @@ export default function Input({
         <input
           className="form-input"
           type={type}
-          name={name}
+          name={id}
           id={id}
           placeholder={placeholder}
           onChange={onChange}
           autoComplete={autoComplete}
         />
       )}
-      <label className="form-label" htmlFor={name}>
+      <label className="form-label" htmlFor={id}>
         {content}
       </label>
       {forPassword && (

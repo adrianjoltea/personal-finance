@@ -44,6 +44,13 @@ interface ModalFormProps {
   modalId: string;
 }
 
+interface CardOperationProps {
+  modalId: string;
+  formComponent: JSX.Element;
+  buttonText: string;
+  openModal: () => void;
+}
+
 export type {
   CardInput,
   CardDetailsProps,
@@ -51,4 +58,5 @@ export type {
   RootState,
   IFormInput,
   ModalFormProps,
+  CardOperationProps,
 };

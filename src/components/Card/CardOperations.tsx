@@ -4,6 +4,23 @@ import Modal from "./Modal";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../../context/modalSlice";
 import ModalForm from "./ModalForm";
+import { CardOperationProps } from "./Interface/CardInterface";
+
+function CardOperation({
+  modalId,
+  formComponent,
+  buttonText,
+  openModal,
+}: CardOperationProps) {
+  return (
+    <div className="card-operations-item">
+      <Modal modalId={modalId}>{formComponent}</Modal>
+      <button className="btn btn-operations" onClick={openModal}>
+        {buttonText}
+      </button>
+    </div>
+  );
+}
 
 export default function CardOperations() {
   const dispatch = useDispatch();
@@ -22,30 +39,24 @@ export default function CardOperations() {
 
   return (
     <div className="card-operations-container">
-      <div className="card-operations-item">
-        <Modal modalId="deposit">
-          <DepositForm />
-        </Modal>
-        <button className="btn btn-operations" onClick={openDepositModal}>
-          Deposit
-        </button>
-      </div>
-      <div className="card-operations-item">
-        <Modal modalId="withdraw">
-          <WithdrawForm />
-        </Modal>
-        <button className="btn btn-operations" onClick={openWithdrawModal}>
-          Withdraw
-        </button>
-      </div>
-      <div className="card-operations-item">
-        <Modal modalId="create">
-          <ModalForm modalId="create" />
-        </Modal>
-        <button className="btn btn-operations" onClick={openCreateModal}>
-          Add card
-        </button>
-      </div>
+      <CardOperation
+        modalId="deposit"
+        formComponent={<DepositForm />}
+        buttonText="Deposit"
+        openModal={openDepositModal}
+      />
+      <CardOperation
+        modalId="withdraw"
+        formComponent={<WithdrawForm />}
+        buttonText="Withdraw"
+        openModal={openWithdrawModal}
+      />
+      <CardOperation
+        modalId="create"
+        formComponent={<ModalForm modalId="create" />}
+        buttonText="Add card"
+        openModal={openCreateModal}
+      />
     </div>
   );
 }

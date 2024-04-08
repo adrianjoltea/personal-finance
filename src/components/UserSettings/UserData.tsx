@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import Input from "../Ui/Input";
-import toast from "react-hot-toast";
 import { useUpdateUser } from "./useUpdateUser";
+import { validateProfileToast } from "./utils/validateProfile";
 export default function UserData() {
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState<File | null>(null);
@@ -20,9 +20,9 @@ export default function UserData() {
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!username && !avatar) toast.error("Please fill out atleast one field");
+    const validationError = validateProfileToast(avatar, username);
 
-    updateCurrentUser(submitData);
+    if (!validationError) updateCurrentUser(submitData);
   }
 
   return (
@@ -32,9 +32,6 @@ export default function UserData() {
         <form onSubmit={onSubmit} className="form-user">
           <Input
             id="username"
-            type="text"
-            placeholder="Enter your username"
-            content="Enter your username"
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
@@ -42,8 +39,6 @@ export default function UserData() {
           <Input
             id="file"
             type="file"
-            placeholder="Choose your profile picture"
-            content="Choose your profile picture"
             value={avatar}
             onChange={handleFileChange}
           />

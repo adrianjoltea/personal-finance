@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
 
 import Card from "../Overview/Card";
-import toast from "react-hot-toast";
 import { toggleModal } from "../../context/modalSlice";
-import { validateTransaction } from "./utils/validateTransactions";
+import { validateTransactionToast } from "./utils/validateTransactions";
 import { useAddTransaction } from "./hooks/useAddTransaction";
 
 export default function WithdrawForm() {
@@ -16,6 +15,7 @@ export default function WithdrawForm() {
   const dispatch = useDispatch();
   const mainCard = useSelector(getMainCard);
   const { isPending, addTransactions } = useAddTransaction();
+
   const submitData = {
     amount: -parseFloat(amount),
     description,
@@ -26,17 +26,13 @@ export default function WithdrawForm() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const validationError = validateTransaction(
+    const validationError = validateTransactionToast(
       amount,
       description,
       mainCard,
       true
     );
-    if (validationError) {
-      toast.error(validationError, {
-        className: "toast",
-      });
-    }
+
     if (!validationError && parseFloat(amount) <= mainCard.balance) {
       addTransactions(submitData);
 
@@ -52,20 +48,12 @@ export default function WithdrawForm() {
       </div>
       <form onSubmit={e => handleSubmit(e)}>
         <Input
-          type="number"
           id="amount"
-          name="amount"
-          placeholder="Enter your amount"
-          content="Amount"
           value={amount}
           onChange={e => setAmount(e.target.value)}
         />
         <Input
-          type="text"
           id="description"
-          name="description"
-          placeholder="Enter your description"
-          content="Description"
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
