@@ -2,6 +2,21 @@ import { useSellStock } from "./hooks/useSellStock";
 import { useStocks } from "./hooks/useStocks";
 import { BoughtStock } from "./Interface/InvestInterface";
 
+function useFormatedStocks(
+  sellPriceId: string,
+  amount: number,
+  boughtPrice: number
+) {
+  const { availableStocks } = useStocks();
+  const stock = availableStocks?.find(stock => stock._id === sellPriceId);
+  const profit = stock
+    ? amount * stock.currentValue > amount * boughtPrice
+    : false;
+  const profitAmount = stock && amount * stock.currentValue;
+
+  return { stock, profit, profitAmount };
+}
+
 export default function BoughtStockRow({
   amount,
   boughtPrice,
@@ -11,9 +26,13 @@ export default function BoughtStockRow({
   sellPriceId,
   name,
 }: BoughtStock) {
-  const { availableStocks } = useStocks();
   const { isSelling, sellStock } = useSellStock();
-  const stock = availableStocks?.find(stock => stock._id === sellPriceId);
+
+  const { stock, profit, profitAmount } = useFormatedStocks(
+    sellPriceId,
+    amount,
+    boughtPrice
+  );
 
   const submitData = {
     amount,
@@ -25,11 +44,6 @@ export default function BoughtStockRow({
   function handleSellStock() {
     sellStock(submitData);
   }
-
-  const profit = stock
-    ? amount * stock.currentValue > amount * boughtPrice
-    : false;
-  const profitAmount = stock && amount * stock.currentValue;
 
   return (
     <div className="transaction-table-row" key={i}>
