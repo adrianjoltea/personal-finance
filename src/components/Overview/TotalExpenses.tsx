@@ -1,17 +1,7 @@
-import { useMemo } from "react";
-import { useTransactions } from "../Transactions/hooks/useTransactions";
+import { useTotalExpensesIncomes } from "./hooks/useTotalExpensesIncomes";
 
 export default function TotalExpenses() {
-  const { transactions } = useTransactions();
-
-  const totalExpense = useMemo(() => {
-    return transactions?.reduce((acc, cur) => {
-      if (cur.amount < 0) {
-        acc += cur.amount;
-      }
-      return acc;
-    }, 0);
-  }, [transactions]);
+  const totalExpense = useTotalExpensesIncomes(false);
 
   return (
     <div className="transactions-overview transactions-overview-green">

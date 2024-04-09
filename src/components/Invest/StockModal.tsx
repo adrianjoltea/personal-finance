@@ -32,7 +32,7 @@ export default function StockModal({
     e.preventDefault();
 
     if (formatedAmount * currentValue > mainCard.balance) {
-      toast.error("Insufficent funds", {
+      toast.error("Insufficient funds", {
         className: "toast",
       });
       return;

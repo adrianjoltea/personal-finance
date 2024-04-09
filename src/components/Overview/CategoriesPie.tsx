@@ -32,15 +32,13 @@ const LIGHT_COLORS = [
   "#5304c3",
 ];
 
-export default function CategoriesPie() {
-  const { transactions } = useTransactions();
+function useChartData() {
   const dark = useSelector(getDark);
-  ChartJS.register(ArcElement, Tooltip, Legend);
+  const { transactions } = useTransactions();
   const categories = processTransactions(transactions ? transactions : []);
 
   const labels = categories.map(entry => entry.category);
   const amount = categories.map(entry => entry.totalAmount);
-
   const backgroundColors = dark ? LIGHT_COLORS : DARK_COLORS;
 
   const data = {
@@ -57,7 +55,6 @@ export default function CategoriesPie() {
       },
     ],
   };
-
   const options: ChartOptions = {
     plugins: {
       legend: {
@@ -70,6 +67,12 @@ export default function CategoriesPie() {
       },
     },
   };
+  return { data, options };
+}
+
+export default function CategoriesPie() {
+  ChartJS.register(ArcElement, Tooltip, Legend);
+  const { data, options } = useChartData();
 
   return (
     <div className="chart-pie">

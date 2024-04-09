@@ -1,15 +1,7 @@
-import { useTransactions } from "../Transactions/hooks/useTransactions";
+import { useTotalExpensesIncomes } from "./hooks/useTotalExpensesIncomes";
 
 export default function TotalIncomes() {
-  const { transactions } = useTransactions();
-
-  const totalIncome = transactions?.reduce((acc, cur) => {
-    if (cur.amount > 0) {
-      acc += cur.amount;
-    }
-    return acc;
-  }, 0);
-
+  const totalIncome = useTotalExpensesIncomes(true);
   return (
     <div className="transactions-overview transactions-overview-yellow">
       Total Incomes: {totalIncome}
