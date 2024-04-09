@@ -7,6 +7,7 @@ const ROW_ITEMS = ["Name", "Amount", "Bought Price", "Sell Price", "Sell"];
 
 export default function BoughtStocks() {
   const { stocks } = useStocks();
+
   const mainCard = useSelector(getMainCard);
 
   return (

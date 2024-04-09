@@ -16,12 +16,10 @@ import { getDark } from "../../context/darkModeSlice";
 import { useThreshold } from "../../hooks/useResponsive";
 import { usePastTranscations } from "../Transactions/hooks/usePastTransactions";
 
-export default function TransactionChart() {
-  const thresholdWidth = 900;
-  const isThresholdMet = useThreshold(thresholdWidth);
+const THRESHOLD_WIDTH = 900;
 
-  const { isLoading, pastTransaction } = usePastTranscations();
-
+function useChartValues() {
+  const { pastTransaction } = usePastTranscations();
   const isDarkMode = useSelector(getDark);
 
   const chartData = pastTransaction?.map(transaction => ({
@@ -29,9 +27,7 @@ export default function TransactionChart() {
     income: transaction.income,
     expenses: transaction.expense,
   }));
-
   const chartBrush = pastTransaction?.length;
-
   const colors = useMemo(() => {
     return isDarkMode
       ? {
@@ -47,6 +43,13 @@ export default function TransactionChart() {
           background: "#fff",
         };
   }, [isDarkMode]);
+  return { chartData, chartBrush, colors };
+}
+
+export default function TransactionChart() {
+  const { isLoading } = usePastTranscations();
+  const isThresholdMet = useThreshold(THRESHOLD_WIDTH);
+  const { chartBrush, chartData, colors } = useChartValues();
 
   return (
     <div className="transaction-chart">

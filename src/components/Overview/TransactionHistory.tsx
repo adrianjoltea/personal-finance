@@ -5,19 +5,16 @@ import { formatDate } from "../../utils/formatDate";
 
 import { useThreshold } from "../../hooks/useResponsive";
 import { useTransactions } from "../Transactions/hooks/useTransactions";
+import { sortData } from "../../utils/sortData";
+
+const THRESHOLD_WIDTH = 400;
 
 export default function TransactionHistory() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
-  const thresholdWidth = 400;
-  const isThresholdMet = useThreshold(thresholdWidth);
+  const isThresholdMet = useThreshold(THRESHOLD_WIDTH);
   const { transactions, loading } = useTransactions();
-  const sortedData = [...(transactions ?? [])].sort((a, b) => {
-    if (sortOrder === "asc") {
-      return a.amount - b.amount;
-    } else {
-      return b.amount - a.amount;
-    }
-  });
+
+  const sortedData = sortData(transactions, "createdAt", sortOrder);
 
   function toggleSortOrder() {
     setSortOrder(prev => (prev === "asc" ? "desc" : "asc"));
@@ -39,10 +36,10 @@ export default function TransactionHistory() {
         )}
       </div>
       {loading && <div className="empty-page">Loading...</div>}
-      {!loading && sortedData.length === 0 && (
-        <div className="empty-page">Please make a transcation</div>
+      {!loading && sortedData?.length === 0 && (
+        <div className="empty-page">Please make a transaction</div>
       )}
-      {sortedData.map((data, i) => (
+      {sortedData?.map((data, i) => (
         <div className="transaction-table-row" key={i}>
           {/* {Temporary currency} */}
           <p
