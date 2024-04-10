@@ -1,7 +1,7 @@
 export function sortData<T>(
   data: T[] | undefined,
   label: keyof T,
-  direction: "asc" | "desc"
+  direction: string
 ) {
   return data?.sort((a, b) => {
     if (direction === "asc") {

@@ -8,6 +8,14 @@ import { toggleModal } from "../../context/modalSlice";
 import { validateTransactionToast } from "./utils/validateTransactions";
 import { useAddTransaction } from "./hooks/useAddTransaction";
 
+const FORM_OPTIONS = [
+  "Utilities",
+  "Groceries",
+  "Entertainment",
+  "Travel",
+  "Miscellaneous",
+];
+
 export default function WithdrawForm() {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
@@ -68,11 +76,11 @@ export default function WithdrawForm() {
             onChange={e => setCategory(e.target.value)}
             className="form-input"
           >
-            <option value="Utilities">Utilities</option>
-            <option value="Groceries">Groceries</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Travel">Travel</option>
-            <option value="Miscellaneous">Miscellaneous</option>
+            {FORM_OPTIONS.map(value => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
           </select>
         </div>
         <div className="form-btn">

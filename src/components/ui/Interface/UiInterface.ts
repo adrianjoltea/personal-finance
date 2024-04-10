@@ -23,4 +23,11 @@ interface LazyLoaderProps {
   delay: number;
 }
 
-export type { InputProps, ErrorProps, LazyLoaderProps };
+interface SortOptionsProps {
+  options: {
+    value: string;
+    label: string;
+  }[];
+}
+
+export type { InputProps, ErrorProps, LazyLoaderProps, SortOptionsProps };

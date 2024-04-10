@@ -1,32 +1,39 @@
-import { useState } from "react";
-
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { formatDate } from "../../utils/formatDate";
-
 import { useThreshold } from "../../hooks/useResponsive";
 import { useTransactions } from "../Transactions/hooks/useTransactions";
 import { sortData } from "../../utils/sortData";
+import { useSearchParams } from "react-router-dom";
+import { transactions } from "../../services/Interfaces/TransactionsInterface";
+import SortingByOption from "../Ui/SortingByOption";
 
 const THRESHOLD_WIDTH = 400;
+const SORT_OPTIONS = [
+  { value: "amount-asc", label: "Sort by amount (A-Z)" },
+  { value: "amount-desc", label: "Sort by amount (Z-A)" },
+  { value: "createdAt-asc", label: "Sort by created At (A-A)" },
+  { value: "createdAt-desc", label: "Sort by created At (Z-A)" },
+  { value: "description-asc", label: "Sort by description (A-Z)" },
+  { value: "description-desc", label: "Sort by description (Z-A)" },
+  { value: "category-asc", label: "Sort by category (A-Z)" },
+  { value: "category-desc", label: "Sort by category (Z-A)" },
+];
 
 export default function TransactionHistory() {
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+  const [searchParams] = useSearchParams();
   const isThresholdMet = useThreshold(THRESHOLD_WIDTH);
   const { transactions, loading } = useTransactions();
+  const sortBy = searchParams.get("sortBy") || "amount-asc";
+  const [field, direction] = sortBy.split("-") as [keyof transactions, string];
 
-  const sortedData = sortData(transactions, "createdAt", sortOrder);
+  const sortedData = sortData(transactions, field, direction);
 
-  function toggleSortOrder() {
-    setSortOrder(prev => (prev === "asc" ? "desc" : "asc"));
-  }
   return (
     <div className="transaction-table-overview transaction-table">
+      <div>
+        <SortingByOption options={SORT_OPTIONS} />
+      </div>
       <div className="transaction-table-row">
-        <div
-          className="transaction-table-row-item transaction-table-title"
-          onClick={toggleSortOrder}
-        >
-          {sortOrder === "asc" ? <IoIosArrowUp /> : <IoIosArrowDown />}
+        <div className="transaction-table-row-item transaction-table-title">
           Amount
         </div>
         <div className="transaction-table-row-item">Created At</div>

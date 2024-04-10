@@ -8,6 +8,8 @@ import Card from "../Overview/Card";
 import { toggleModal } from "../../context/modalSlice";
 import { validateTransactionToast } from "./utils/validateTransactions";
 
+const FORM_OPTIONS = ["Job", "Side Job", "Freelancing", "Other"];
+
 export default function DepositForm() {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
@@ -65,10 +67,11 @@ export default function DepositForm() {
             onChange={e => setCategory(e.target.value)}
             className="form-input"
           >
-            <option value="Job">Job</option>
-            <option value="Side job">Side Job</option>
-            <option value="Freelancing">Freelancing</option>
-            <option value="Other">Other</option>
+            {FORM_OPTIONS.map(value => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
           </select>
         </div>
         <div className="form-btn">
