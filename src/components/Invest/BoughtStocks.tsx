@@ -28,9 +28,8 @@ export default function BoughtStocks() {
 
   return (
     <div className="transaction-table transaction-table-invest">
-      <div>
-        <SortingByOption options={SORT_OPTIONS} />
-      </div>
+      <SortingByOption title="Owned stocks" options={SORT_OPTIONS} />
+
       <div className="transaction-table-row">
         {ROW_ITEMS.map(row => (
           <div key={row} className="transaction-table-row-item">

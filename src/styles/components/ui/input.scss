@@ -4,6 +4,7 @@
     width: 100%;
     position: relative;
   }
+
   &-input {
     font-size: 1.5rem;
     color: var(--color-blue-900);
@@ -18,6 +19,10 @@
     transition: all 0.3s;
     padding: 1rem;
     position: relative;
+
+    &-table {
+      width: 20rem;
+    }
     &[type="file"] {
       cursor: pointer;
 

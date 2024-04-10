@@ -29,13 +29,10 @@ export default function TransactionHistory() {
 
   return (
     <div className="transaction-table-overview transaction-table">
-      <div>
-        <SortingByOption options={SORT_OPTIONS} />
-      </div>
+      <SortingByOption title="Transaction history" options={SORT_OPTIONS} />
+
       <div className="transaction-table-row">
-        <div className="transaction-table-row-item transaction-table-title">
-          Amount
-        </div>
+        <div className="transaction-table-row-item">Amount</div>
         <div className="transaction-table-row-item">Created At</div>
         <div className="transaction-table-row-item">Description</div>
         {isThresholdMet && (

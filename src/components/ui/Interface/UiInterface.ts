@@ -28,6 +28,7 @@ interface SortOptionsProps {
     value: string;
     label: string;
   }[];
+  title: string;
 }
 
 export type { InputProps, ErrorProps, LazyLoaderProps, SortOptionsProps };

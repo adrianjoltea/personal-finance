@@ -1,8 +1,8 @@
 .transaction-table {
   border-radius: 2rem;
   border: 1px solid var(--color-grey-400);
-
   padding: 0;
+  position: relative;
   overflow: scroll;
   overflow-x: hidden;
 
@@ -29,7 +29,7 @@
     border-bottom: 1px solid var(--color-grey-300);
     align-items: center;
 
-    &:nth-child(1) {
+    &:nth-child(2) {
       position: sticky;
       top: 0;
       background-color: var(--color-grey-100);
@@ -45,10 +45,22 @@
   }
   &-title {
     display: flex;
-    justify-content: center;
-    gap: $gap-sm;
+    justify-content: space-between;
+    padding: 1rem 0 1rem 0;
+    border-bottom: 1px solid var(--color-grey-300);
+    background-color: var(--color-grey-100);
     align-items: center;
-    cursor: pointer;
+    * {
+      margin-inline: 3rem;
+    }
+    h3 {
+      font-size: 2rem;
+    }
+
+    // select {
+    //   background-color: transparent;
+    //   border: none;
+    // }
   }
 }
 .text-green {
