@@ -1,10 +1,5 @@
 .card-main-transactions {
-  grid-row: 1/4;
-  grid-column: 3/6;
   display: flex;
-  justify-content: center;
-  align-items: start;
-  gap: $gap-hg;
   @include respond(tab-port) {
     margin-block: 10rem;
   }
@@ -14,9 +9,9 @@
   }
   &-divider {
     flex-wrap: wrap;
-    width: 50%;
     display: flex;
     gap: $gap-hg;
+    justify-content: center;
   }
 }
 
@@ -24,6 +19,7 @@
   padding: $padding-sm;
   text-align: center;
   font-size: $p-size;
+  max-width: 25rem;
   height: min-content;
   width: 100%;
   border-radius: 1rem;
