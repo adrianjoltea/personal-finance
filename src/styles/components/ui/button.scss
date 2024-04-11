@@ -7,8 +7,8 @@
   transition: all 0.5s;
 
   &-operations {
-    height: 75%;
-    width: 50%;
+    height: 7rem;
+    width: 25rem;
     font-size: $h3-size;
     background-color: var(--color-brand-600);
     color: $color-white;
@@ -21,6 +21,7 @@
       width: 80%;
     }
   }
+
   &-form {
     width: 50%;
     font-size: $h4-size;
@@ -60,6 +61,7 @@
   }
   &-sign {
     width: 100%;
+    font-size: $p-size;
   }
 
   &-logout {

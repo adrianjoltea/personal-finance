@@ -1,23 +1,10 @@
-import { apiUrl, apiUrl2 } from "../common/variables";
+import { apiUrl2 } from "../common/variables";
 import {
-  FetchUserProps,
   FetchUserResponse,
   UpdateUserProps,
   User,
-  UserProps,
 } from "./Interfaces/UserInterface";
 import { fetchData } from "./reusableApi";
-
-export async function fetchUser(): Promise<FetchUserProps> {
-  try {
-    const data: UserProps = await fetchData(`${apiUrl}/users`, "GET");
-
-    return { data };
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
-}
 
 export async function fetchCurrentUser(): Promise<FetchUserResponse> {
   try {

@@ -10,16 +10,18 @@ interface ProtectedRouteProps {
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const navigate = useNavigate();
   const { isPending, isAuthenticated } = useUser();
+  const accessToken = localStorage.getItem("accessToken");
 
-  useEffect(
-    function () {
-      if (!isAuthenticated && !isPending) navigate("/login");
-    },
-    [isAuthenticated, isPending, navigate]
-  );
-
-  if (!isAuthenticated && !isPending) navigate("/login");
+  useEffect(() => {
+    if (!accessToken) {
+      navigate("/login");
+    } else if (!isAuthenticated && !isPending) {
+      navigate("/login");
+    }
+  }, [accessToken, isAuthenticated, isPending, navigate]);
 
   if (isPending) return <Spinner />;
   if (isAuthenticated) return <>{children}</>;
+
+  return null;
 }

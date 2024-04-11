@@ -16,8 +16,8 @@ export function useSignIn() {
     mutationFn: submitData => register(submitData),
     onSuccess: user => {
       queryClient.setQueryData(["user"], user);
-      navigate("/");
-      toast.success("Account succesfully created!", {
+      navigate("/login");
+      toast.success("Account successfully created!", {
         className: "toast",
       });
     },

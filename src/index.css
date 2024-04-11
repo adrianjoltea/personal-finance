@@ -979,8 +979,8 @@ body {
   cursor: pointer;
   transition: all 0.5s; }
   .btn-operations {
-    height: 75%;
-    width: 50%;
+    height: 7rem;
+    width: 25rem;
     font-size: 2.4rem;
     background-color: var(--color-brand-600);
     color: #ffffff;
@@ -1017,7 +1017,8 @@ body {
     width: 100%;
     font-size: 1.6rem; }
   .btn-sign {
-    width: 100%; }
+    width: 100%;
+    font-size: 1.6rem; }
   .btn-logout {
     background-color: transparent;
     border: none;

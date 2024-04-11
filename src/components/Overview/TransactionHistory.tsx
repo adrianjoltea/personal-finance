@@ -10,7 +10,7 @@ const THRESHOLD_WIDTH = 400;
 const SORT_OPTIONS = [
   { value: "amount-asc", label: "Sort by amount (A-Z)" },
   { value: "amount-desc", label: "Sort by amount (Z-A)" },
-  { value: "createdAt-asc", label: "Sort by created At (A-A)" },
+  { value: "createdAt-asc", label: "Sort by created At (A-Z)" },
   { value: "createdAt-desc", label: "Sort by created At (Z-A)" },
   { value: "description-asc", label: "Sort by description (A-Z)" },
   { value: "description-desc", label: "Sort by description (Z-A)" },
@@ -43,6 +43,7 @@ export default function TransactionHistory() {
       {!loading && sortedData?.length === 0 && (
         <div className="empty-page">Please make a transaction</div>
       )}
+
       {sortedData?.map((data, i) => (
         <div className="transaction-table-row" key={i}>
           {/* {Temporary currency} */}
