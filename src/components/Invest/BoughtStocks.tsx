@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import { Stocks } from "../../services/Interfaces/Investitions";
 import { sortData } from "../../utils/sortData";
 import SortingByOption from "../Ui/SortingByOption";
+import { dataStates } from "../../utils/dataStates";
 
 const ROW_ITEMS = ["Name", "Amount", "Bought Price", "Sell Price", "Sell"];
 const SORT_OPTIONS = [
@@ -16,13 +17,15 @@ const SORT_OPTIONS = [
   { value: "boughtPrice-asc", label: "Sort by bought price (A-Z)" },
   { value: "boughtPrice-desc", label: "Sort by bought price (Z-A)" },
 ];
+const EMPTY_DATA_TEXT = "Please buy a stock";
 
 export default function BoughtStocks() {
   const [searchParams] = useSearchParams();
-  const { stocks } = useStocks();
+  const { stocks, loading } = useStocks();
   const sortBy = searchParams.get("sortBy") || "amount-asc";
   const [field, direction] = sortBy.split("-") as [keyof Stocks, string];
 
+  const stocksState = dataStates(stocks, loading, EMPTY_DATA_TEXT);
   const sortedData = sortData(stocks, field, direction);
   const mainCard = useSelector(getMainCard);
 
@@ -37,9 +40,7 @@ export default function BoughtStocks() {
           </div>
         ))}
       </div>
-      {stocks?.length === 0 && (
-        <div className="empty-page">Please buy a stock</div>
-      )}
+      {stocksState}
       {sortedData?.map((data, i) => (
         <BoughtStockRow
           key={i}

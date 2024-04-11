@@ -1,12 +1,11 @@
-import { formatDate } from "../../utils/formatDate";
-import { useThreshold } from "../../hooks/useResponsive";
 import { useTransactions } from "../Transactions/hooks/useTransactions";
 import { sortData } from "../../utils/sortData";
 import { useSearchParams } from "react-router-dom";
 import { transactions } from "../../services/Interfaces/TransactionsInterface";
 import SortingByOption from "../Ui/SortingByOption";
+import TransactionHistoryRow from "./TransactionHistoryRow";
+import { dataStates } from "../../utils/dataStates";
 
-const THRESHOLD_WIDTH = 400;
 const SORT_OPTIONS = [
   { value: "amount-asc", label: "Sort by amount (A-Z)" },
   { value: "amount-desc", label: "Sort by amount (Z-A)" },
@@ -18,13 +17,16 @@ const SORT_OPTIONS = [
   { value: "category-desc", label: "Sort by category (Z-A)" },
 ];
 
+const ROW_ITEMS = ["Amount", "Created At", "Description", "Category"];
+const EMPTY_DATA_TEXT = "Please make a transaction";
+
 export default function TransactionHistory() {
   const [searchParams] = useSearchParams();
-  const isThresholdMet = useThreshold(THRESHOLD_WIDTH);
   const { transactions, loading } = useTransactions();
   const sortBy = searchParams.get("sortBy") || "amount-asc";
   const [field, direction] = sortBy.split("-") as [keyof transactions, string];
 
+  const transactionState = dataStates(transactions, loading, EMPTY_DATA_TEXT);
   const sortedData = sortData(transactions, field, direction);
 
   return (
@@ -32,36 +34,20 @@ export default function TransactionHistory() {
       <SortingByOption title="Transaction history" options={SORT_OPTIONS} />
 
       <div className="transaction-table-row">
-        <div className="transaction-table-row-item">Amount</div>
-        <div className="transaction-table-row-item">Created At</div>
-        <div className="transaction-table-row-item">Description</div>
-        {isThresholdMet && (
-          <div className="transaction-table-row-item">Category</div>
-        )}
+        {ROW_ITEMS.map(row => (
+          <div className="transaction-table-row-item" key={row}>
+            {row}
+          </div>
+        ))}
       </div>
-      {loading && <div className="empty-page">Loading...</div>}
-      {!loading && sortedData?.length === 0 && (
-        <div className="empty-page">Please make a transaction</div>
-      )}
-
-      {sortedData?.map((data, i) => (
-        <div className="transaction-table-row" key={i}>
-          {/* {Temporary currency} */}
-          <p
-            className={`transaction-table-row-item ${
-              data.amount >= 0 ? "text-green" : "text-red"
-            }`}
-          >
-            {data.amount} $
-          </p>
-          <p className="transaction-table-row-item">
-            {formatDate(data.createdAt)}
-          </p>
-          <p className="transaction-table-row-item">{data.description}</p>
-          {isThresholdMet && (
-            <p className="transaction-table-row-item">{data.category}</p>
-          )}
-        </div>
+      {transactionState}
+      {sortedData?.map(data => (
+        <TransactionHistoryRow
+          amount={data.amount}
+          category={data.category}
+          description={data.description}
+          createdAt={data.createdAt}
+        />
       ))}
     </div>
   );
