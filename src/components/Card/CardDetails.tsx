@@ -37,7 +37,7 @@ export default function CardDetails({
 
       <div className="card-name-placeholder">
         <div className="card-name">
-          <span>Username</span> {name}
+          <span>Name</span> {name}
         </div>
         <div>
           <FaCcMastercard className="card-placeholder" />

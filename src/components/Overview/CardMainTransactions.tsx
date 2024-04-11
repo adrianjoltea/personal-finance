@@ -1,4 +1,5 @@
 import { useTransactions } from "../Transactions/hooks/useTransactions";
+import EmptyPage from "../Ui/EmptyPage";
 import BiggestExpense from "./BiggestExpense";
 import BiggestIncome from "./BiggestIncome";
 import TotalExpenses from "./TotalExpenses";
@@ -10,7 +11,7 @@ export default function CardMainTransactions() {
   return (
     <div className="card-main-transactions">
       {loading ? (
-        <h2>Loading...</h2>
+        <EmptyPage text="Loading..." />
       ) : (
         <>
           <div className="card-main-transactions-divider">
