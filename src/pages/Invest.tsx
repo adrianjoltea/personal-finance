@@ -4,10 +4,12 @@ import Card from "../components/Overview/Card";
 
 export default function Invest() {
   return (
-    <div className="main-page">
-      <Card />
-      <BoughtStocks />
-      <InvesitionsContainer />
+    <div className="main-page-container">
+      <div className="main-page">
+        <Card />
+        <BoughtStocks />
+        <InvesitionsContainer />
+      </div>
     </div>
   );
 }

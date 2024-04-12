@@ -13,6 +13,7 @@ export async function fetchData<T, B>(
   method: string,
   body?: B
 ): Promise<T> {
+  console.log(body);
   const res = await fetch(url, {
     method,
     headers: {
@@ -21,5 +22,6 @@ export async function fetchData<T, B>(
     },
     body: body && JSON.stringify(body),
   });
+  console.log(res);
   return handleResponse<T>(res);
 }

@@ -18,37 +18,24 @@
     flex-direction: column;
   }
 }
-.overview-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  margin-bottom: 3rem;
-
-  &-flex {
-    display: flex;
-    width: 100%;
-    @media (max-width: 1400px) {
-      justify-content: space-around;
-      margin-bottom: 10rem;
-    }
-  }
-  @media (max-width: 1400px) {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
 
 .main-page {
-  grid-column: 3/-1;
-  grid-row: 2 / 3;
   padding: $padding-hg;
-  max-width: 150rem;
   width: 100%;
-  margin: 0 auto;
   background-color: var(--color-grey-50);
   transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  height: 100%;
+
+  &-container {
+    grid-column: 3/-1;
+    grid-row: 2 / 3;
+    max-width: 180rem;
+    width: 100%;
+    margin: 0 auto;
+  }
 
   &-mobile {
     @include respond(tab-port) {

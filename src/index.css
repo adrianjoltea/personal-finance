@@ -416,34 +416,21 @@ body {
       display: flex;
       flex-direction: column; } }
 
-.overview-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  margin-bottom: 3rem; }
-  .overview-container-flex {
-    display: flex;
-    width: 100%; }
-    @media (max-width: 1400px) {
-      .overview-container-flex {
-        justify-content: space-around;
-        margin-bottom: 10rem; } }
-  @media (max-width: 1400px) {
-    .overview-container {
-      flex-wrap: wrap;
-      justify-content: center; } }
-
 .main-page {
-  grid-column: 3/-1;
-  grid-row: 2 / 3;
   padding: 3rem;
-  max-width: 150rem;
   width: 100%;
-  margin: 0 auto;
   background-color: var(--color-grey-50);
   transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column; }
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  height: 100%; }
+  .main-page-container {
+    grid-column: 3/-1;
+    grid-row: 2 / 3;
+    max-width: 180rem;
+    width: 100%;
+    margin: 0 auto; }
   @media only screen and (max-width: 56.25em) {
     .main-page-mobile {
       display: flex;
@@ -722,7 +709,7 @@ body {
   height: 15rem;
   flex-shrink: 0;
   font-size: 1.6rem;
-  width: 30rem;
+  min-width: 30rem;
   box-shadow: var(--shadow-lg);
   color: #ffffff;
   transition: all 0.5s; }
@@ -765,6 +752,7 @@ body {
 .main-card-container {
   grid-row: 1/3;
   grid-column: 7/-1;
+  padding: 2rem;
   border-radius: 2rem;
   display: flex;
   justify-content: center;
@@ -887,20 +875,18 @@ body {
   color: var(--color-red-700); }
 
 .transaction-chart {
-  width: 100%;
-  height: 100%;
-  max-height: 40rem; }
+  grid-column: 1/-1;
+  grid-row: 5/-1; }
 
 .transaction-btns {
+  grid-row: 4/5;
+  grid-column: 7/-1;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 2rem; }
+  justify-content: space-between; }
 
 .chart-pie {
-  max-width: 50rem;
-  width: 30rem;
-  aspect-ratio: 1;
-  transition: all 0.2s; }
+  grid-row: 1/4;
+  grid-column: 1/3; }
   @media only screen and (max-width: 56.25em) {
     .chart-pie {
       display: flex;
@@ -1136,7 +1122,12 @@ body {
   margin-block: 3.5rem; }
 
 .card-main-transactions {
-  display: flex; }
+  grid-row: 1/4;
+  grid-column: 3/6;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 3.5rem; }
   @media only screen and (max-width: 56.25em) {
     .card-main-transactions {
       margin-block: 10rem; } }
@@ -1146,15 +1137,14 @@ body {
       align-items: center; } }
   .card-main-transactions-divider {
     flex-wrap: wrap;
+    width: 50%;
     display: flex;
-    gap: 3.5rem;
-    justify-content: center; }
+    gap: 3.5rem; }
 
 .transactions-overview {
   padding: 0.75rem;
   text-align: center;
   font-size: 1.6rem;
-  max-width: 25rem;
   height: min-content;
   width: 100%;
   border-radius: 1rem;

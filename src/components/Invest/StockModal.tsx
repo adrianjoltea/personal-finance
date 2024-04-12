@@ -25,13 +25,13 @@ export default function StockModal({
     amount: +amount,
     cardId: mainCard._id,
   };
-  const formattedAmount = +amount;
+  const formatedAmount = +amount;
 
   console.log(submitData);
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (formattedAmount * currentValue > mainCard.balance) {
+    if (formatedAmount * currentValue > mainCard.balance) {
       toast.error("Insufficient funds", {
         className: "toast",
       });
@@ -58,13 +58,13 @@ export default function StockModal({
         <div className="form-stocks">
           <span
             className={
-              formattedAmount * currentValue > mainCard.balance
+              formatedAmount * currentValue > mainCard.balance
                 ? "form-error"
                 : undefined
             }
           >
-            {formattedAmount > 0 &&
-              `Invest ${(formattedAmount * currentValue).toFixed(
+            {formatedAmount > 0 &&
+              `Invest ${(formatedAmount * currentValue).toFixed(
                 2
               )}$ in ${name}`}
           </span>
