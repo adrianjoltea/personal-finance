@@ -8,43 +8,38 @@ import { useTransactions } from "../components/Transactions/hooks/useTransaction
 
 import { useThreshold } from "../hooks/useResponsive";
 
-const THRESHOLD_WIDTH = 1400;
-
 export default function Overview() {
-  const isThresholdMet = useThreshold(THRESHOLD_WIDTH);
+  const thresholdWidth = 900;
+  const isThresholdMet = useThreshold(thresholdWidth);
   const { transactions } = useTransactions();
 
   return (
-    <div className="main-page">
-      {transactions?.length === 0 ? (
-        <div className="empty-page">
-          <h3>Please make a transaction in order to see the main page</h3>
-        </div>
-      ) : (
-        <>
-          {/* {isThresholdMet ? (
-            <>
-              <Card />
-              <CategoriesPie />
-            </>
-          ) : (
-            <div className="main-page-mobile">
-              <Card />
-              <CategoriesPie />
-            </div>
-          )} */}
-          <div className="overview-container">
-            <div className="overview-container-flex">
-              <CategoriesPie />
-              {isThresholdMet ? <CardMainTransactions /> : ""}
-              <Card />
-            </div>
-            {isThresholdMet ? "" : <CardMainTransactions />}
+    <div className="main-page-container">
+      <div className="main-page">
+        {transactions?.length === 0 ? (
+          <div className="empty-page">
+            <h3>Please make a transaction in order to see the main page</h3>
           </div>
-          <TransactionChartButtons />
-          <TransactionChart />
-        </>
-      )}
+        ) : (
+          <>
+            {isThresholdMet ? (
+              <>
+                <Card />
+                <CategoriesPie />
+              </>
+            ) : (
+              <div className="main-page-mobile">
+                <Card />
+                <CategoriesPie />
+              </div>
+            )}
+
+            <CardMainTransactions />
+            <TransactionChartButtons />
+            <TransactionChart />
+          </>
+        )}
+      </div>
     </div>
   );
 }
