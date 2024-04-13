@@ -1,8 +1,8 @@
 import { BiTrash } from "react-icons/bi";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { FaCcMastercard } from "react-icons/fa";
-import { deleteCard } from "../../services/apiBank";
 import { CardDetailsProps } from "./Interface/CardInterface";
+import { useDeleteCard } from "./hooks/useDeleteCard";
 
 export default function CardDetails({
   balance,
@@ -11,12 +11,13 @@ export default function CardDetails({
   _id,
   handleClick,
 }: CardDetailsProps) {
+  const { isDeleting, deleteOneCard } = useDeleteCard();
   const handleDelete = async () => {
     if (!_id) {
       return;
     }
 
-    await deleteCard({ _id });
+    deleteOneCard({ _id });
   };
 
   return (
@@ -28,7 +29,11 @@ export default function CardDetails({
       <div className="card-balance">
         <span>
           Balance{" "}
-          <button onClick={handleDelete} className="delete-btn">
+          <button
+            onClick={handleDelete}
+            className="delete-btn"
+            disabled={isDeleting}
+          >
             <BiTrash />
           </button>
         </span>{" "}

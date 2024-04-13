@@ -9,15 +9,34 @@ import {
 } from "./Interfaces/BankInterface";
 import { fetchData } from "./reusableApi";
 
-export async function deleteCard({ _id }: DeleteProps) {
+// export async function deleteCard({ _id }: DeleteProps) {
+//   try {
+//     const submitData = { _id };
+//     console.log(submitData);
+//     await fetchData(`${apiUrl2}/bankaccounts/delete`, "DELETE", submitData);
+//     return;
+//   } catch (err) {
+//     console.log(err);
+//     throw err;
+//   }
+// }
+
+export async function deleteCard({ _id }: DeleteProps): Promise<void> {
   try {
     const submitData = { _id };
-    const data = await fetchData(
-      `${apiUrl2}/bankaccounts/delete`,
-      "DELETE",
-      submitData
-    );
-    return { data };
+    console.log(submitData);
+    const response = await fetch(`${apiUrl2}/bankaccounts/delete`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(submitData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete card");
+    }
+    return;
   } catch (err) {
     console.log(err);
     throw err;
