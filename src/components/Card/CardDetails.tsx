@@ -1,6 +1,5 @@
 import { BiTrash } from "react-icons/bi";
 import { formatCurrency } from "../../utils/formatCurrency";
-import { FaCcMastercard } from "react-icons/fa";
 import { CardDetailsProps } from "./Interface/CardInterface";
 import { useDeleteCard } from "./hooks/useDeleteCard";
 
@@ -10,6 +9,7 @@ export default function CardDetails({
   name,
   _id,
   handleClick,
+  hasEffects,
 }: CardDetailsProps) {
   const { isDeleting, deleteOneCard } = useDeleteCard();
   const handleDelete = async () => {
@@ -22,13 +22,16 @@ export default function CardDetails({
 
   return (
     <div
-      className="card"
+      className={`card ${hasEffects ? "card-hover" : ""}`}
       onClick={() => handleClick?.({ name, currency, balance, _id })}
     >
-      <div className="card-number"></div>
+      <div className="card-name-placeholder">
+        <div className="card-name">{name}</div>
+      </div>
       <div className="card-balance">
+        <span>Balance </span>
         <span>
-          Balance{" "}
+          {formatCurrency(balance)}{" "}
           <button
             onClick={handleDelete}
             className="delete-btn"
@@ -36,17 +39,7 @@ export default function CardDetails({
           >
             <BiTrash />
           </button>
-        </span>{" "}
-        {formatCurrency(balance)}
-      </div>
-
-      <div className="card-name-placeholder">
-        <div className="card-name">
-          <span>Name</span> {name}
-        </div>
-        <div>
-          <FaCcMastercard className="card-placeholder" />
-        </div>
+        </span>
       </div>
     </div>
   );

@@ -7,19 +7,13 @@ interface CardInput {
   currency: string;
 }
 
-// interface ClickedCard {
-//   name: string;
-//   currency: string;
-//   balance: number;
-//   _id: string | undefined;
-// }
-
 interface CardDetailsProps {
   balance: number;
   currency: string;
   name: string;
   _id: string | undefined;
   handleClick?: (clickedCard: CardInput) => void;
+  hasEffects: boolean;
 }
 
 interface ModalProps {

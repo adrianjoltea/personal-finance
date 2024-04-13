@@ -2,10 +2,15 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import Input from "../Ui/Input";
 import { useUpdateUser } from "./useUpdateUser";
 import { validateProfileToast } from "./utils/validateProfile";
+import toast from "react-hot-toast";
+import ProfilePreview from "./ProfilePreview";
+
 export default function UserData() {
-  const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [avatar, setAvatar] = useState<File | null>(null);
   const { updateCurrentUser } = useUpdateUser();
+  const username = `${firstName} ${lastName}`;
   const submitData = {
     username,
     profilePicture: avatar,
@@ -14,7 +19,14 @@ export default function UserData() {
   function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
 
-    setAvatar(file || null);
+    if (file && (file.type === "image/png" || file.type === "image/jpeg")) {
+      setAvatar(file);
+    } else {
+      toast.error("Please choose a .png/.jpg file type", {
+        className: "toast",
+      });
+      setAvatar(null);
+    }
   }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -29,19 +41,27 @@ export default function UserData() {
     <>
       <h2 className="user-data-h2">Update your account</h2>
       <div className="user-data">
+        <div className="user-data-preview">
+          <ProfilePreview
+            firstName={firstName}
+            lastName={lastName}
+            avatar={avatar}
+            handleFileChange={handleFileChange}
+          />
+        </div>
+
         <form onSubmit={onSubmit} className="form-user">
           <Input
-            id="username"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            id="first name"
+            value={firstName}
+            onChange={e => setFirstName(e.target.value)}
+          />
+          <Input
+            id="last name"
+            value={lastName}
+            onChange={e => setLastName(e.target.value)}
           />
 
-          <Input
-            id="file"
-            type="file"
-            value={avatar}
-            onChange={handleFileChange}
-          />
           <div className="form-btn">
             <button className="btn btn-form">Submit</button>
           </div>

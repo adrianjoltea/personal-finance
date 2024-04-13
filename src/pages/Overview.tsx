@@ -24,12 +24,12 @@ export default function Overview() {
           <>
             {isThresholdMet ? (
               <>
-                <Card />
+                <Card hasEffects={false} />
                 <CategoriesPie />
               </>
             ) : (
               <div className="main-page-mobile">
-                <Card />
+                <Card hasEffects={false} />
                 <CategoriesPie />
               </div>
             )}

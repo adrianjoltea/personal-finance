@@ -5,6 +5,7 @@ import { setMainCard } from "../../context/userCardsSlice";
 import { debounce } from "lodash";
 import { useCardsUsers } from "./hooks/useCardsUser";
 import { CardInput } from "./Interface/CardInterface";
+import EmptyPage from "../Ui/EmptyPage";
 
 export default function CardDetailsContainer() {
   const dispatch = useDispatch();
@@ -20,12 +21,11 @@ export default function CardDetailsContainer() {
 
   return (
     <>
-      {cards?.length === 0 && (
-        <div className="empty-page">Please add a card</div>
-      )}
+      {cards?.length === 0 && <EmptyPage text="Please add a card" />}
       <ScrollContainer>
         {cards?.map((card: CardInput, index: number) => (
           <CardDetails
+            hasEffects={true}
             _id={card._id}
             key={index}
             name={card.name}

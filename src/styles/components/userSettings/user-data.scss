@@ -1,6 +1,6 @@
 .grid-settings {
   grid-row: 2/-1;
-  grid-column: 3/7;
+  grid-column: 2/8;
 }
 
 .user-data {
@@ -8,6 +8,24 @@
   border: 1px solid var(--color-grey-100);
   border-radius: 1rem;
   padding: 2.4rem 4rem;
+  display: flex;
+  gap: $gap-hg;
+  @include respond(phone) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &-preview {
+    width: 40%;
+    background-color: var(--color-grey-100);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    @include respond(phone) {
+      width: 100%;
+    }
+  }
+
   &-h2 {
     margin-bottom: $gap-hg;
   }
@@ -15,4 +33,61 @@
 
 .form-user {
   margin-block: $gap-hg;
+  width: 60%;
+  @include respond(phone) {
+    width: 100%;
+  }
+}
+
+.profile-preview {
+  &-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-sm;
+
+    &-img {
+      position: relative;
+    }
+    &-btn {
+      &-input {
+        position: absolute;
+        top: 6em;
+        right: 0.5rem;
+        cursor: pointer;
+        background-color: red;
+        width: 3rem;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background-color: var(--color-grey-200);
+        border: 2px solid var(--color-grey-300);
+
+        &::-webkit-file-upload-button {
+          visibility: hidden;
+        }
+      }
+      &-camera {
+        position: absolute;
+        top: 4.5em;
+        right: 1.2rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+    }
+
+    img {
+      margin-top: 5rem;
+      border-radius: 50%;
+      width: 15rem;
+      aspect-ratio: 1;
+      object-fit: cover;
+      outline: 2px solid var(--color-grey-200);
+    }
+    p {
+      font-size: 2rem;
+      @include respond(phone) {
+        margin-bottom: 2rem;
+      }
+    }
+  }
 }

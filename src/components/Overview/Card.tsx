@@ -5,7 +5,7 @@ import { getMainCard } from "../../context/userCardsSlice";
 import { MainCardProps } from "./Interface/OverviewInterface";
 import EmptyPage from "../Ui/EmptyPage";
 
-export default function Card() {
+export default function Card({ hasEffects }: { hasEffects: boolean }) {
   const mainCard: MainCardProps = useSelector(getMainCard);
   return (
     <div className="main-card-container">
@@ -17,6 +17,7 @@ export default function Card() {
           balance={mainCard?.balance}
           currency={mainCard?.currency}
           _id={mainCard?._id}
+          hasEffects={hasEffects}
         />
       )}
     </div>
