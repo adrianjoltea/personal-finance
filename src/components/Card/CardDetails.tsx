@@ -10,6 +10,7 @@ export default function CardDetails({
   _id,
   handleClick,
   hasEffects,
+  hasDelete,
 }: CardDetailsProps) {
   const { isDeleting, deleteOneCard } = useDeleteCard();
   const handleDelete = async () => {
@@ -37,7 +38,7 @@ export default function CardDetails({
             className="delete-btn"
             disabled={isDeleting}
           >
-            <BiTrash />
+            {hasDelete && <BiTrash />}
           </button>
         </span>
       </div>

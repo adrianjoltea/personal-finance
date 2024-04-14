@@ -26,6 +26,7 @@ export default function CardDetailsContainer() {
         {cards?.map((card: CardInput, index: number) => (
           <CardDetails
             hasEffects={true}
+            hasDelete={true}
             _id={card._id}
             key={index}
             name={card.name}

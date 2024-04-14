@@ -56,10 +56,12 @@ export default function BoughtStockRow({
         {amount}
       </p>
       <p className="transaction-table-row-item">{boughtPrice}</p>
-      <p className="transaction-table-row-item">{stock?.currentValue}</p>
+      <p className="transaction-table-row-item">
+        {stock ? profitAmount?.toFixed(2) : "N/A"}
+      </p>
       <div className="transaction-table-row-item">
         <button className="btn" onClick={handleSellStock} disabled={isSelling}>
-          Sell for {stock ? profitAmount?.toFixed(2) : "N/A"}
+          Sell All
         </button>
       </div>
     </div>

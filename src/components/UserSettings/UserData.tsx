@@ -4,10 +4,15 @@ import { useUpdateUser } from "./useUpdateUser";
 import { validateProfileToast } from "./utils/validateProfile";
 import toast from "react-hot-toast";
 import ProfilePreview from "./ProfilePreview";
+import { useUser } from "../User/useUser";
 
 export default function UserData() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const { user } = useUser();
+  const originalUsername = user?.username;
+  const [originalFirstName, originalLastName] =
+    originalUsername?.split(" ") || [];
+  const [firstName, setFirstName] = useState(originalFirstName);
+  const [lastName, setLastName] = useState(originalLastName);
   const [avatar, setAvatar] = useState<File | null>(null);
   const { updateCurrentUser } = useUpdateUser();
   const username = `${firstName} ${lastName}`;

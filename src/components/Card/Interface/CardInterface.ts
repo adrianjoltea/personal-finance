@@ -13,7 +13,8 @@ interface CardDetailsProps {
   name: string;
   _id: string | undefined;
   handleClick?: (clickedCard: CardInput) => void;
-  hasEffects: boolean;
+  hasEffects?: boolean;
+  hasDelete?: boolean;
 }
 
 interface ModalProps {
