@@ -19,6 +19,40 @@
   color: $color-white;
   transition: all 0.5s;
 
+  &-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    &-btn {
+      background-color: transparent;
+      border-radius: 50%;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      font-size: $h4-size;
+    }
+    &-btn:focus {
+      outline: 2px solid $color-white;
+    }
+
+    &-content {
+      left: -150%;
+      position: absolute;
+      background-color: green;
+      width: 10rem;
+      padding: $padding-sm;
+      border-radius: 1rem;
+      background-color: var(--color-grey-200);
+      &-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: $gap-sm;
+      }
+    }
+  }
+
   &-hover {
     &:hover {
       border: 2px solid var(--color-brand-100);
@@ -44,7 +78,7 @@
   &-name-placeholder {
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: center;
   }
   &-placeholder {
     font-size: $h3-size;

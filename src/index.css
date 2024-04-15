@@ -714,6 +714,32 @@ body {
   box-shadow: var(--shadow-lg);
   color: #ffffff;
   transition: all 0.5s; }
+  .card-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center; }
+    .card-dropdown-btn {
+      background-color: transparent;
+      border-radius: 50%;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      font-size: 2.2rem; }
+    .card-dropdown-btn:focus {
+      outline: 2px solid #ffffff; }
+    .card-dropdown-content {
+      left: -150%;
+      position: absolute;
+      background-color: green;
+      width: 10rem;
+      padding: 0.75rem;
+      border-radius: 1rem;
+      background-color: var(--color-grey-200); }
+      .card-dropdown-content-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem; }
   .card-hover:hover {
     border: 2px solid var(--color-brand-100); }
   .card-container {
@@ -731,7 +757,7 @@ body {
   .card-name-placeholder {
     display: flex;
     justify-content: space-between;
-    align-items: end; }
+    align-items: center; }
   .card-placeholder {
     font-size: 2.4rem; }
 

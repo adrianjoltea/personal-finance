@@ -10,7 +10,7 @@ export default function Card({ hasEffects }: { hasEffects?: boolean }) {
   return (
     <div className="main-card-container">
       {mainCard.name === undefined ? (
-        <EmptyPage text="Please select a card from the card page" />
+        <EmptyPage text="Please add a card" />
       ) : (
         <CardDetails
           name={mainCard?.name}
