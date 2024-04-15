@@ -46,6 +46,13 @@ interface CardOperationProps {
   openModal: () => void;
 }
 
+interface DropdownItem {
+  label: string;
+  onClick: () => void;
+  icon: ReactNode;
+  disabled: boolean;
+}
+
 export type {
   CardInput,
   CardDetailsProps,
@@ -54,4 +61,5 @@ export type {
   IFormInput,
   ModalFormProps,
   CardOperationProps,
+  DropdownItem,
 };
