@@ -1,30 +1,73 @@
-import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import Error from "../Ui/Error";
 import { toggleModal } from "../../context/modalSlice";
-
 import { useCreateCard } from "./hooks/useCreateCard";
 import CardDetails from "./CardDetails";
 import { IFormInput, ModalFormProps } from "./Interface/CardInterface";
+import InputHook from "../Ui/InputHook";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
+const FIELD_NAME = {
+  NAME: "name",
+  BALANCE: "balance",
+  CURRENCY: "currency",
+};
+const FIELD_LABEL = {
+  NAME: "Enter your name",
+  BALANCE: "Enter your balance",
+  CURRENCY: "Enter your currency",
+};
+
+const SCHEMA = z.object({
+  [FIELD_NAME.NAME]: z.string().min(5, { message: "Required" }),
+  [FIELD_NAME.BALANCE]: z.string().min(1, { message: "Required" }),
+  [FIELD_NAME.CURRENCY]: z.string().min(3, { message: "Required" }),
+});
 
 export default function ModalForm({ modalId }: ModalFormProps) {
-  const { register, handleSubmit, formState } = useForm<IFormInput>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<IFormInput>({
+    defaultValues: {
+      [FIELD_NAME.NAME]: "",
+      [FIELD_NAME.BALANCE]: "",
+      [FIELD_NAME.CURRENCY]: "",
+    },
+    resolver: zodResolver(SCHEMA),
+  });
+
+  const fieldInputs = [
+    {
+      name: FIELD_NAME.NAME,
+      label: FIELD_LABEL.NAME,
+    },
+    {
+      name: FIELD_NAME.BALANCE,
+      label: FIELD_LABEL.BALANCE,
+      type: "number",
+    },
+    {
+      name: FIELD_NAME.CURRENCY,
+      label: FIELD_LABEL.CURRENCY,
+    },
+  ];
+
+  const [name, currency, balance] = watch(["name", "currency", "balance"]);
+
   const dispatch = useDispatch();
-  const { errors } = formState;
   const { isCreating, createCard } = useCreateCard();
 
-  const [username, setUsername] = useState("");
-  const [balance, setBalance] = useState("");
-  const [currency, setCurrency] = useState("");
-
   const onSubmit: SubmitHandler<IFormInput> = data => {
-    const formatedData = {
+    const formattedData = {
       name: data.name,
       balance: Number(data.balance),
       currency: data.currency,
     };
-    createCard(formatedData);
+    createCard(formattedData);
     dispatch(toggleModal({ modalId, open: false }));
   };
 
@@ -32,64 +75,24 @@ export default function ModalForm({ modalId }: ModalFormProps) {
     <div>
       <div className="card-transactions-container">
         <CardDetails
-          name={!username ? "Enter your name" : username}
-          currency={!currency ? "Enter your curency" : currency}
+          name={!name ? "Enter your name" : name}
+          currency={!currency ? "Enter your currency" : currency}
           balance={!balance ? 0 : Number(balance)}
           _id={undefined}
         />
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="form-transactions">
-        <div className="form-group">
-          <input
-            type="text"
-            id="name"
-            placeholder="Enter your name"
-            className="form-input"
-            value={username}
-            {...register("name", {
-              required: "This field is required",
-              pattern: {
-                value: /^[a-zA-Z0-9]*$/,
-                message: "Name can only contain letters and numbers",
-              },
-            })}
-            onChange={e => setUsername(e.target.value)}
+        {fieldInputs.map((field, index) => (
+          <InputHook
+            id={field.name}
+            name={field.name as keyof IFormInput}
+            placeholder={field.label}
+            register={register}
+            errors={errors}
+            type={field.type}
+            key={index}
           />
-          <label className="form-label"></label>
-
-          {<Error>{errors?.name?.message}</Error>}
-        </div>
-        <div className="form-group">
-          <input
-            className="form-input"
-            type="number"
-            id="balance"
-            value={balance}
-            placeholder="Enter your balance"
-            {...register("balance", {
-              required: "This field is required",
-            })}
-            onChange={e => setBalance(e.target.value)}
-          />
-          <label className="form-label">Balance</label>
-          {<Error>{errors?.balance?.message}</Error>}
-        </div>
-        <div className="form-group">
-          <input
-            className="form-input"
-            type="text"
-            id="currency"
-            value={currency}
-            placeholder="Enter your currency"
-            {...register("currency", {
-              required: "This field is required",
-            })}
-            onChange={e => setCurrency(e.target.value)}
-          />
-          <label className="form-label">Currency</label>
-
-          {<Error>{errors?.currency?.message}</Error>}
-        </div>
+        ))}
 
         <div className="form-card-btns">
           <button

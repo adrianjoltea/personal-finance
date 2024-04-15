@@ -28,7 +28,7 @@ function CardDropdown({ items }: { items: DropdownItem[] }) {
             <button
               key={index}
               onClick={() => {
-                item.onClick;
+                item.onClick();
                 setShowDropdown(false);
               }}
               className="delete-btn card-dropdown-content-flex"

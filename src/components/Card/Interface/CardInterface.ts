@@ -31,7 +31,7 @@ interface RootState {
 
 interface IFormInput {
   name: string;
-  balance: number;
+  balance: string;
   currency: string;
 }
 

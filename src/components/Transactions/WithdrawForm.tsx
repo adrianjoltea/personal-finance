@@ -65,6 +65,7 @@ export default function WithdrawForm() {
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
+
         <div className="form-group">
           <label htmlFor="category" className="form-label">
             Category:

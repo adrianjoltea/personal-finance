@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import Input from "../Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
@@ -39,23 +39,37 @@ export default function DepositForm() {
     }
   }
 
+  const INPUT_PROPS = [
+    {
+      type: "number",
+      id: "amount",
+      value: amount,
+      onChange: (e: ChangeEvent<HTMLInputElement>) => setAmount(e.target.value),
+    },
+    {
+      id: "description",
+      value: description,
+      onChange: (e: ChangeEvent<HTMLInputElement>) =>
+        setDescription(e.target.value),
+    },
+  ];
+
   return (
     <div>
       <div className="card-transactions-container">
         <Card />
       </div>
       <form className="form-transactions" onSubmit={e => handleSubmit(e)}>
-        <Input
-          type="number"
-          id="amount"
-          value={amount}
-          onChange={e => setAmount(e.target.value)}
-        />
-        <Input
-          id="description"
-          value={description}
-          onChange={e => setDescription(e.target.value)}
-        />
+        {INPUT_PROPS.map((input, index) => (
+          <Input
+            type={input.type}
+            value={input.value}
+            id={input.id}
+            onChange={input.onChange}
+            key={index}
+          />
+        ))}
+
         <div className="form-group">
           <label htmlFor="category" className="form-label">
             Category:
