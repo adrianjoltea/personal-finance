@@ -1,93 +1,82 @@
-import React, { ChangeEvent, useState } from "react";
-import Input from "../Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
 import { useAddTransaction } from "./hooks/useAddTransaction";
 import Card from "../Overview/Card";
-
 import { toggleModal } from "../../context/modalSlice";
-import { validateTransactionToast } from "./utils/validateTransactions";
+import { transactionProps } from "../../services/Interfaces/TransactionsInterface";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { FIELD_LABEL, FIELD_NAME, SCHEMA } from "./common/variables";
+import { zodResolver } from "@hookform/resolvers/zod";
+import InputHook from "../Ui/InputHook";
 
 const FORM_OPTIONS = ["Job", "Side Job", "Freelancing", "Other"];
 
 export default function DepositForm() {
-  const [amount, setAmount] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("job");
   const dispatch = useDispatch();
   const mainCard = useSelector(getMainCard);
   const { isPending, addTransactions } = useAddTransaction();
 
-  const submitData = {
-    amount: parseFloat(amount),
-    description,
-    bankAccountId: mainCard._id,
-    category,
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<transactionProps>({
+    defaultValues: {
+      [FIELD_NAME.AMOUNT]: "",
+      [FIELD_NAME.DESCRIPTION]: "",
+      [FIELD_NAME.CATEGORY]: "Job",
+    },
+    resolver: zodResolver(SCHEMA),
+  });
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const validationError = validateTransactionToast(
-      amount,
-      description,
-      mainCard
-    );
-    if (!validationError) {
-      addTransactions(submitData);
-      dispatch(toggleModal({ modalId: "deposit", open: false }));
-    }
-  }
-
-  const INPUT_PROPS = [
+  const fieldInputs = [
     {
+      name: FIELD_NAME.AMOUNT,
+      label: FIELD_LABEL.AMOUNT,
       type: "number",
-      id: "amount",
-      value: amount,
-      onChange: (e: ChangeEvent<HTMLInputElement>) => setAmount(e.target.value),
     },
     {
-      id: "description",
-      value: description,
-      onChange: (e: ChangeEvent<HTMLInputElement>) =>
-        setDescription(e.target.value),
+      name: FIELD_NAME.DESCRIPTION,
+      label: FIELD_LABEL.DESCRIPTION,
+    },
+    {
+      name: FIELD_NAME.CATEGORY,
+      label: FIELD_LABEL.CATEGORY,
+      type: "select",
+      options: FORM_OPTIONS,
     },
   ];
+
+  const onSubmit: SubmitHandler<transactionProps> = data => {
+    console.log(data);
+    const formattedData = {
+      amount: +data.amount,
+      description: data.description,
+      bankAccountId: mainCard._id,
+      category: data.category,
+    };
+    addTransactions(formattedData);
+    dispatch(toggleModal({ modalId: "deposit", open: false }));
+  };
 
   return (
     <div>
       <div className="card-transactions-container">
         <Card />
       </div>
-      <form className="form-transactions" onSubmit={e => handleSubmit(e)}>
-        {INPUT_PROPS.map((input, index) => (
-          <Input
-            type={input.type}
-            value={input.value}
-            id={input.id}
-            onChange={input.onChange}
+      <form className="form-transactions" onSubmit={handleSubmit(onSubmit)}>
+        {fieldInputs.map((field, index) => (
+          <InputHook
+            id={field.name}
+            name={field.name as keyof transactionProps}
+            register={register}
+            errors={errors}
+            placeholder={field.label}
+            type={field.type}
             key={index}
+            options={field.options}
           />
         ))}
-
-        <div className="form-group">
-          <label htmlFor="category" className="form-label">
-            Category:
-          </label>
-          <select
-            id="category"
-            name="category"
-            value={category}
-            onChange={e => setCategory(e.target.value)}
-            className="form-input"
-          >
-            {FORM_OPTIONS.map(value => (
-              <option key={value} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
-        </div>
         <div className="form-btn">
           <button className="btn btn-form" disabled={isPending}>
             Deposit

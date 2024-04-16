@@ -6,7 +6,7 @@
     var(--color-brand-600) 0%,
     var(--color-brand-900) 100%
   );
-  border: 2px solid transparent;
+
   flex-direction: column;
   padding: $padding-lg;
   justify-content: space-between;
@@ -55,6 +55,7 @@
   }
 
   &-hover {
+    border: 2px solid transparent;
     &:hover {
       border: 2px solid var(--color-brand-100);
     }

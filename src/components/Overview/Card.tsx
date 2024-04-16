@@ -18,6 +18,8 @@ export default function Card({ hasEffects }: { hasEffects?: boolean }) {
           currency={mainCard?.currency}
           _id={mainCard?._id}
           hasEffects={hasEffects}
+          firstColor={mainCard?.firstColor}
+          secondColor={mainCard?.secondColor}
         />
       )}
     </div>

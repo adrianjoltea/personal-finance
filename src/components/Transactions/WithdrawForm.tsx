@@ -56,7 +56,7 @@ export default function WithdrawForm() {
   const onSubmit: SubmitHandler<transactionProps> = data => {
     console.log(data);
     const formattedData = {
-      amount: +data.amount,
+      amount: -+data.amount,
       description: data.description,
       bankAccountId: mainCard._id,
       category: data.category,

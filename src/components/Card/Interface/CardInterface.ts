@@ -5,6 +5,8 @@ interface CardInput {
   name: string;
   balance: number;
   currency: string;
+  firstColor: string;
+  secondColor: string;
 }
 
 interface CardDetailsProps {
@@ -15,6 +17,8 @@ interface CardDetailsProps {
   handleClick?: (clickedCard: CardInput) => void;
   hasEffects?: boolean;
   hasDelete?: boolean;
+  firstColor: string;
+  secondColor: string;
 }
 
 interface ModalProps {
@@ -33,6 +37,8 @@ interface IFormInput {
   name: string;
   balance: string;
   currency: string;
+  firstColor: string;
+  secondColor: string;
 }
 
 interface ModalFormProps {

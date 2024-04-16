@@ -1,33 +1,26 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import Input from "../Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
-
+import { useAddTransaction } from "./hooks/useAddTransaction";
 import Card from "../Overview/Card";
 import { toggleModal } from "../../context/modalSlice";
 import { validateTransactionToast } from "./utils/validateTransactions";
-import { useAddTransaction } from "./hooks/useAddTransaction";
 
-const FORM_OPTIONS = [
-  "Utilities",
-  "Groceries",
-  "Entertainment",
-  "Travel",
-  "Miscellaneous",
-];
+const FORM_OPTIONS = ["Job", "Side Job", "Freelancing", "Other"];
 
 // IT WAS USED BEFORE REACT-HOOK-FORM
 
-export default function WithdrawForm() {
+export default function DepositForm() {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("Miscellaneous");
+  const [category, setCategory] = useState("job");
   const dispatch = useDispatch();
   const mainCard = useSelector(getMainCard);
   const { isPending, addTransactions } = useAddTransaction();
 
   const submitData = {
-    amount: -parseFloat(amount),
+    amount: parseFloat(amount),
     description,
     bankAccountId: mainCard._id,
     category,
@@ -39,34 +32,44 @@ export default function WithdrawForm() {
     const validationError = validateTransactionToast(
       amount,
       description,
-      mainCard,
-      true
+      mainCard
     );
-
-    if (!validationError && parseFloat(amount) <= mainCard.balance) {
+    if (!validationError) {
       addTransactions(submitData);
-
-      if (!isPending)
-        dispatch(toggleModal({ modalId: "withdraw", open: false }));
+      dispatch(toggleModal({ modalId: "deposit", open: false }));
     }
   }
 
+  const INPUT_PROPS = [
+    {
+      type: "number",
+      id: "amount",
+      value: amount,
+      onChange: (e: ChangeEvent<HTMLInputElement>) => setAmount(e.target.value),
+    },
+    {
+      id: "description",
+      value: description,
+      onChange: (e: ChangeEvent<HTMLInputElement>) =>
+        setDescription(e.target.value),
+    },
+  ];
+
   return (
-    <>
+    <div>
       <div className="card-transactions-container">
         <Card />
       </div>
-      <form onSubmit={e => handleSubmit(e)}>
-        <Input
-          id="amount"
-          value={amount}
-          onChange={e => setAmount(e.target.value)}
-        />
-        <Input
-          id="description"
-          value={description}
-          onChange={e => setDescription(e.target.value)}
-        />
+      <form className="form-transactions" onSubmit={e => handleSubmit(e)}>
+        {INPUT_PROPS.map((input, index) => (
+          <Input
+            type={input.type}
+            value={input.value}
+            id={input.id}
+            onChange={input.onChange}
+            key={index}
+          />
+        ))}
 
         <div className="form-group">
           <label htmlFor="category" className="form-label">
@@ -88,10 +91,10 @@ export default function WithdrawForm() {
         </div>
         <div className="form-btn">
           <button className="btn btn-form" disabled={isPending}>
-            Withdraw
+            Deposit
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }

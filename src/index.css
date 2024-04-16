@@ -702,7 +702,6 @@ body {
 .card {
   display: flex;
   background: linear-gradient(190deg, var(--color-brand-600) 0%, var(--color-brand-900) 100%);
-  border: 2px solid transparent;
   flex-direction: column;
   padding: 2rem;
   justify-content: space-between;
@@ -741,8 +740,10 @@ body {
         justify-content: center;
         align-items: center;
         gap: 1rem; }
-  .card-hover:hover {
-    border: 2px solid var(--color-brand-100); }
+  .card-hover {
+    border: 2px solid transparent; }
+    .card-hover:hover {
+      border: 2px solid var(--color-brand-100); }
   .card-container {
     display: flex;
     gap: 10rem;

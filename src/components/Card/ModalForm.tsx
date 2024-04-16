@@ -12,17 +12,23 @@ const FIELD_NAME = {
   NAME: "name",
   BALANCE: "balance",
   CURRENCY: "currency",
+  FIRST_COLOR: "firstColor",
+  SECOND_COLOR: "secondColor",
 };
 const FIELD_LABEL = {
   NAME: "Enter your name",
   BALANCE: "Enter your balance",
   CURRENCY: "Enter your currency",
+  FIRST_COLOR: "Enter your first color",
+  SECOND_COLOR: "Enter your second color",
 };
 
 const SCHEMA = z.object({
   [FIELD_NAME.NAME]: z.string().min(5, { message: "Required" }),
   [FIELD_NAME.BALANCE]: z.string().min(1, { message: "Required" }),
   [FIELD_NAME.CURRENCY]: z.string().min(3, { message: "Required" }),
+  [FIELD_NAME.FIRST_COLOR]: z.string().min(1, { message: "Required" }),
+  [FIELD_NAME.SECOND_COLOR]: z.string().min(1, { message: "Required" }),
 });
 
 export default function ModalForm({ modalId }: ModalFormProps) {
@@ -36,6 +42,8 @@ export default function ModalForm({ modalId }: ModalFormProps) {
       [FIELD_NAME.NAME]: "",
       [FIELD_NAME.BALANCE]: "",
       [FIELD_NAME.CURRENCY]: "",
+      [FIELD_NAME.FIRST_COLOR]: "#4f46e5",
+      [FIELD_NAME.SECOND_COLOR]: "#312e81",
     },
     resolver: zodResolver(SCHEMA),
   });
@@ -54,9 +62,25 @@ export default function ModalForm({ modalId }: ModalFormProps) {
       name: FIELD_NAME.CURRENCY,
       label: FIELD_LABEL.CURRENCY,
     },
+    {
+      name: FIELD_NAME.FIRST_COLOR,
+      label: FIELD_LABEL.FIRST_COLOR,
+      type: "color",
+    },
+    {
+      name: FIELD_NAME.SECOND_COLOR,
+      label: FIELD_LABEL.SECOND_COLOR,
+      type: "color",
+    },
   ];
 
-  const [name, currency, balance] = watch(["name", "currency", "balance"]);
+  const [name, currency, balance, firstColor, secondColor] = watch([
+    "name",
+    "currency",
+    "balance",
+    "firstColor",
+    "secondColor",
+  ]);
 
   const dispatch = useDispatch();
   const { isCreating, createCard } = useCreateCard();
@@ -66,6 +90,8 @@ export default function ModalForm({ modalId }: ModalFormProps) {
       name: data.name,
       balance: Number(data.balance),
       currency: data.currency,
+      firstColor: data.firstColor,
+      secondColor: data.secondColor,
     };
     createCard(formattedData);
     dispatch(toggleModal({ modalId, open: false }));
@@ -79,6 +105,8 @@ export default function ModalForm({ modalId }: ModalFormProps) {
           currency={!currency ? "Enter your currency" : currency}
           balance={!balance ? 0 : Number(balance)}
           _id={undefined}
+          firstColor={firstColor}
+          secondColor={secondColor}
         />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>

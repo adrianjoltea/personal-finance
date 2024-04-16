@@ -3,6 +3,8 @@ interface MainCardProps {
   name: string;
   balance: number;
   currency: string;
+  firstColor: string;
+  secondColor: string;
 }
 type LegendOptions = {
   display: boolean;

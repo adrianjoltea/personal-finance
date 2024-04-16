@@ -3,6 +3,8 @@ interface Card {
   name: string;
   balance: number;
   currency: string;
+  firstColor: string;
+  secondColor: string;
 }
 
 interface CardProps {

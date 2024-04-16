@@ -52,6 +52,8 @@ export default function CardDetails({
   handleClick,
   hasEffects,
   hasDelete,
+  firstColor,
+  secondColor,
 }: CardDetailsProps) {
   const { isDeleting, deleteOneCard } = useDeleteCard();
 
@@ -64,7 +66,7 @@ export default function CardDetails({
   };
 
   const handleAdd = () => {
-    handleClick?.({ name, currency, balance, _id });
+    handleClick?.({ name, currency, balance, _id, firstColor, secondColor });
   };
 
   const dropdownItems = [
@@ -82,8 +84,12 @@ export default function CardDetails({
     },
   ];
 
+  const cardStyle = {
+    background: `linear-gradient(135deg, ${firstColor}, ${secondColor})`,
+  };
+
   return (
-    <div className={`card ${hasEffects ? "card-hover" : ""}`}>
+    <div className={`card ${hasEffects ? "card-hover" : ""}`} style={cardStyle}>
       <div className="card-name-placeholder">
         <div className="card-name">{name} </div>
         <span>{hasDelete && <CardDropdown items={dropdownItems} />}</span>

@@ -33,6 +33,8 @@ export default function CardDetailsContainer() {
             balance={card.balance}
             currency={card.currency}
             handleClick={handleCardClick}
+            firstColor={card.firstColor}
+            secondColor={card.secondColor}
           />
         ))}
       </ScrollContainer>

@@ -1,4 +1,3 @@
-import React from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { InputPropsHook } from "./Interface/UiInterface";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
@@ -48,6 +47,7 @@ export default function InputHook<T extends FieldValues>({
         placeholder={!placeholder ? defaultPlaceholder : placeholder}
         autoComplete={autoComplete}
         {...register(name)}
+        style={type === "color" ? { height: "4rem", padding: "0.25rem" } : {}}
       />
 
       <label className="form-label" htmlFor={id}>
