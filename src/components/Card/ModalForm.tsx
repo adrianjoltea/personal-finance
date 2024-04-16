@@ -23,10 +23,12 @@ const FIELD_LABEL = {
   SECOND_COLOR: "Enter your second color",
 };
 
+const FIELD_OPTIONS = ["RON", "EURO", "DOLLAR"];
+
 const SCHEMA = z.object({
   [FIELD_NAME.NAME]: z.string().min(5, { message: "Required" }),
   [FIELD_NAME.BALANCE]: z.string().min(1, { message: "Required" }),
-  [FIELD_NAME.CURRENCY]: z.string().min(3, { message: "Required" }),
+  [FIELD_NAME.CURRENCY]: z.string().min(1, { message: "Required" }),
   [FIELD_NAME.FIRST_COLOR]: z.string().min(1, { message: "Required" }),
   [FIELD_NAME.SECOND_COLOR]: z.string().min(1, { message: "Required" }),
 });
@@ -41,7 +43,7 @@ export default function ModalForm({ modalId }: ModalFormProps) {
     defaultValues: {
       [FIELD_NAME.NAME]: "",
       [FIELD_NAME.BALANCE]: "",
-      [FIELD_NAME.CURRENCY]: "",
+      [FIELD_NAME.CURRENCY]: "RON",
       [FIELD_NAME.FIRST_COLOR]: "#4f46e5",
       [FIELD_NAME.SECOND_COLOR]: "#312e81",
     },
@@ -61,6 +63,8 @@ export default function ModalForm({ modalId }: ModalFormProps) {
     {
       name: FIELD_NAME.CURRENCY,
       label: FIELD_LABEL.CURRENCY,
+      type: "select",
+      options: FIELD_OPTIONS,
     },
     {
       name: FIELD_NAME.FIRST_COLOR,
@@ -121,6 +125,7 @@ export default function ModalForm({ modalId }: ModalFormProps) {
             errors={errors}
             type={field.type}
             key={index}
+            options={field.options}
           />
         ))}
 
