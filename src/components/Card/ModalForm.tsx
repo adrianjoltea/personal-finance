@@ -100,16 +100,18 @@ export default function ModalForm({ modalId }: ModalFormProps) {
   return (
     <>
       <div className="card-transactions-container">
-        <CardDetails
-          name={!name ? "Enter your name" : name}
-          currency={!currency ? "Enter your currency" : currency}
-          balance={!balance ? 0 : Number(balance)}
-          _id={undefined}
-          firstColor={firstColor}
-          secondColor={secondColor}
-        />
+        <div className="main-card-container">
+          <CardDetails
+            name={!name ? "Enter your name" : name}
+            currency={!currency ? "Enter your currency" : currency}
+            balance={!balance ? 0 : Number(balance)}
+            _id={undefined}
+            firstColor={firstColor}
+            secondColor={secondColor}
+          />
+        </div>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="form-transactions">
         {fieldInputs.map((field, index) => (
           <InputHook
             id={field.name}
