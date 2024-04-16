@@ -33,6 +33,7 @@ interface InputPropsHook<T extends FieldValues> {
   forPassword?: boolean;
   handleShow?: () => void;
   showPassword?: boolean;
+  options?: string[];
 }
 
 interface ErrorProps {

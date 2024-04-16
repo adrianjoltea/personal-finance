@@ -15,6 +15,7 @@ interface transactionProps {
   bankAccountId: string;
   category: string;
 }
+
 interface AddTransactionResponse {
   data: transactionProps;
 }

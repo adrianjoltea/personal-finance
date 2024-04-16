@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import Input from "../Ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCard } from "../../context/userCardsSlice";
-
 import Card from "../Overview/Card";
 import { toggleModal } from "../../context/modalSlice";
-import { validateTransactionToast } from "./utils/validateTransactions";
 import { useAddTransaction } from "./hooks/useAddTransaction";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import InputHook from "../Ui/InputHook";
+import { transactionProps } from "../../services/Interfaces/TransactionsInterface";
+import { FIELD_LABEL, FIELD_NAME, SCHEMA } from "./common/variables";
 
 const FORM_OPTIONS = [
   "Utilities",
@@ -17,73 +19,71 @@ const FORM_OPTIONS = [
 ];
 
 export default function WithdrawForm() {
-  const [amount, setAmount] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("Miscellaneous");
   const dispatch = useDispatch();
   const mainCard = useSelector(getMainCard);
   const { isPending, addTransactions } = useAddTransaction();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<transactionProps>({
+    defaultValues: {
+      [FIELD_NAME.AMOUNT]: "",
+      [FIELD_NAME.DESCRIPTION]: "",
+      [FIELD_NAME.CATEGORY]: "Utilities",
+    },
+    resolver: zodResolver(SCHEMA),
+  });
 
-  const submitData = {
-    amount: -parseFloat(amount),
-    description,
-    bankAccountId: mainCard._id,
-    category,
+  const fieldInputs = [
+    {
+      name: FIELD_NAME.AMOUNT,
+      label: FIELD_LABEL.AMOUNT,
+      type: "number",
+    },
+    {
+      name: FIELD_NAME.DESCRIPTION,
+      label: FIELD_LABEL.DESCRIPTION,
+    },
+    {
+      name: FIELD_NAME.CATEGORY,
+      label: FIELD_LABEL.CATEGORY,
+      type: "select",
+      options: FORM_OPTIONS,
+    },
+  ];
+
+  const onSubmit: SubmitHandler<transactionProps> = data => {
+    console.log(data);
+    const formattedData = {
+      amount: +data.amount,
+      description: data.description,
+      bankAccountId: mainCard._id,
+      category: data.category,
+    };
+    addTransactions(formattedData);
+    dispatch(toggleModal({ modalId: "withdraw", open: false }));
   };
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const validationError = validateTransactionToast(
-      amount,
-      description,
-      mainCard,
-      true
-    );
-
-    if (!validationError && parseFloat(amount) <= mainCard.balance) {
-      addTransactions(submitData);
-
-      if (!isPending)
-        dispatch(toggleModal({ modalId: "withdraw", open: false }));
-    }
-  }
 
   return (
     <>
       <div className="card-transactions-container">
         <Card />
       </div>
-      <form onSubmit={e => handleSubmit(e)}>
-        <Input
-          id="amount"
-          value={amount}
-          onChange={e => setAmount(e.target.value)}
-        />
-        <Input
-          id="description"
-          value={description}
-          onChange={e => setDescription(e.target.value)}
-        />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {fieldInputs.map((field, index) => (
+          <InputHook
+            id={field.name}
+            name={field.name as keyof transactionProps}
+            register={register}
+            errors={errors}
+            placeholder={field.label}
+            type={field.type}
+            key={index}
+            options={field.options}
+          />
+        ))}
 
-        <div className="form-group">
-          <label htmlFor="category" className="form-label">
-            Category:
-          </label>
-          <select
-            id="category"
-            name="category"
-            value={category}
-            onChange={e => setCategory(e.target.value)}
-            className="form-input"
-          >
-            {FORM_OPTIONS.map(value => (
-              <option key={value} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
-        </div>
         <div className="form-btn">
           <button className="btn btn-form" disabled={isPending}>
             Withdraw

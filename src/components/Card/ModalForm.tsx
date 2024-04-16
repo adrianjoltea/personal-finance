@@ -72,7 +72,7 @@ export default function ModalForm({ modalId }: ModalFormProps) {
   };
 
   return (
-    <div>
+    <>
       <div className="card-transactions-container">
         <CardDetails
           name={!name ? "Enter your name" : name}
@@ -81,7 +81,7 @@ export default function ModalForm({ modalId }: ModalFormProps) {
           _id={undefined}
         />
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="form-transactions">
+      <form onSubmit={handleSubmit(onSubmit)}>
         {fieldInputs.map((field, index) => (
           <InputHook
             id={field.name}
@@ -106,6 +106,6 @@ export default function ModalForm({ modalId }: ModalFormProps) {
           </button>
         </div>
       </form>
-    </div>
+    </>
   );
 }
