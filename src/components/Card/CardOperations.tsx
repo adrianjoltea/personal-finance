@@ -3,8 +3,8 @@ import WithdrawForm from "../Transactions/WithdrawForm";
 import Modal from "./Modal";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../../context/modalSlice";
-import ModalForm from "./ModalForm";
 import { CardOperationProps } from "./Interface/CardInterface";
+import { useNavigate } from "react-router-dom";
 
 function CardOperation({
   modalId,
@@ -14,7 +14,7 @@ function CardOperation({
 }: CardOperationProps) {
   return (
     <div className="card-operations-item">
-      <Modal modalId={modalId}>{formComponent}</Modal>
+      {modalId && <Modal modalId={modalId}>{formComponent}</Modal>}
       <button className="btn btn-operations" onClick={openModal}>
         {buttonText}
       </button>
@@ -24,6 +24,7 @@ function CardOperation({
 
 export default function CardOperations() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const openDepositModal = () => {
     dispatch(toggleModal({ modalId: "deposit", open: true }));
@@ -34,7 +35,7 @@ export default function CardOperations() {
   };
 
   const openCreateModal = () => {
-    dispatch(toggleModal({ modalId: "create", open: true }));
+    navigate("/create-card");
   };
 
   return (
@@ -51,12 +52,7 @@ export default function CardOperations() {
         buttonText="Withdraw"
         openModal={openWithdrawModal}
       />
-      <CardOperation
-        modalId="create"
-        formComponent={<ModalForm modalId="create" />}
-        buttonText="Add card"
-        openModal={openCreateModal}
-      />
+      <CardOperation buttonText="Add card" openModal={openCreateModal} />
     </div>
   );
 }

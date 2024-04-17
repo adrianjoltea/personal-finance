@@ -117,3 +117,7 @@
   color: $color-white;
   cursor: pointer;
 }
+.create-card-container {
+  grid-column: 3/7;
+  grid-row: 1/-1;
+}

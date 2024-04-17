@@ -46,8 +46,8 @@ interface ModalFormProps {
 }
 
 interface CardOperationProps {
-  modalId: string;
-  formComponent: JSX.Element;
+  modalId?: string;
+  formComponent?: JSX.Element;
   buttonText: string;
   openModal: () => void;
 }

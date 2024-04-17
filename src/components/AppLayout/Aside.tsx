@@ -37,6 +37,7 @@ export default function Aside({ navOpen, setNavOpen }: AsideProps) {
               <FaIdCard /> {navOpen && <span>Cards</span>}
             </NavLink>
           </li>
+
           <li>
             <NavLink to="/invest" className="sidebar__link">
               <IoMdPerson /> {navOpen && <span>Invest</span>}
