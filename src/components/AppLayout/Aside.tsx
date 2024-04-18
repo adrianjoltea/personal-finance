@@ -6,7 +6,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { getNav, toggleNav } from "../../context/darkModeSlice";
 import { IoMdPerson } from "react-icons/io";
-
+import { GrTransaction } from "react-icons/gr";
 interface AsideProps {
   navOpen: boolean;
   setNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -33,8 +33,8 @@ export default function Aside({ navOpen, setNavOpen }: AsideProps) {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/card" className="sidebar__link">
-              <FaIdCard /> {navOpen && <span>Cards</span>}
+            <NavLink to="/transactions" className="sidebar__link">
+              <GrTransaction /> {navOpen && <span>Transactions</span>}
             </NavLink>
           </li>
           <li>

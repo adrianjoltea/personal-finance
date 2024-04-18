@@ -11,13 +11,13 @@ import AppOffline from "./AppOffline";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import LazyLoader from "./components/Ui/LazyLoader";
-import MyCards from "./pages/MyCards";
 import CreateCardPage from "./pages/CreateCardPage";
 
-const Card = lazy(() => import("./pages/Card"));
+const Transactions = lazy(() => import("./pages/Transactions"));
 const Overview = lazy(() => import("./pages/Overview"));
 const Invest = lazy(() => import("./pages/Invest"));
 const Settings = lazy(() => import("./pages/Settings"));
+const MyCards = lazy(() => import("./pages/MyCards"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -74,7 +74,7 @@ export default function App() {
                     }
                   >
                     <Route path="/" element={<Overview />} />
-                    <Route path="card" element={<Card />} />
+                    <Route path="transactions" element={<Transactions />} />
                     <Route path="my-cards" element={<MyCards />} />
                     <Route path="create-card" element={<CreateCardPage />} />
                     <Route path="invest" element={<Invest />} />

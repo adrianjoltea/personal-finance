@@ -4,7 +4,6 @@ import Modal from "./Modal";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../../context/modalSlice";
 import { CardOperationProps } from "./Interface/CardInterface";
-import { useNavigate } from "react-router-dom";
 
 function CardOperation({
   modalId,
@@ -24,7 +23,6 @@ function CardOperation({
 
 export default function CardOperations() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const openDepositModal = () => {
     dispatch(toggleModal({ modalId: "deposit", open: true }));
@@ -32,10 +30,6 @@ export default function CardOperations() {
 
   const openWithdrawModal = () => {
     dispatch(toggleModal({ modalId: "withdraw", open: true }));
-  };
-
-  const openCreateModal = () => {
-    navigate("/create-card");
   };
 
   return (
@@ -52,7 +46,6 @@ export default function CardOperations() {
         buttonText="Withdraw"
         openModal={openWithdrawModal}
       />
-      <CardOperation buttonText="Add card" openModal={openCreateModal} />
     </div>
   );
 }
