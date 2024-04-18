@@ -9,6 +9,8 @@
     align-items: center;
     flex-direction: column;
     gap: $gap-sm;
+    transition: all 0.5s;
+    position: relative;
 
     &-btn {
       background-color: var(--color-brand-100);
@@ -36,14 +38,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    &:hover .card-hover:not(:hover) {
+      scale: 0.95;
+    }
+
     &-cards {
-      min-height: 35rem;
       display: flex;
       flex-wrap: wrap;
       gap: $gap-lg;
       justify-content: center;
     }
   }
+
   &-pagination {
     margin-top: 2rem;
     display: flex;
