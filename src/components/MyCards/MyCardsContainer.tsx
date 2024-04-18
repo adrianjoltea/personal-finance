@@ -7,16 +7,32 @@ import CardDetails from "../Card/CardDetails";
 import { CardInput } from "../Card/Interface/CardInterface";
 import MyCardsSkeleton from "./MyCardsSkeleton";
 import { CardsData } from "../../services/Interfaces/BankInterface";
+import { useThreshold } from "../../hooks/useResponsive";
 
-const CARDS_PER_PAGE = 5;
+let CARDS_PER_PAGE = 5;
+const THRESHOLD_WIDTH = 550;
 
 function usePaginate({ cards }: { cards: CardsData[] | undefined }) {
   const [currentPage, setCurrentPage] = useState(1);
+  const isThresholdMet = useThreshold(THRESHOLD_WIDTH);
 
+  console.log(isThresholdMet);
+
+  if (!isThresholdMet) {
+    CARDS_PER_PAGE = 3;
+    if (currentPage === 1) CARDS_PER_PAGE -= 1;
+  } else {
+    CARDS_PER_PAGE = 5;
+  }
   const indexOfLastCard = currentPage * CARDS_PER_PAGE;
   const indexOfFirstCard = indexOfLastCard - CARDS_PER_PAGE;
   const currentCards = cards?.slice(indexOfFirstCard, indexOfLastCard);
-  const pages = cards ? Math.ceil(cards.length / CARDS_PER_PAGE) : 0;
+  const pages = cards
+    ? Math.ceil(
+        cards.length /
+          (currentPage === 1 ? (CARDS_PER_PAGE += 1) : CARDS_PER_PAGE)
+      )
+    : 0;
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -46,7 +62,6 @@ function MyCardsContainer() {
   const { cards } = useCardsUsers();
 
   const { currentCards, paginate, pages, currentPage } = usePaginate({ cards });
-  console.log(currentCards);
   function handleCardClick(clickedCard: object) {
     const debounceLocalStorageWrite = debounce(() => {
       localStorage.setItem("mainCard", JSON.stringify(clickedCard));
