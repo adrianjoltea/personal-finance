@@ -11,7 +11,8 @@ import AppOffline from "./AppOffline";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import LazyLoader from "./components/Ui/LazyLoader";
-import CardTransactions from "./pages/CardTransactions";
+import MyCards from "./pages/MyCards";
+import CreateCardPage from "./pages/CreateCardPage";
 
 const Card = lazy(() => import("./pages/Card"));
 const Overview = lazy(() => import("./pages/Overview"));
@@ -74,7 +75,8 @@ export default function App() {
                   >
                     <Route path="/" element={<Overview />} />
                     <Route path="card" element={<Card />} />
-                    <Route path="create-card" element={<CardTransactions />} />
+                    <Route path="my-cards" element={<MyCards />} />
+                    <Route path="create-card" element={<CreateCardPage />} />
                     <Route path="invest" element={<Invest />} />
                     <Route path="settings" element={<Settings />} />
                   </Route>

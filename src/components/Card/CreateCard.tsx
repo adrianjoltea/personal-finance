@@ -97,6 +97,7 @@ export default function CreateCard() {
       secondColor: data.secondColor,
     };
     createCard(formattedData);
+    navigate("/my-cards");
   };
 
   return (

@@ -1,0 +1,56 @@
+.my-cards {
+  &-skeleton {
+    min-width: 30rem;
+    border-radius: 2rem;
+    height: 15rem;
+    background-color: rgba($slate-500, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: $gap-sm;
+
+    &-btn {
+      background-color: var(--color-brand-100);
+      color: var(--color-brand-500);
+      font-size: $h4-size;
+      padding: $padding-lg;
+      border-radius: 50%;
+    }
+  }
+
+  &-title {
+    grid-column: 4/6;
+    grid-row: 1/2;
+    text-align: center;
+    h2 {
+      font-size: $h2-size;
+    }
+    h4 {
+      font-size: $h4-size;
+    }
+  }
+  &-container {
+    grid-row: 3/6;
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-cards {
+      min-height: 35rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: $gap-lg;
+      justify-content: center;
+    }
+  }
+  &-pagination {
+    margin-top: 2rem;
+    display: flex;
+    gap: $gap-sm;
+    justify-content: center;
+
+    button {
+    }
+  }
+}

@@ -1,6 +1,7 @@
+import React from "react";
 import CreateCard from "../components/Card/CreateCard";
 
-export default function CardTransactions() {
+function CreateCardPage() {
   return (
     <div className="main-page-container">
       <div className="main-page">
@@ -9,3 +10,5 @@ export default function CardTransactions() {
     </div>
   );
 }
+
+export default CreateCardPage;
