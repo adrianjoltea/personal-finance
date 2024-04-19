@@ -33,6 +33,7 @@ export default function AppLayout() {
 
   return (
     <div className={`app-layout ${navOpen ? "" : "collapsed"}`}>
+      <h1></h1>
       <Header />
       <Aside navOpen={navOpen} setNavOpen={setNavOpen} />
 

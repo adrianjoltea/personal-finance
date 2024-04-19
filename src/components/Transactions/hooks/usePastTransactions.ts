@@ -13,7 +13,6 @@ export function usePastTranscations() {
     queryFn: () => fetchPastTransactions(numDays || 7),
     queryKey: ["transactions", `last-${numDays}`],
   });
-  console.log(pastTransactions);
   const pastTransaction = pastTransactions?.data;
 
   return { isLoading, pastTransaction };

@@ -51,6 +51,7 @@ interface SortOptionsProps {
     label: string;
   }[];
   title: string;
+  buttons?: boolean;
 }
 
 export type {

@@ -15,6 +15,8 @@ import { useSelector } from "react-redux";
 import { getDark } from "../../context/darkModeSlice";
 import { useThreshold } from "../../hooks/useResponsive";
 import { usePastTranscations } from "../Transactions/hooks/usePastTransactions";
+import { useTranslation } from "react-i18next";
+import { TransactionChartProps } from "./Interface/OverviewInterface";
 
 const THRESHOLD_WIDTH = 900;
 
@@ -50,7 +52,12 @@ export default function TransactionChart() {
   const { isLoading } = usePastTranscations();
   const isThresholdMet = useThreshold(THRESHOLD_WIDTH);
   const { chartBrush, chartData, colors } = useChartValues();
+  const { t } = useTranslation();
 
+  const { transactionChart } = t(
+    "overview"
+  ) as unknown as TransactionChartProps;
+  const { income, expenses } = transactionChart;
   return (
     <div className="transaction-chart">
       {isLoading ? (
@@ -83,7 +90,7 @@ export default function TransactionChart() {
               dataKey="income"
               stroke={colors.income.stroke}
               fill={colors.income.fill}
-              name="income"
+              name={income}
               type="monotone"
               unit="$"
             />
@@ -92,7 +99,7 @@ export default function TransactionChart() {
               stroke={colors.expenses.stroke}
               fill={colors.expenses.fill}
               type="monotone"
-              name="expenses"
+              name={expenses}
               unit="$"
             />
             <Brush

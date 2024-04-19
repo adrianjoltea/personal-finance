@@ -5,6 +5,9 @@ import { transactions } from "../../services/Interfaces/TransactionsInterface";
 import SortingByOption from "../Ui/SortingByOption";
 import TransactionHistoryRow from "./TransactionHistoryRow";
 import { dataStates } from "../../utils/dataStates";
+import { useTranslation } from "react-i18next";
+import { TransactionHistoryProps } from "./Interface/OverviewInterface";
+import { translateData } from "../../utils/translateData";
 
 const SORT_OPTIONS = [
   { value: "amount-asc", label: "Sort by amount (A-Z)" },
@@ -22,19 +25,30 @@ const EMPTY_DATA_TEXT = "Please make a transaction";
 
 export default function TransactionHistory() {
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
   const { transactions, loading } = useTransactions();
   const sortBy = searchParams.get("sortBy") || "amount-asc";
   const [field, direction] = sortBy.split("-") as [keyof transactions, string];
 
   const transactionState = dataStates(transactions, loading, EMPTY_DATA_TEXT);
   const sortedData = sortData(transactions, field, direction);
+  const { transactionHistory } = t(
+    "transactions"
+  ) as unknown as TransactionHistoryProps;
+
+  const rowTranslated = translateData(ROW_ITEMS, transactionHistory);
+  console.log(rowTranslated);
 
   return (
     <div className="transaction-table-overview transaction-table">
-      <SortingByOption title="Transaction history" options={SORT_OPTIONS} />
+      <SortingByOption
+        title="Transaction history"
+        options={SORT_OPTIONS}
+        buttons={true}
+      />
 
       <div className="transaction-table-row">
-        {ROW_ITEMS.map(row => (
+        {rowTranslated.map(row => (
           <div className="transaction-table-row-item" key={row}>
             {row}
           </div>

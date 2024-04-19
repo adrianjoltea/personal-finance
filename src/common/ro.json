@@ -1,0 +1,50 @@
+{
+  "translation": {
+    "ciava": "njush2",
+    "sidebar": {
+      "overview": "Prezentare generală",
+      "transactions": "Tranzacții",
+      "myCards": "Cardurile mele",
+      "invest": "Invest",
+      "settings": "Setări"
+    },
+    "overview": {
+      "mainTransactions": {
+        "biggestIncome": "Cel mai mare venit",
+        "createdAt": "Creat la",
+        "biggestExpense": "Cea mai mare cheltuială",
+        "description": "Descriere",
+        "totalIncomes": "Venituri Totale",
+        "totalExpenses": "Cheltuieli Totale"
+      },
+      "transactionChart": {
+        "last": "ultimele",
+        "days": "zile",
+        "income": "venituri",
+        "expenses": "cheltuieli"
+      },
+      "transactionPie": {
+        "job": "Muncă",
+        "sidejob": "Muncă secundară",
+        "freelancing": "Freelancing",
+        "other": "Altele",
+        "utilities": "Utilități",
+        "groceries": "Produse alimentare",
+        "entertainment": "Divertisment",
+        "travel": "Călătorii",
+        "miscellaneous": "Diverse"
+      }
+    },
+    "transactions": {
+      "transactionHistory": {
+        "transactionHistory": "Istoric tranzacții",
+        "amount": "Sumă",
+        "createdat": "Creat la",
+        "description": "Descriere",
+        "category": "Categorie",
+        "deposit": "Deposit",
+        "withdraw": "Retragere"
+      }
+    }
+  }
+}

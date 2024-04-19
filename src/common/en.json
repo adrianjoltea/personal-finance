@@ -1,0 +1,50 @@
+{
+  "translation": {
+    "ciava": "nush",
+    "sidebar": {
+      "overview": "Overview",
+      "transactions": "Transactions",
+      "myCards": "My Cards",
+      "invest": "Invest",
+      "settings": "Settings"
+    },
+    "overview": {
+      "mainTransactions": {
+        "biggestIncome": "Biggest Income",
+        "createdAt": "Created At",
+        "biggestExpense": "Biggest Expense",
+        "description": "Description",
+        "totalIncomes": "Total Incomes",
+        "totalExpenses": "Total Expenses"
+      },
+      "transactionChart": {
+        "last": "last",
+        "days": "days",
+        "income": "income",
+        "expenses": "expenses"
+      },
+      "transactionPie": {
+        "job": "Job",
+        "sidejob": "Side Job",
+        "freelancing": "Freelancing",
+        "other": "Other",
+        "utilities": "Utilities",
+        "groceries": "Groceries",
+        "entertainment": "Entertainment",
+        "travel": "Travel",
+        "miscellaneous": "Miscellaneous"
+      }
+    },
+    "transactions": {
+      "transactionHistory": {
+        "transactionHistory": "Transaction History",
+        "amount": "Amount",
+        "createdat": "Created At",
+        "description": "Description",
+        "category": "Category",
+        "deposit": "Deposit",
+        "withdraw": "Withdraw"
+      }
+    }
+  }
+}

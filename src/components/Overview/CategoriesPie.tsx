@@ -3,8 +3,13 @@ import { useSelector } from "react-redux";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { getDark } from "../../context/darkModeSlice";
-import { ChartOptions } from "./Interface/OverviewInterface";
+import {
+  ChartOptions,
+  TransactionPieProps,
+} from "./Interface/OverviewInterface";
 import { useTransactions } from "../Transactions/hooks/useTransactions";
+import { useTranslation } from "react-i18next";
+import { translateData } from "../../utils/translateData";
 
 const DARK_COLORS = [
   "#ef4444",
@@ -34,10 +39,15 @@ const LIGHT_COLORS = [
 
 function useChartData() {
   const dark = useSelector(getDark);
+  const { t } = useTranslation();
   const { transactions } = useTransactions();
   const categories = processTransactions(transactions ? transactions : []);
 
-  const labels = categories.map(entry => entry.category);
+  const { transactionPie } = t("overview") as unknown as TransactionPieProps;
+  const labels = translateData(
+    categories.map(entry => entry.category),
+    transactionPie
+  );
   const amount = categories.map(entry => entry.totalAmount);
   const backgroundColors = dark ? LIGHT_COLORS : DARK_COLORS;
 

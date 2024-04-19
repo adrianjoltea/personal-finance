@@ -4,6 +4,8 @@ import Modal from "./Modal";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../../context/modalSlice";
 import { CardOperationProps } from "./Interface/CardInterface";
+import { useTranslation } from "react-i18next";
+import { TransactionHistoryProps } from "../Overview/Interface/OverviewInterface";
 
 function CardOperation({
   modalId,
@@ -23,6 +25,12 @@ function CardOperation({
 
 export default function CardOperations() {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const { transactionHistory } = t(
+    "transactions"
+  ) as unknown as TransactionHistoryProps;
+
+  const { deposit, withdraw } = transactionHistory;
 
   const openDepositModal = () => {
     dispatch(toggleModal({ modalId: "deposit", open: true }));
@@ -37,13 +45,13 @@ export default function CardOperations() {
       <CardOperation
         modalId="deposit"
         formComponent={<DepositForm />}
-        buttonText="Deposit"
+        buttonText={deposit}
         openModal={openDepositModal}
       />
       <CardOperation
         modalId="withdraw"
         formComponent={<WithdrawForm />}
-        buttonText="Withdraw"
+        buttonText={withdraw}
         openModal={openWithdrawModal}
       />
     </div>

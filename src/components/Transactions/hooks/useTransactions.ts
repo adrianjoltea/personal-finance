@@ -8,7 +8,6 @@ export function useTransactions() {
     refetch: refetchTransactions,
   } = useQuery({ queryKey: ["transactions"], queryFn: fetchTransactions });
 
-  console.log(transactionData);
   const transactions = transactionData?.data;
 
   return {

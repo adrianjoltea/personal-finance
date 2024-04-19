@@ -27,5 +27,59 @@ interface Transactions {
   createdAt: Date;
   category: string;
 }
+interface MainTransactions {
+  mainTransactions: {
+    biggestIncome: string;
+    createdAt: string;
+    biggestExpense: string;
+    description: string;
+    totalIncomes: string;
+    totalExpenses: string;
+  };
+}
 
-export type { MainCardProps, ChartOptions, Transactions };
+interface TransactionChartProps {
+  transactionChart: {
+    last: string;
+    days: string;
+    income: string;
+    expenses: string;
+  };
+}
+
+interface TransactionPieProps {
+  transactionPie: {
+    [key: string]: string;
+    job: string;
+    sideJob: string;
+    freelancing: string;
+    other: string;
+    utilities: string;
+    groceries: string;
+    entertainment: string;
+    travel: string;
+    miscellaneous: string;
+  };
+}
+
+interface TransactionHistoryProps {
+  transactionHistory: {
+    amount: string;
+    category: string;
+    createdAt: string;
+    description: string;
+    transactionHistory: string;
+    deposit: string;
+    withdraw: string;
+  };
+}
+
+export type {
+  MainCardProps,
+  ChartOptions,
+  Transactions,
+  MainTransactions,
+  TransactionChartProps,
+  TransactionPieProps,
+  TransactionHistoryProps,
+};
