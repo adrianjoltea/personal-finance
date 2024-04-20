@@ -7,23 +7,40 @@ import { Stocks } from "../../services/Interfaces/Investitions";
 import { sortData } from "../../utils/sortData";
 import SortingByOption from "../Ui/SortingByOption";
 import { dataStates } from "../../utils/dataStates";
+import { useTranslation } from "react-i18next";
+import { InvestProps } from "./Interface/InvestInterface";
+import { translateData } from "../../utils/translateData";
 
 const ROW_ITEMS = ["Name", "Amount", "Bought Price", "Sell Price", "Sell"];
-const SORT_OPTIONS = [
-  { value: "amount-asc", label: "Sort by amount (A-Z)" },
-  { value: "amount-desc", label: "Sort by amount (Z-A)" },
-  { value: "name-asc", label: "Sort by name (A-Z)" },
-  { value: "name-desc", label: "Sort by name (Z-A)" },
-  { value: "boughtPrice-asc", label: "Sort by bought price (A-Z)" },
-  { value: "boughtPrice-desc", label: "Sort by bought price (Z-A)" },
-];
+
 const EMPTY_DATA_TEXT = "Please buy a stock";
+
+function useTranslatedText() {
+  const { t } = useTranslation();
+  const { options, ownedStocks } = t("invest") as unknown as InvestProps;
+
+  const { sortAmount, sortBoughtPrice, sortName } = options;
+
+  const rowTranslated = translateData(ROW_ITEMS, ownedStocks);
+  const SORT_OPTIONS = [
+    { value: "amount-asc", label: `${sortAmount} (A-Z)` },
+    { value: "amount-desc", label: `${sortAmount} (Z-A)` },
+    { value: "name-asc", label: `${sortName} (A-Z)` },
+    { value: "name-desc", label: `${sortName} (Z-A)` },
+    { value: "boughtPrice-asc", label: `${sortBoughtPrice} (A-Z)` },
+    { value: "boughtPrice-desc", label: `${sortBoughtPrice} (Z-A)` },
+  ];
+
+  return { SORT_OPTIONS, rowTranslated };
+}
 
 export default function BoughtStocks() {
   const [searchParams] = useSearchParams();
   const { stocks, loading } = useStocks();
   const sortBy = searchParams.get("sortBy") || "amount-asc";
   const [field, direction] = sortBy.split("-") as [keyof Stocks, string];
+
+  const { SORT_OPTIONS, rowTranslated } = useTranslatedText();
 
   const stocksState = dataStates(stocks, loading, EMPTY_DATA_TEXT);
   const sortedData = sortData(stocks, field, direction);
@@ -34,7 +51,7 @@ export default function BoughtStocks() {
       <SortingByOption title="Owned stocks" options={SORT_OPTIONS} />
 
       <div className="transaction-table-row">
-        {ROW_ITEMS.map(row => (
+        {rowTranslated.map(row => (
           <div key={row} className="transaction-table-row-item">
             {row}
           </div>

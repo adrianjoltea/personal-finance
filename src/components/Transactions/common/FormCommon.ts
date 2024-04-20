@@ -1,5 +1,4 @@
 import * as z from "zod";
-
 const FIELD_NAME = {
   AMOUNT: "amount",
   DESCRIPTION: "description",

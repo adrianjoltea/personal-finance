@@ -8,7 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import InputHook from "../Ui/InputHook";
 import { transactionProps } from "../../services/Interfaces/TransactionsInterface";
-import { FIELD_LABEL, FIELD_NAME, SCHEMA } from "./common/variables";
+import { useTranslatedModal } from "./hooks/useTranslatedModal";
+import { translateData } from "../../utils/translateData";
+import { FIELD_NAME, SCHEMA } from "./common/FormCommon";
 
 const FORM_OPTIONS = [
   "Utilities",
@@ -22,6 +24,8 @@ export default function WithdrawForm() {
   const dispatch = useDispatch();
   const mainCard = useSelector(getMainCard);
   const { isPending, addTransactions } = useAddTransaction();
+  const { FIELD_LABEL, modal } = useTranslatedModal();
+  const options = translateData(FORM_OPTIONS, modal.categories);
   const {
     register,
     handleSubmit,
@@ -49,7 +53,7 @@ export default function WithdrawForm() {
       name: FIELD_NAME.CATEGORY,
       label: FIELD_LABEL.CATEGORY,
       type: "select",
-      options: FORM_OPTIONS,
+      options: options,
     },
   ];
 
@@ -86,7 +90,7 @@ export default function WithdrawForm() {
 
         <div className="form-btn">
           <button className="btn btn-form" disabled={isPending}>
-            Withdraw
+            {modal.withdraw}
           </button>
         </div>
       </form>

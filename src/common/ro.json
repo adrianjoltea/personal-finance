@@ -44,6 +44,57 @@
         "category": "Categorie",
         "deposit": "Deposit",
         "withdraw": "Retragere"
+      },
+      "options": {
+        "sortAmount": "Sortează după sumă",
+        "sortDescription": "Sortează după descriere",
+        "sortCreatedAt": "Sortează după creat la",
+        "sortCategory": "Sortează după categorie"
+      }
+    },
+    "modal": {
+      "amount": "Sumă",
+      "description": "Descriere",
+      "category": "Categorie",
+      "enterAmount": "Introduceți suma dvs.",
+      "enterDescription": "Introduceți descrierea dvs.",
+      "enterCategory": "Introduceți categoria dvs.",
+      "withdraw": "Retragere",
+      "deposit": "Deposit",
+      "categories": {
+        "job": "Muncă",
+        "sidejob": "Muncă secundară",
+        "freelancing": "Freelancing",
+        "other": "Altele",
+        "utilities": "Utilități",
+        "groceries": "Produse alimentare",
+        "entertainment": "Divertisment",
+        "travel": "Călătorii",
+        "miscellaneous": "Diverse"
+      }
+    },
+    "myCards": {
+      "title": "Carduri",
+      "subTitle": "Prezentare generală a cardurilor tale",
+      "create": "Creează Card"
+    },
+    "invest": {
+      "ownedStocks": {
+        "ownedStocks": "Istoric tranzacții",
+        "amount": "Sumă",
+        "boughtprice": "Preț de cumpărare",
+        "sellprice": "Preț de vânzare",
+        "sell": "Vânzare",
+        "invest": "Investeste",
+        "sellAll": "Vinde tot"
+      },
+      "options": {
+        "sortAmount": "Sortează după sumă",
+        "sortName": "Sortează după nume",
+        "sortBoughtPrice": "Sortează după prețul de cumpărare"
+      },
+      "modal": {
+        "currentValue": "Valoare curentă"
       }
     }
   }

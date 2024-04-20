@@ -6,6 +6,7 @@ export default function Input({
   type = "text",
   id,
   value,
+
   onChange,
   autoComplete,
   placeholder,
@@ -21,7 +22,6 @@ export default function Input({
         <input
           className="form-input"
           type={type}
-          name={id}
           id={id}
           placeholder={!placeholder ? defaultPlaceholder : placeholder}
           value={value as string}

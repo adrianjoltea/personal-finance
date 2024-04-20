@@ -71,15 +71,15 @@ export default function CardDetails({
 
   const dropdownItems = [
     {
-      label: "Delete",
-      onClick: handleDelete,
-      icon: <BiTrash />,
-      disabled: isDeleting,
-    },
-    {
       label: "Add",
       onClick: handleAdd,
       icon: <FaHome />,
+      disabled: isDeleting,
+    },
+    {
+      label: "Delete",
+      onClick: handleDelete,
+      icon: <BiTrash />,
       disabled: isDeleting,
     },
   ];

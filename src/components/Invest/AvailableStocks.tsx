@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import StockModal from "./StockModal";
 import { toggleModal } from "../../context/modalSlice";
 import { useState } from "react";
-import { Investitions } from "./Interface/InvestInterface";
+import { InvestProps, Investitions } from "./Interface/InvestInterface";
+import { useTranslation } from "react-i18next";
 
 export default function AvailableStocks({
   currentValue,
@@ -14,6 +15,8 @@ export default function AvailableStocks({
 }: Investitions) {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslation();
+  const text = t("invest") as unknown as InvestProps;
 
   function handleOpenModal() {
     setIsModalOpen(true);
@@ -33,7 +36,9 @@ export default function AvailableStocks({
           <h3>{name}</h3>
         </div>
         <div className="invest-card-amount">
-          <span>Current value {currentValue}</span>
+          <span>
+            {text.modal.currentValue} {currentValue}
+          </span>
         </div>
 
         <button className="btn btn-login" onClick={handleOpenModal}>

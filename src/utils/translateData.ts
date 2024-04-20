@@ -4,7 +4,6 @@ export function translateData<T extends Record<string, string>>(
 ) {
   return data.map(data => {
     const formattedData = data.replace(" ", "").toLowerCase();
-    console.log(translatedData[formattedData]);
 
     return translatedData[formattedData] || data;
   });

@@ -74,6 +74,15 @@ interface TransactionHistoryProps {
   };
 }
 
+interface TransactionOptionProps {
+  options: {
+    sortAmount: string;
+    sortDescription: string;
+    sortCreatedAt: string;
+    sortCategory: string;
+  };
+}
+
 export type {
   MainCardProps,
   ChartOptions,
@@ -82,4 +91,5 @@ export type {
   TransactionChartProps,
   TransactionPieProps,
   TransactionHistoryProps,
+  TransactionOptionProps,
 };

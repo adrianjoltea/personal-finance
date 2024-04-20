@@ -30,10 +30,31 @@ interface StockModalInterface {
   currentValue: number;
 }
 
+interface InvestProps {
+  ownedStocks: {
+    ownedStocks: string;
+    amount: string;
+    boughtPrice: string;
+    sellPrice: string;
+    sell: string;
+    invest: string;
+    sellAll: string;
+  };
+  options: {
+    sortAmount: string;
+    sortName: string;
+    sortBoughtPrice: string;
+  };
+  modal: {
+    currentValue: string;
+  };
+}
+
 export type {
   Investitions,
   BoughtStock,
   StockData,
   StockLineChartProps,
   StockModalInterface,
+  InvestProps,
 };

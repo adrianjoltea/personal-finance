@@ -5,9 +5,11 @@ import Card from "../Overview/Card";
 import { toggleModal } from "../../context/modalSlice";
 import { transactionProps } from "../../services/Interfaces/TransactionsInterface";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { FIELD_LABEL, FIELD_NAME, SCHEMA } from "./common/variables";
+import { useTranslatedModal } from "./hooks/useTranslatedModal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputHook from "../Ui/InputHook";
+import { translateData } from "../../utils/translateData";
+import { FIELD_NAME, SCHEMA } from "./common/FormCommon";
 
 const FORM_OPTIONS = ["Job", "Side Job", "Freelancing", "Other"];
 
@@ -15,6 +17,9 @@ export default function DepositForm() {
   const dispatch = useDispatch();
   const mainCard = useSelector(getMainCard);
   const { isPending, addTransactions } = useAddTransaction();
+
+  const { modal, FIELD_LABEL } = useTranslatedModal();
+  const options = translateData(FORM_OPTIONS, modal.categories);
 
   const {
     register,
@@ -24,7 +29,7 @@ export default function DepositForm() {
     defaultValues: {
       [FIELD_NAME.AMOUNT]: "",
       [FIELD_NAME.DESCRIPTION]: "",
-      [FIELD_NAME.CATEGORY]: "Job",
+      [FIELD_NAME.CATEGORY]: "",
     },
     resolver: zodResolver(SCHEMA),
   });
@@ -43,7 +48,7 @@ export default function DepositForm() {
       name: FIELD_NAME.CATEGORY,
       label: FIELD_LABEL.CATEGORY,
       type: "select",
-      options: FORM_OPTIONS,
+      options: options,
     },
   ];
 

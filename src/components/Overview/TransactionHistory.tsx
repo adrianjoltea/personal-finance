@@ -6,19 +6,30 @@ import SortingByOption from "../Ui/SortingByOption";
 import TransactionHistoryRow from "./TransactionHistoryRow";
 import { dataStates } from "../../utils/dataStates";
 import { useTranslation } from "react-i18next";
-import { TransactionHistoryProps } from "./Interface/OverviewInterface";
+import {
+  TransactionHistoryProps,
+  TransactionOptionProps,
+} from "./Interface/OverviewInterface";
 import { translateData } from "../../utils/translateData";
 
-const SORT_OPTIONS = [
-  { value: "amount-asc", label: "Sort by amount (A-Z)" },
-  { value: "amount-desc", label: "Sort by amount (Z-A)" },
-  { value: "createdAt-asc", label: "Sort by created At (A-Z)" },
-  { value: "createdAt-desc", label: "Sort by created At (Z-A)" },
-  { value: "description-asc", label: "Sort by description (A-Z)" },
-  { value: "description-desc", label: "Sort by description (Z-A)" },
-  { value: "category-asc", label: "Sort by category (A-Z)" },
-  { value: "category-desc", label: "Sort by category (Z-A)" },
-];
+function useTranslatedOptions() {
+  const { t } = useTranslation();
+  const { options } = t("transactions") as unknown as TransactionOptionProps;
+  const { sortAmount, sortCategory, sortCreatedAt, sortDescription } = options;
+
+  const SORT_OPTIONS = [
+    { value: "amount-asc", label: `${sortAmount} (A-Z)` },
+    { value: "amount-desc", label: `${sortAmount} (Z-A)` },
+    { value: "createdAt-asc", label: `${sortCreatedAt} (A-Z)` },
+    { value: "createdAt-desc", label: `${sortCreatedAt} (Z-A)` },
+    { value: "description-asc", label: `${sortDescription} (A-Z)` },
+    { value: "description-desc", label: `${sortDescription} (Z-A)` },
+    { value: "category-asc", label: `${sortCategory} (A-Z)` },
+    { value: "category-desc", label: `${sortCategory} (Z-A)` },
+  ];
+
+  return SORT_OPTIONS;
+}
 
 const ROW_ITEMS = ["Amount", "Created At", "Description", "Category"];
 const EMPTY_DATA_TEXT = "Please make a transaction";
@@ -29,6 +40,7 @@ export default function TransactionHistory() {
   const { transactions, loading } = useTransactions();
   const sortBy = searchParams.get("sortBy") || "amount-asc";
   const [field, direction] = sortBy.split("-") as [keyof transactions, string];
+  const SORT_OPTIONS = useTranslatedOptions();
 
   const transactionState = dataStates(transactions, loading, EMPTY_DATA_TEXT);
   const sortedData = sortData(transactions, field, direction);
@@ -37,7 +49,6 @@ export default function TransactionHistory() {
   ) as unknown as TransactionHistoryProps;
 
   const rowTranslated = translateData(ROW_ITEMS, transactionHistory);
-  console.log(rowTranslated);
 
   return (
     <div className="transaction-table-overview transaction-table">

@@ -9,12 +9,10 @@ import InputHook from "../Ui/InputHook";
 import { BuyStocks } from "../../services/Interfaces/Investitions";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslatedModal } from "../Transactions/hooks/useTranslatedModal";
 
 const FIELD_NAME = {
   AMOUNT: "amount",
-};
-const FIELD_LABEL = {
-  AMOUNT: "Enter your amount",
 };
 
 const SCHEMA = z.object({
@@ -29,6 +27,8 @@ export default function StockModal({
   const mainCard = useSelector(getMainCard);
   const dispatch = useDispatch();
   const { isAdding, buyStock } = useBuyStock();
+
+  const { FIELD_LABEL } = useTranslatedModal();
 
   const {
     register,

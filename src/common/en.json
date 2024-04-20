@@ -8,6 +8,7 @@
       "invest": "Invest",
       "settings": "Settings"
     },
+
     "overview": {
       "mainTransactions": {
         "biggestIncome": "Biggest Income",
@@ -44,6 +45,58 @@
         "category": "Category",
         "deposit": "Deposit",
         "withdraw": "Withdraw"
+      },
+
+      "options": {
+        "sortAmount": "Sort by amount",
+        "sortDescription": "Sort by description",
+        "sortCreatedAt": "Sort by created at",
+        "sortCategory": "Sort by category"
+      }
+    },
+    "modal": {
+      "amount": "Amount",
+      "description": "Description",
+      "category": "Category",
+      "enterAmount": "Enter your amount",
+      "enterDescription": "Enter your description",
+      "enterCategory": "Enter your category",
+      "withdraw": "Withdraw",
+      "deposit": "Deposit",
+      "categories": {
+        "job": "Job",
+        "sidejob": "Side Job",
+        "freelancing": "Freelancing",
+        "other": "Other",
+        "utilities": "Utilities",
+        "groceries": "Groceries",
+        "entertainment": "Entertainment",
+        "travel": "Travel",
+        "miscellaneous": "Miscellaneous"
+      }
+    },
+    "myCards": {
+      "title": "Cards",
+      "subTitle": "Overview of your cards",
+      "create": "Create Card"
+    },
+    "invest": {
+      "ownedStocks": {
+        "ownedStocks": "Transaction History",
+        "amount": "Amount",
+        "boughtprice": "Bought Price",
+        "sellprice": "Sell Price",
+        "sell": "Sell",
+        "invest": "Invest",
+        "sellAll": "Sell All"
+      },
+      "options": {
+        "sortAmount": "Sort by amount",
+        "sortName": "Sort by name",
+        "sortBoughtPrice": "Sort by bought price"
+      },
+      "modal": {
+        "currentValue": "Current value"
       }
     }
   }

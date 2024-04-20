@@ -1,6 +1,7 @@
+import { useTranslation } from "react-i18next";
 import { useSellStock } from "./hooks/useSellStock";
 import { useStocks } from "./hooks/useStocks";
-import { BoughtStock } from "./Interface/InvestInterface";
+import { BoughtStock, InvestProps } from "./Interface/InvestInterface";
 
 function useFormatedStocks(
   sellPriceId: string,
@@ -27,6 +28,9 @@ export default function BoughtStockRow({
   name,
 }: BoughtStock) {
   const { isSelling, sellStock } = useSellStock();
+
+  const { t } = useTranslation();
+  const text = t("invest") as unknown as InvestProps;
 
   const { stock, profit, profitAmount } = useFormatedStocks(
     sellPriceId,
@@ -61,7 +65,7 @@ export default function BoughtStockRow({
       </p>
       <div className="transaction-table-row-item">
         <button className="btn" onClick={handleSellStock} disabled={isSelling}>
-          Sell All
+          {text.ownedStocks.sellAll}
         </button>
       </div>
     </div>
