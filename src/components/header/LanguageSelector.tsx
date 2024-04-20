@@ -12,11 +12,13 @@ function LanguageSelector() {
   };
 
   return (
-    <div>
+    <div className="header-btns">
       {LANGUAGES.map(lng => {
         return (
           <button
-            className={lng.code === i18n.language ? "selected" : ""}
+            className={`header-btns-btn ${
+              lng.code === i18n.language ? "header-btns-selected" : ""
+            }`}
             key={lng.code}
             onClick={() => changeLanguage(lng.code)}
           >

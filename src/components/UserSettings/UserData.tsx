@@ -5,9 +5,11 @@ import { validateProfileToast } from "./utils/validateProfile";
 import toast from "react-hot-toast";
 import ProfilePreview from "./ProfilePreview";
 import { useUser } from "../User/useUser";
+import { useTranslation } from "react-i18next";
 
 export default function UserData() {
   const { user } = useUser();
+  const { t } = useTranslation();
   const originalUsername = user?.username;
   const [originalFirstName, originalLastName] =
     originalUsername?.split(" ") || [];
@@ -20,7 +22,7 @@ export default function UserData() {
     username,
     profilePicture: avatar,
   };
-
+  const text = t("settings") as unknown as { title: string };
   function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
 
@@ -44,7 +46,7 @@ export default function UserData() {
 
   return (
     <>
-      <h2 className="user-data-h2">Update your account</h2>
+      <h2 className="user-data-h2">{text.title}</h2>
       <div className="user-data">
         <div className="user-data-preview">
           <ProfilePreview

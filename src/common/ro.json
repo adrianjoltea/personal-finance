@@ -96,6 +96,9 @@
       "modal": {
         "currentValue": "Valoare curentă"
       }
+    },
+    "settings": {
+      "title": "Actualizează-ți contul"
     }
   }
 }

@@ -98,6 +98,9 @@
       "modal": {
         "currentValue": "Current value"
       }
+    },
+    "settings": {
+      "title": "Update your account"
     }
   }
 }

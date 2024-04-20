@@ -1,0 +1,21 @@
+.header-btns {
+  display: flex;
+  margin-right: 2rem;
+  gap: $gap-sm;
+  justify-content: space-between;
+
+  &-btn {
+    background-color: var(--color-brand-600);
+    color: $color-white;
+    font-size: $p-size;
+    border-radius: 2rem;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  &-selected {
+    scale: 1.05;
+    background-color: var(--color-brand-900);
+  }
+}
