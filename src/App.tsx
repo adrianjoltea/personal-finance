@@ -12,6 +12,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import LazyLoader from "./components/Ui/LazyLoader";
 import CreateCardPage from "./pages/CreateCardPage";
+import LandingPage from "./pages/LandingPage";
 
 const Transactions = lazy(() => import("./pages/Transactions"));
 const Overview = lazy(() => import("./pages/Overview"));
@@ -81,6 +82,7 @@ export default function App() {
                     <Route path="settings" element={<Settings />} />
                   </Route>
                   <Route path="*" element={<PageNotFound />} />
+                  <Route path="/landing-page" element={<LandingPage />} />
                   <Route path="/login" element={<Login />} />
                 </Routes>
               </Suspense>
