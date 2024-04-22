@@ -16,10 +16,6 @@
     &:hover {
       background-color: var(--color-brand-700);
     }
-
-    @include respond(tab-port) {
-      width: 80%;
-    }
   }
 
   &-form {

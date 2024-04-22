@@ -17,7 +17,7 @@
   }
 
   @include respond(tab-port) {
-    height: 50rem;
+    height: 75rem;
   }
 
   -ms-overflow-style: none;
@@ -51,14 +51,13 @@
     background-color: var(--color-grey-100);
     align-items: center;
 
+    @include respond(tab-port) {
+      flex-wrap: wrap;
+      row-gap: $gap-lg;
+    }
     h3 {
       font-size: 2rem;
     }
-
-    // select {
-    //   background-color: transparent;
-    //   border: none;
-    // }
   }
 }
 .text-green {

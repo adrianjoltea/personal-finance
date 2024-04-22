@@ -14,14 +14,31 @@ function LandingPageGallery() {
       <h2>Image Gallery</h2>
       <span className="landing-page-divider"></span>
       <div className="landing-page-gallery">
-        <img src={img1} alt="gallery" className="img-1" />
-        <img src={img2} alt="gallery" className="img-2" />
-        <img src={img3} alt="gallery" className="img-3" />
-        <img src={img4} alt="gallery" className="img-4" />
-        <img src={img5} alt="gallery" className="img-5" />
-        <img src={img7} alt="gallery" className="img-7" />
-        <img src={img8} alt="gallery" className="img-8" />
-        <img src={img9} alt="gallery" className="img-9" />
+        <div className="big">
+          <img src={img1} alt="gallery" className="img-1" />
+        </div>
+        <div className="wide">
+          <img src={img3} alt="gallery" className="img-3" />
+        </div>
+
+        <div className="big">
+          <img src={img4} alt="gallery" className="img-4" />
+        </div>
+        <div className="tall">
+          <img src={img9} alt="gallery" className="img-9" />
+        </div>
+        <div className="wide">
+          <img src={img5} alt="gallery" className="img-5" />
+        </div>
+        <div className="tall">
+          <img src={img8} alt="gallery" className="img-8" />
+        </div>
+        <div className="wide">
+          <img src={img7} alt="gallery" className="img-7" />
+        </div>
+        <div className="wide">
+          <img src={img2} alt="gallery" className="img-2" />
+        </div>
       </div>
     </div>
   );

@@ -6,7 +6,6 @@
 
     @include respond(tab-port) {
       flex-direction: row;
-      margin-block: 10rem;
     }
     @media (max-width: 400px) {
       flex-direction: column;
