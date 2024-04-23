@@ -24,7 +24,13 @@ export default function WithdrawForm() {
   const dispatch = useDispatch();
   const mainCard = useSelector(getMainCard);
   const { isPending, addTransactions } = useAddTransaction();
-  const { FIELD_LABEL, modal } = useTranslatedModal();
+  const {
+    FIELD_LABEL,
+    modal,
+    amount: labelAmount,
+    description: labelDescription,
+    category: labelCategory,
+  } = useTranslatedModal();
   const options = translateData(FORM_OPTIONS, modal.categories);
   const {
     register,
@@ -44,16 +50,19 @@ export default function WithdrawForm() {
       name: FIELD_NAME.AMOUNT,
       label: FIELD_LABEL.AMOUNT,
       type: "number",
+      labelAfter: labelAmount,
     },
     {
       name: FIELD_NAME.DESCRIPTION,
       label: FIELD_LABEL.DESCRIPTION,
+      labelAfter: labelDescription,
     },
     {
       name: FIELD_NAME.CATEGORY,
       label: FIELD_LABEL.CATEGORY,
       type: "select",
       options: options,
+      labelAfter: labelCategory,
     },
   ];
 
@@ -85,6 +94,7 @@ export default function WithdrawForm() {
             type={field.type}
             key={index}
             options={field.options}
+            label={field.labelAfter}
           />
         ))}
 

@@ -78,7 +78,18 @@
     "myCards": {
       "title": "Cards",
       "subTitle": "Overview of your cards",
-      "create": "Create Card"
+      "create": "Create Card",
+      "form": {
+        "name": "Name",
+        "balance": "Balance",
+        "enterName": "Enter your name",
+        "enterBalance": "Enter your balance",
+        "cancel": "Cancel",
+        "currency": "Currency",
+        "firstColor": "First color",
+        "secondColor": "Second color",
+        "submit": "Submit"
+      }
     },
     "invest": {
       "ownedStocks": {
@@ -100,7 +111,11 @@
       }
     },
     "settings": {
-      "title": "Update your account"
+      "title": "Update your account",
+      "enterFirstName": "Enter your first name",
+      "enterLastName": "Enter your last name",
+      "firstName": "First name",
+      "lastName": "Last name"
     }
   }
 }

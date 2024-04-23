@@ -6,7 +6,7 @@ export default function Input({
   type = "text",
   id,
   value,
-
+  label,
   onChange,
   autoComplete,
   placeholder,
@@ -14,7 +14,7 @@ export default function Input({
   handleShow,
   showPassword,
 }: InputProps) {
-  const content = capitalizeFirstLetter(id);
+  const content = label && capitalizeFirstLetter(label);
   const defaultPlaceholder = `Enter your ${id}`;
   return (
     <div className="form-group">

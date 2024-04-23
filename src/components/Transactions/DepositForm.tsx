@@ -18,7 +18,13 @@ export default function DepositForm() {
   const mainCard = useSelector(getMainCard);
   const { isPending, addTransactions } = useAddTransaction();
 
-  const { modal, FIELD_LABEL } = useTranslatedModal();
+  const {
+    modal,
+    FIELD_LABEL,
+    amount: labelAmount,
+    description: labelDescription,
+    category: labelCategory,
+  } = useTranslatedModal();
   const options = translateData(FORM_OPTIONS, modal.categories);
 
   const {
@@ -39,16 +45,19 @@ export default function DepositForm() {
       name: FIELD_NAME.AMOUNT,
       label: FIELD_LABEL.AMOUNT,
       type: "number",
+      labelAfter: labelAmount,
     },
     {
       name: FIELD_NAME.DESCRIPTION,
       label: FIELD_LABEL.DESCRIPTION,
+      labelAfter: labelDescription,
     },
     {
       name: FIELD_NAME.CATEGORY,
       label: FIELD_LABEL.CATEGORY,
       type: "select",
       options: options,
+      labelAfter: labelCategory,
     },
   ];
 
@@ -80,6 +89,7 @@ export default function DepositForm() {
             type={field.type}
             key={index}
             options={field.options}
+            label={field.labelAfter}
           />
         ))}
         <div className="form-btn">

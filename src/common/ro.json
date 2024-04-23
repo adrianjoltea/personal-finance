@@ -76,7 +76,18 @@
     "myCards": {
       "title": "Carduri",
       "subTitle": "Prezentare generală a cardurilor tale",
-      "create": "Creează Card"
+      "create": "Creează Card",
+      "form": {
+        "name": "Nume",
+        "balance": "Sold",
+        "enterName": "Introduceți numele",
+        "enterBalance": "Introduceți soldul",
+        "currency": "Valută",
+        "firstColor": "Prima culoare",
+        "secondColor": "A doua culoare",
+        "cancel": "Anulați",
+        "submit": "Trimiteți"
+      }
     },
     "invest": {
       "ownedStocks": {
@@ -98,7 +109,11 @@
       }
     },
     "settings": {
-      "title": "Actualizează-ți contul"
+      "title": "Actualizați-vă contul",
+      "enterFirstName": "Introduceți prenumele dumneavoastră",
+      "enterLastName": "Introduceți numele de familie",
+      "firstName": "Prenume",
+      "lastName": "Nume de familie"
     }
   }
 }

@@ -1,5 +1,3 @@
-import React from "react";
-
 function LandingPageFooter() {
   return (
     <div className="landing-page-footer">

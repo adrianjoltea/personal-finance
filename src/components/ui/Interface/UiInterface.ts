@@ -11,6 +11,7 @@ interface InputProps {
   type?: string;
   name?: string;
   id: string;
+  label?: string;
   placeholder?: string;
   content?: string;
   value: string | number | Blob | null;
@@ -31,6 +32,7 @@ interface InputPropsHook<T extends FieldValues> {
   errors: Record<string, GlobalError>;
   autoComplete?: string;
   forPassword?: boolean;
+  label?: string;
   handleShow?: () => void;
   showPassword?: boolean;
   options?: string[];

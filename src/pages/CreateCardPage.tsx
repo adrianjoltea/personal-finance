@@ -1,4 +1,3 @@
-import React from "react";
 import CreateCard from "../components/Card/CreateCard";
 
 function CreateCardPage() {

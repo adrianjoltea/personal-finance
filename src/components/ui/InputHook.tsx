@@ -15,16 +15,17 @@ export default function InputHook<T extends FieldValues>({
   forPassword,
   handleShow,
   showPassword,
+  label,
   options,
 }: InputPropsHook<T>) {
-  const content = capitalizeFirstLetter(id);
+  const content = label && capitalizeFirstLetter(label);
   const defaultPlaceholder = `Enter your ${id}`;
 
   if (type === "select") {
     return (
       <div className="form-group">
         <label htmlFor="category" className="form-label">
-          Category:
+          {content}:
         </label>
         <select id="category" {...register(name)} className="form-input">
           {options?.map(value => (

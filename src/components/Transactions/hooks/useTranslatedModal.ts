@@ -5,7 +5,14 @@ export function useTranslatedModal() {
 
   const modal = t("modal") as unknown as ModalTransactionProps;
 
-  const { enterAmount, enterDescription, enterCategory } = modal;
+  const {
+    enterAmount,
+    enterDescription,
+    enterCategory,
+    amount,
+    description,
+    category,
+  } = modal;
 
   const FIELD_LABEL = {
     AMOUNT: enterAmount,
@@ -13,5 +20,5 @@ export function useTranslatedModal() {
     CATEGORY: enterCategory,
   };
 
-  return { FIELD_LABEL, modal };
+  return { FIELD_LABEL, modal, amount, description, category };
 }

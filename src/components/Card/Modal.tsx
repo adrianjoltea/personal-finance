@@ -9,6 +9,7 @@ export default function Modal({
 }: ModalProps) {
   const dispatch = useDispatch();
   const open = useSelector((state: RootState) => getModal(state, modalId));
+
   function close() {
     dispatch(toggleModal({ modalId, open: false }));
   }

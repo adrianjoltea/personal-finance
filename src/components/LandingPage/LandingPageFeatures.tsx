@@ -1,4 +1,4 @@
-import React from "react";
+
 import { FaChartLine, FaGlobeEurope, FaIdCard, FaTable } from "react-icons/fa";
 
 function LandingPageFeatures() {

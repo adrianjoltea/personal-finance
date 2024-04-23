@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useCardsUsers } from "../Card/hooks/useCardsUser";
 import { debounce } from "lodash";

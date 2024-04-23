@@ -28,7 +28,7 @@ export default function StockModal({
   const dispatch = useDispatch();
   const { isAdding, buyStock } = useBuyStock();
 
-  const { FIELD_LABEL } = useTranslatedModal();
+  const { FIELD_LABEL, amount: labelAmount } = useTranslatedModal();
 
   const {
     register,
@@ -81,6 +81,7 @@ export default function StockModal({
             placeholder={field.label}
             type={field.type}
             key={index}
+            label={labelAmount}
           />
         ))}
 

@@ -22,7 +22,13 @@ export default function UserData() {
     username,
     profilePicture: avatar,
   };
-  const text = t("settings") as unknown as { title: string };
+  const text = t("settings") as unknown as {
+    title: string;
+    firstName: string;
+    lastName: string;
+    enterFirstName: string;
+    enterLastName: string;
+  };
   function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
 
@@ -60,11 +66,15 @@ export default function UserData() {
         <form onSubmit={onSubmit} className="form-user">
           <Input
             id="first name"
+            label={text.firstName}
+            placeholder={text.enterFirstName}
             value={firstName}
             onChange={e => setFirstName(e.target.value)}
           />
           <Input
             id="last name"
+            label={text.lastName}
+            placeholder={text.enterLastName}
             value={lastName}
             onChange={e => setLastName(e.target.value)}
           />

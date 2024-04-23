@@ -1,4 +1,3 @@
-import React from "react";
 import LandingPageHero from "../components/LandingPage/LandingPageHero";
 import LandingPageFeatures from "../components/LandingPage/LandingPageFeatures";
 import LandingPageLogin from "../components/LandingPage/LandingPageLogin";

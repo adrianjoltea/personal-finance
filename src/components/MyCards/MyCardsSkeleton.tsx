@@ -7,6 +7,7 @@ function MyCardsSkeleton() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const text = t("myCards") as unknown as MyCardsProps;
+
   return (
     <div className="my-cards-skeleton">
       <button

@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function LandingPageHero() {
   return (
     <div className="landing-page-hero">

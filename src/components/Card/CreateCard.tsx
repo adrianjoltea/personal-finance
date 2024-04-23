@@ -6,6 +6,8 @@ import { IFormInput } from "./Interface/CardInterface";
 import { useCreateCard } from "./hooks/useCreateCard";
 import CardDetails from "./CardDetails";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { MyCardsProps } from "../MyCards/interface/MyCardsProps";
 
 const FIELD_NAME = {
   NAME: "name",
@@ -14,13 +16,41 @@ const FIELD_NAME = {
   FIRST_COLOR: "firstColor",
   SECOND_COLOR: "secondColor",
 };
-const FIELD_LABEL = {
-  NAME: "Enter your name",
-  BALANCE: "Enter your balance",
-  CURRENCY: "Enter your currency",
-  FIRST_COLOR: "Enter your first color",
-  SECOND_COLOR: "Enter your second color",
-};
+function useTranslatedModal() {
+  const { t } = useTranslation();
+  const text = t("myCards.form") as unknown as MyCardsProps["form"];
+  const {
+    name,
+    enterBalance,
+    enterName,
+    balance,
+    cancel,
+    submit,
+    currency,
+    firstColor,
+    secondColor,
+  } = text;
+  console.log(text);
+
+  const FIELD_LABEL = {
+    NAME: enterName,
+    BALANCE: enterBalance,
+    CURRENCY: "Enter your currency",
+    FIRST_COLOR: "Enter your first color",
+    SECOND_COLOR: "Enter your second color",
+  };
+
+  return {
+    FIELD_LABEL,
+    name,
+    balance,
+    cancel,
+    submit,
+    currency,
+    firstColor,
+    secondColor,
+  };
+}
 
 const FIELD_OPTIONS = ["RON", "EURO", "DOLLAR"];
 
@@ -34,6 +64,16 @@ const SCHEMA = z.object({
 
 export default function CreateCard() {
   const navigate = useNavigate();
+  const {
+    FIELD_LABEL,
+    name: nameAfter,
+    cancel,
+    submit,
+    currency: currencyAfter,
+    balance: balanceAfter,
+    firstColor: firstColorAfter,
+    secondColor: secondColorAfter,
+  } = useTranslatedModal();
   const {
     register,
     handleSubmit,
@@ -54,27 +94,32 @@ export default function CreateCard() {
     {
       name: FIELD_NAME.NAME,
       label: FIELD_LABEL.NAME,
+      labelAfter: nameAfter,
     },
     {
       name: FIELD_NAME.BALANCE,
       label: FIELD_LABEL.BALANCE,
       type: "number",
+      labelAfter: balanceAfter,
     },
     {
       name: FIELD_NAME.CURRENCY,
       label: FIELD_LABEL.CURRENCY,
       type: "select",
       options: FIELD_OPTIONS,
+      labelAfter: currencyAfter,
     },
     {
       name: FIELD_NAME.FIRST_COLOR,
       label: FIELD_LABEL.FIRST_COLOR,
       type: "color",
+      labelAfter: firstColorAfter,
     },
     {
       name: FIELD_NAME.SECOND_COLOR,
       label: FIELD_LABEL.SECOND_COLOR,
       type: "color",
+      labelAfter: secondColorAfter,
     },
   ];
 
@@ -125,15 +170,16 @@ export default function CreateCard() {
             type={field.type}
             key={index}
             options={field.options}
+            label={field.labelAfter}
           />
         ))}
 
         <div className="form-card-btns">
           <button className="btn btn-form" onClick={() => navigate(-1)}>
-            Cancel
+            {cancel}
           </button>
           <button className="btn btn-form" disabled={isCreating}>
-            Submit
+            {submit}
           </button>
         </div>
       </form>
