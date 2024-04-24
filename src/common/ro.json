@@ -114,6 +114,9 @@
       "enterLastName": "Introduceți numele de familie",
       "firstName": "Prenume",
       "lastName": "Nume de familie"
+    },
+    "pageNotFound": {
+      "title": "Pare să fie o problemă"
     }
   }
 }

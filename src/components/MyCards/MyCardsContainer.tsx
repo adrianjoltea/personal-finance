@@ -16,8 +16,6 @@ function usePaginate({ cards }: { cards: CardsData[] | undefined }) {
   const [currentPage, setCurrentPage] = useState(1);
   const isThresholdMet = useThreshold(THRESHOLD_WIDTH);
 
-  console.log(isThresholdMet);
-
   if (!isThresholdMet) {
     CARDS_PER_PAGE = 3;
     if (currentPage === 1) CARDS_PER_PAGE -= 1;

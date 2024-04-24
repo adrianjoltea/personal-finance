@@ -116,6 +116,9 @@
       "enterLastName": "Enter your last name",
       "firstName": "First name",
       "lastName": "Last name"
+    },
+    "pageNotFound": {
+      "title": "There seems to be a problem"
     }
   }
 }

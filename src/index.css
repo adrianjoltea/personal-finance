@@ -1100,13 +1100,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5rem;
-    background-color: #f1f5f9;
+    background-color: var(--color-grey-100);
     min-height: 10rem;
-    font-size: 4rem; }
+    font-size: 4rem;
+    border-radius: 2rem; }
     .page-not-found-container button {
-      background-color: rgba(36, 94, 231, 0.2);
+      background-color: var(--color-brand-600);
       border: none;
-      color: #245ee7;
+      color: var(--color-brand-200);
       border-radius: 2rem;
       cursor: pointer; }
 
