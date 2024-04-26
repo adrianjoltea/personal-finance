@@ -11,7 +11,6 @@ import AppOffline from "./AppOffline";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import LazyLoader from "./components/Ui/LazyLoader";
-import CreateCardPage from "./pages/CreateCardPage";
 import LandingPage from "./pages/LandingPage";
 
 const Transactions = lazy(() => import("./pages/Transactions"));
@@ -19,6 +18,8 @@ const Overview = lazy(() => import("./pages/Overview"));
 const Invest = lazy(() => import("./pages/Invest"));
 const Settings = lazy(() => import("./pages/Settings"));
 const MyCards = lazy(() => import("./pages/MyCards"));
+const Admin = lazy(() => import("./pages/Admin"));
+const CreateCardPage = lazy(() => import("./pages/CreateCardPage"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -79,6 +80,7 @@ export default function App() {
                     <Route path="my-cards" element={<MyCards />} />
                     <Route path="create-card" element={<CreateCardPage />} />
                     <Route path="invest" element={<Invest />} />
+                    <Route path="admin" element={<Admin />} />
                     <Route path="settings" element={<Settings />} />
                   </Route>
                   <Route path="*" element={<PageNotFound />} />

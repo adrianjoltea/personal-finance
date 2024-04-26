@@ -13,6 +13,7 @@ interface User {
   username: string;
   _id: string;
   profilePicture: string;
+  role: string;
 }
 
 interface FetchUserResponse {

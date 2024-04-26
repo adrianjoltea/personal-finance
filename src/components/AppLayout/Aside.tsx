@@ -8,6 +8,7 @@ import { getNav, toggleNav } from "../../context/darkModeSlice";
 import { IoMdPerson } from "react-icons/io";
 import { GrTransaction } from "react-icons/gr";
 import { useTranslation } from "react-i18next";
+import { useUser } from "../User/useUser";
 
 interface AsideProps {
   navOpen: boolean;
@@ -26,7 +27,8 @@ export default function Aside({ navOpen, setNavOpen }: AsideProps) {
   const navigationMobile = useSelector(getNav);
   const dispatch = useDispatch();
   const { t } = useTranslation();
-
+  const { user } = useUser();
+  const isAdmin = user?.role === "admin";
   const sidebar: Sidebar = t("sidebar") as unknown as Sidebar;
 
   const { overview, transactions, myCards, invest, settings } = sidebar;
@@ -63,6 +65,13 @@ export default function Aside({ navOpen, setNavOpen }: AsideProps) {
               <IoMdPerson /> {navOpen && <span>{invest}</span>}
             </NavLink>
           </li>
+          {isAdmin && (
+            <li>
+              <NavLink to="/admin" className="sidebar__link">
+                <IoMdPerson /> {navOpen && <span>Admin</span>}
+              </NavLink>
+            </li>
+          )}
 
           <li>
             <NavLink to="/settings" className="sidebar__link">
